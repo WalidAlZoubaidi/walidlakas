@@ -481,7 +481,7 @@ footer {
 }
 
 /* =====================================================
-   MOBILE NAVIGATION — Premium Bottom-Up Drawer
+   MOBILE NAVIGATION — Bottom-Up Drawer (Bulletproof)
    ===================================================== */
 
 /* Hamburger Button */
@@ -490,37 +490,28 @@ footer {
   background: none;
   border: none;
   color: #1e293b;
-  border-radius: 12px;
-  padding: 0.45rem;
+  border-radius: 10px;
+  padding: 0.5rem;
   cursor: pointer;
-  z-index: 1200;
+  z-index: 100;
   position: relative;
+  line-height: 0;
   transition: background 0.2s ease;
 }
 
 .mobile-menu-btn:active {
-  background: rgba(14, 165, 233, 0.1);
+  background: rgba(14, 165, 233, 0.08);
 }
 
-/* Backdrop overlay */
+/* ---- Backdrop ---- */
 .mobile-menu-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(10, 15, 35, 0.45);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
-  z-index: 1100;
+  background: rgba(15, 23, 42, 0.4);
+  z-index: 200;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.35s ease;
-}
-
-/* Drawer container */
-.mobile-menu {
-  position: fixed;
-  inset: 0;
-  z-index: 1100;
-  pointer-events: none;
+  transition: opacity 0.3s ease;
 }
 
 .mobile-menu.open .mobile-menu-backdrop {
@@ -528,49 +519,64 @@ footer {
   pointer-events: auto;
 }
 
-/* Bottom sheet drawer */
+/* ---- Wrapper (no visual presence, just a portal anchor) ---- */
+.mobile-menu {
+  /* intentionally no position/background — children handle themselves */
+}
+
+/* ---- Bottom-sheet drawer ---- */
 .mobile-menu-content {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
   background: #ffffff;
-  border-radius: 28px 28px 0 0;
-  padding: 0 1.5rem 3rem;
-  z-index: 1200;
-  pointer-events: auto;
+  border-radius: 24px 24px 0 0;
+  padding: 0 1.25rem env(safe-area-inset-bottom, 1.5rem);
+  padding-bottom: max(2.5rem, env(safe-area-inset-bottom, 2.5rem));
+  z-index: 300;
+  pointer-events: none;
+  visibility: hidden;
   transform: translateY(100%);
-  transition: transform 0.42s cubic-bezier(0.34, 1.26, 0.64, 1);
-  box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.18);
-  max-height: 80vh;
+  transition:
+    transform 0.38s cubic-bezier(0.32, 0.72, 0, 1),
+    visibility 0s linear 0.38s;
+  box-shadow: 0 -8px 40px rgba(0, 0, 0, 0.12);
+  max-height: 75vh;
   overflow-y: auto;
+  will-change: transform;
 }
 
+/* When open */
 .mobile-menu.open .mobile-menu-content {
+  pointer-events: auto;
+  visibility: visible;
   transform: translateY(0);
+  transition:
+    transform 0.38s cubic-bezier(0.32, 0.72, 0, 1),
+    visibility 0s linear 0s;
 }
 
 /* Pill drag indicator */
 .drawer-pill {
-  width: 42px;
-  height: 5px;
+  width: 36px;
+  height: 4px;
   background: #cbd5e1;
   border-radius: 99px;
-  margin: 14px auto 24px;
+  margin: 12px auto 20px;
 }
 
 /* Nav links inside drawer */
 .mobile-link {
   display: flex;
   align-items: center;
-  padding: 1rem 0.25rem;
+  padding: 0.9rem 0.25rem;
   font-family: var(--font-heading);
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   font-weight: 600;
   color: #334155;
   border-bottom: 1px solid #f1f5f9;
-  transition: color 0.2s ease, padding-left 0.2s ease;
-  letter-spacing: -0.2px;
+  transition: color 0.18s ease, padding-left 0.18s ease;
 }
 
 .mobile-link:last-child {
@@ -579,7 +585,7 @@ footer {
 
 .mobile-link:hover {
   color: #0ea5e9;
-  padding-left: 0.5rem;
+  padding-left: 0.4rem;
 }
 
 .mobile-link.active {
