@@ -1,6 +1,41 @@
 import React from 'react';
 import { Layers, Dna } from 'lucide-react';
-import { InlineMath, BlockMath } from 'react-katex';
+import katex from 'katex';
+
+// Premium Scientific Architecture: Direct native KaTeX compilation to static HTML
+// This architecture ensures absolute stability, zero React 19 client/server hydration conflicts,
+// and complete immunity against DOM manipulation by translation extensions/tools.
+const InlineMath = ({ math }) => {
+  const cleanMath = typeof math === 'string' ? math : '';
+  let html = '';
+  try {
+    html = katex.renderToString(cleanMath, {
+      displayMode: false,
+      throwOnError: false,
+      strict: false,
+      trust: true,
+    });
+  } catch (e) {
+    html = `<span style="color: #ef4444;">${cleanMath}</span>`;
+  }
+  return <span className="notranslate" translate="no" dangerouslySetInnerHTML={{ __html: html }} />;
+};
+
+const BlockMath = ({ math }) => {
+  const cleanMath = typeof math === 'string' ? math : '';
+  let html = '';
+  try {
+    html = katex.renderToString(cleanMath, {
+      displayMode: true,
+      throwOnError: false,
+      strict: false,
+      trust: true,
+    });
+  } catch (e) {
+    html = `<div style="color: #ef4444;">${cleanMath}</div>`;
+  }
+  return <div className="notranslate" translate="no" style={{ margin: '1rem 0', overflowX: 'auto' }} dangerouslySetInnerHTML={{ __html: html }} />;
+};
 
 const AnalysisOfDeformationPage = () => {
   return (
@@ -38,7 +73,7 @@ const AnalysisOfDeformationPage = () => {
             <p style={{ marginBottom: '1rem', color: 'var(--text-secondary)' }}>
               Consider the transformation defined by:
             </p>
-            <BlockMath math={String.raw`f(P) = \alpha X_1 \vec{e}_1 + \beta X_2 \vec{e}_2 + X_3 \vec{e}_3 \quad (E)`} />
+            <BlockMath math={String.raw`f(P) = \alpha X_1 \mathbf{e}_1 + \beta X_2 \mathbf{e}_2 + X_3 \mathbf{e}_3 \quad (E)`} />
             <p style={{ marginTop: '1rem', marginBottom: '2rem', color: 'var(--text-secondary)' }}>
               where <InlineMath math={String.raw`\alpha`} /> and <InlineMath math={String.raw`\beta`} /> are constants.
             </p>
@@ -84,20 +119,19 @@ const AnalysisOfDeformationPage = () => {
             </div>
 
             <div style={{ marginTop: '3rem' }}>
-              <h4 style={{ marginBottom: '1rem', color: 'var(--text-primary)' }}>c) Find the displacement vector <InlineMath math={String.raw`\vec{u}`} />.</h4>
+              <h4 style={{ marginBottom: '1rem', color: 'var(--text-primary)' }}>c) Find the displacement vector <InlineMath math={String.raw`\mathbf{u}`} />.</h4>
               <div style={{ marginBottom: '1rem' }}>
                 <strong style={{ color: 'var(--text-primary)' }}>Answer:</strong>
               </div>
-              <BlockMath math={String.raw`\vec{u} = p - P = f(P) - P = \begin{pmatrix} \alpha X_1 \\ \beta X_2 \\ X_3 \end{pmatrix} - \begin{pmatrix} X_1 \\ X_2 \\ X_3 \end{pmatrix} =`} />
-              <BlockMath math={String.raw`= X_1(\alpha - 1)\vec{e}_1 + X_2(\beta - 1)\vec{e}_2 \qquad (u_3 = 0 \\ \forall P \in \Omega)`} />
+              <BlockMath math={String.raw`\begin{aligned} \mathbf{u} &= p - P = f(P) - P \\ &= \begin{pmatrix} \alpha X_1 \\ \beta X_2 \\ X_3 \end{pmatrix} - \begin{pmatrix} X_1 \\ X_2 \\ X_3 \end{pmatrix} \\ &= X_1(\alpha - 1)\mathbf{e}_1 + X_2(\beta - 1)\mathbf{e}_2 \qquad (u_3 = 0 \quad \forall P \in \Omega) \end{aligned}`} />
             </div>
 
             <div style={{ marginTop: '3rem' }}>
-              <h4 style={{ marginBottom: '1rem', color: 'var(--text-primary)' }}>d) Write the displacement gradient <InlineMath math={String.raw`\nabla u`} />.</h4>
+              <h4 style={{ marginBottom: '1rem', color: 'var(--text-primary)' }}>d) Write the displacement gradient <InlineMath math={String.raw`\nabla \mathbf{u}`} />.</h4>
               <div style={{ marginBottom: '1rem' }}>
                 <strong style={{ color: 'var(--text-primary)' }}>Answer:</strong>
               </div>
-              <BlockMath math={String.raw`\nabla u = u_{i,j} e_i \otimes e_j = F - I = \begin{bmatrix} \alpha - 1 & 0 & 0 \\ 0 & \beta - 1 & 0 \\ 0 & 0 & 0 \end{bmatrix}`} />
+              <BlockMath math={String.raw`\nabla \mathbf{u} = u_{i,j} \mathbf{e}_i \otimes \mathbf{e}_j = F - I = \begin{bmatrix} \alpha - 1 & 0 & 0 \\ 0 & \beta - 1 & 0 \\ 0 & 0 & 0 \end{bmatrix}`} />
             </div>
 
             <div style={{ marginTop: '3rem' }}>
@@ -120,40 +154,39 @@ const AnalysisOfDeformationPage = () => {
             </div>
 
             <div style={{ marginTop: '3rem' }}>
-              <h4 style={{ marginBottom: '1rem', color: 'var(--text-primary)' }}>f) Calculate the local rate of change of length <InlineMath math={String.raw`\delta l(\vec{e})`} /></h4>
+              <h4 style={{ marginBottom: '1rem', color: 'var(--text-primary)' }}>f) Calculate the local rate of change of length <InlineMath math={String.raw`\delta l(\mathbf{e})`} /></h4>
               <p style={{ marginBottom: '1rem', color: 'var(--text-secondary)' }}>
-                where <InlineMath math={String.raw`\vec{e} \in S^2`} /> is an arbitrary direction.
+                where <InlineMath math={String.raw`\mathbf{e} \in S^2`} /> is an arbitrary direction.
               </p>
               <div style={{ marginBottom: '1rem' }}>
                 <strong style={{ color: 'var(--text-primary)' }}>Answer:</strong>
               </div>
               <p style={{ marginBottom: '1rem', color: 'var(--text-secondary)' }}>
-                Let's take a vector <InlineMath math={String.raw`\vec{e} = \begin{pmatrix} a \\ b \\ c \end{pmatrix}`} />. Applying the formula:
+                Let's take a vector <InlineMath math={String.raw`\mathbf{e} = \begin{pmatrix} a \\ b \\ c \end{pmatrix}`} />. Applying the formula:
               </p>
-              <BlockMath math={String.raw`\delta l(\vec{e}) = \frac{|\alpha F \vec{e}| - |\alpha \vec{e}|}{|\alpha \vec{e}|} \qquad (\text{with } \alpha \vec{e} = dX, \\ \alpha \to 0^+)`} />
-              <BlockMath math={String.raw`= \frac{\alpha |F \vec{e}| - \alpha |\vec{e}|}{\alpha |\vec{e}|} = |F \vec{e}| - 1`} />
+              <BlockMath math={String.raw`\begin{aligned} \delta l(\mathbf{e}) &= \frac{|\alpha F \mathbf{e}| - |\alpha \mathbf{e}|}{|\alpha \mathbf{e}|}, \\ &\qquad \text{with } \alpha \mathbf{e} = dX,\quad \alpha \to 0^+ \\ &= \frac{\alpha |F \mathbf{e}| - \alpha |\mathbf{e}|}{\alpha |\mathbf{e}|} = |F \mathbf{e}| - 1 \end{aligned}`} />
               <p style={{ marginTop: '2rem', marginBottom: '1rem', color: 'var(--text-secondary)' }}>
-                Evaluating <InlineMath math={String.raw`F \vec{e}`} />:
+                Evaluating <InlineMath math={String.raw`F \mathbf{e}`} />:
               </p>
-              <BlockMath math={String.raw`F \vec{e} = \begin{bmatrix} \alpha & 0 & 0 \\ 0 & \beta & 0 \\ 0 & 0 & 1 \end{bmatrix} \begin{pmatrix} a \\ b \\ c \end{pmatrix} = \begin{pmatrix} \alpha a \\ \beta b \\ c \end{pmatrix}`} />
+              <BlockMath math={String.raw`F \mathbf{e} = \begin{bmatrix} \alpha & 0 & 0 \\ 0 & \beta & 0 \\ 0 & 0 & 1 \end{bmatrix} \begin{pmatrix} a \\ b \\ c \end{pmatrix} = \begin{pmatrix} \alpha a \\ \beta b \\ c \end{pmatrix}`} />
               <p style={{ marginTop: '2rem', marginBottom: '1rem', color: 'var(--text-secondary)' }}>
                 Consequently:
               </p>
-              <BlockMath math={String.raw`\delta l (\vec{e}) = \sqrt{\alpha^2 a^2 + \beta^2 b^2 + c^2} - 1`} />
+              <BlockMath math={String.raw`\delta l (\mathbf{e}) = \sqrt{\alpha^2 a^2 + \beta^2 b^2 + c^2} - 1`} />
             </div>
 
             <div style={{ marginTop: '3rem' }}>
-              <h4 style={{ marginBottom: '1rem', color: 'var(--text-primary)' }}>g) Calculate the stretch ratio <InlineMath math={String.raw`\lambda(\vec{e})`} />.</h4>
+              <h4 style={{ marginBottom: '1rem', color: 'var(--text-primary)' }}>g) Calculate the stretch ratio <InlineMath math={String.raw`\lambda(\mathbf{e})`} />.</h4>
               <div style={{ marginBottom: '1rem' }}>
                 <strong style={{ color: 'var(--text-primary)' }}>Answer:</strong>
               </div>
-              <BlockMath math={String.raw`\lambda(\vec{e}) = \delta l (\vec{e}) + 1 = \sqrt{\alpha^2 a^2 + \beta^2 b^2 + c^2}`} />
+              <BlockMath math={String.raw`\lambda(\mathbf{e}) = \delta l (\mathbf{e}) + 1 = \sqrt{\alpha^2 a^2 + \beta^2 b^2 + c^2}`} />
             </div>
 
             <div style={{ marginTop: '3rem' }}>
-              <h4 style={{ marginBottom: '1rem', color: 'var(--text-primary)' }}>h) Calculate the local rate of change of area <InlineMath math={String.raw`\delta_a(\vec{N})`} />.</h4>
+              <h4 style={{ marginBottom: '1rem', color: 'var(--text-primary)' }}>h) Calculate the local rate of change of area <InlineMath math={String.raw`\delta_a(\mathbf{N})`} />.</h4>
               <p style={{ marginBottom: '1rem', color: 'var(--text-secondary)' }}>
-                where <InlineMath math={String.raw`\vec{N} \in S^2`} /> is the normal to the original surface element in <InlineMath math={String.raw`\Omega`} />.
+                where <InlineMath math={String.raw`\mathbf{N} \in S^2`} /> is the normal to the original surface element in <InlineMath math={String.raw`\Omega`} />.
               </p>
               <div style={{ marginBottom: '1rem' }}>
                 <strong style={{ color: 'var(--text-primary)' }}>Answer:</strong>
@@ -161,7 +194,7 @@ const AnalysisOfDeformationPage = () => {
               <p style={{ marginBottom: '1rem', color: 'var(--text-secondary)' }}>
                 <em>Explanation: We use Nanson's formula, defined via the cofactor tensor <InlineMath math={String.raw`F^*`} />.</em>
               </p>
-              <BlockMath math={String.raw`\delta_a(\vec{N}) = |F^* \vec{N}| - 1`} />
+              <BlockMath math={String.raw`\delta_a(\mathbf{N}) = |F^* \mathbf{N}| - 1`} />
               <BlockMath math={String.raw`F^* = \det F \cdot F^{-T}`} />
               <p style={{ marginTop: '1rem', marginBottom: '1rem', color: 'var(--text-secondary)' }}>
                 In our case: <InlineMath math={String.raw`F^T = F`} /> and <InlineMath math={String.raw`F^{-1} = F^{-T} = \begin{bmatrix} 1/\alpha & 0 & 0 \\ 0 & 1/\beta & 0 \\ 0 & 0 & 1 \end{bmatrix}`} />
@@ -169,19 +202,19 @@ const AnalysisOfDeformationPage = () => {
               <p style={{ marginBottom: '1rem', color: 'var(--text-secondary)' }}>
                 Since <InlineMath math={String.raw`\det F = \alpha \beta`} /> :
               </p>
-              <BlockMath math={String.raw`\implies F^* = \begin{bmatrix} \beta & 0 & 0 \\ 0 & \alpha & 0 \\ 0 & 0 & \alpha \beta \end{bmatrix} \quad \text{for } \vec{N} = \begin{pmatrix} N_1 \\ N_2 \\ N_3 \end{pmatrix}`} />
-              <BlockMath math={String.raw`F^* \vec{N} = \begin{bmatrix} \beta & 0 & 0 \\ 0 & \alpha & 0 \\ 0 & 0 & \alpha \beta \end{bmatrix} \begin{pmatrix} N_1 \\ N_2 \\ N_3 \end{pmatrix} = \begin{pmatrix} \beta N_1 \\ \alpha N_2 \\ \alpha \beta N_3 \end{pmatrix}`} />
+              <BlockMath math={String.raw`\implies F^* = \begin{bmatrix} \beta & 0 & 0 \\ 0 & \alpha & 0 \\ 0 & 0 & \alpha \beta \end{bmatrix} \quad \text{for } \mathbf{N} = \begin{pmatrix} N_1 \\ N_2 \\ N_3 \end{pmatrix}`} />
+              <BlockMath math={String.raw`F^* \mathbf{N} = \begin{bmatrix} \beta & 0 & 0 \\ 0 & \alpha & 0 \\ 0 & 0 & \alpha \beta \end{bmatrix} \begin{pmatrix} N_1 \\ N_2 \\ N_3 \end{pmatrix} = \begin{pmatrix} \beta N_1 \\ \alpha N_2 \\ \alpha \beta N_3 \end{pmatrix}`} />
               <p style={{ marginTop: '1rem', marginBottom: '1rem', color: 'var(--text-secondary)' }}>
-                Therefore: <InlineMath math={String.raw`\delta_a(\vec{N}) = \sqrt{\beta^2 N_1^2 + \alpha^2 N_2^2 + \alpha^2 \beta^2 N_3^2} - 1`} />
+                Therefore: <InlineMath math={String.raw`\delta_a(\mathbf{N}) = \sqrt{\beta^2 N_1^2 + \alpha^2 N_2^2 + \alpha^2 \beta^2 N_3^2} - 1`} />
               </p>
             </div>
 
             <div style={{ marginTop: '3rem' }}>
-              <h4 style={{ marginBottom: '1rem', color: 'var(--text-primary)' }}>i) Find the orthogonal vector <InlineMath math={String.raw`\vec{n} \in S^2`} />, post-transformation, to the surface element originally given by <InlineMath math={String.raw`\vec{N}`} />.</h4>
+              <h4 style={{ marginBottom: '1rem', color: 'var(--text-primary)' }}>i) Find the orthogonal vector <InlineMath math={String.raw`\mathbf{n} \in S^2`} />, post-transformation, to the surface element originally given by <InlineMath math={String.raw`\mathbf{N}`} />.</h4>
               <div style={{ marginBottom: '1rem' }}>
                 <strong style={{ color: 'var(--text-primary)' }}>Answer:</strong>
               </div>
-              <BlockMath math={String.raw`\vec{n} = \frac{F^* \vec{N}}{|F^* \vec{N}|} = \frac{1}{\sqrt{\beta^2 N_1^2 + \alpha^2 N_2^2 + \alpha^2 \beta^2 N_3^2}} \begin{pmatrix} \beta N_1 \\ \alpha N_2 \\ \alpha \beta N_3 \end{pmatrix}`} />
+              <BlockMath math={String.raw`\mathbf{n} = \frac{F^* \mathbf{N}}{|F^* \mathbf{N}|} = \frac{1}{\sqrt{\beta^2 N_1^2 + \alpha^2 N_2^2 + \alpha^2 \beta^2 N_3^2}} \begin{pmatrix} \beta N_1 \\ \alpha N_2 \\ \alpha \beta N_3 \end{pmatrix}`} />
             </div>
 
             <div style={{ marginTop: '3rem' }}>
@@ -204,22 +237,22 @@ const AnalysisOfDeformationPage = () => {
             </div>
 
             <div style={{ marginTop: '3rem' }}>
-              <h4 style={{ marginBottom: '1rem', color: 'var(--text-primary)' }}>l) Calculate the angle variation between the basis vectors <InlineMath math={String.raw`\{\vec{e}_1, \vec{e}_2, \vec{e}_3\}`} />.</h4>
+              <h4 style={{ marginBottom: '1rem', color: 'var(--text-primary)' }}>l) Calculate the angle variation between the basis vectors <InlineMath math={String.raw`\{\mathbf{e}_1, \mathbf{e}_2, \mathbf{e}_3\}`} />.</h4>
               <div style={{ marginBottom: '1rem' }}>
                 <strong style={{ color: 'var(--text-primary)' }}>Answer:</strong>
               </div>
               <p style={{ marginBottom: '1rem', color: 'var(--text-secondary)' }}>
                 <em>Explanation: We are looking for shear deformation by analyzing how originally orthogonal unit vectors behave after transformation.</em>
               </p>
-              <BlockMath math={String.raw`\delta \theta(\vec{e}_i, \vec{e}_j) = \underbrace{\arccos(\vec{e}_i \cdot \vec{e}_j)}_{= \pi / 2} - \arccos\left( \frac{F\vec{e}_i \cdot F\vec{e}_j}{\lambda(\vec{e}_i)\lambda(\vec{e}_j)} \right)`} />
+              <BlockMath math={String.raw`\delta \theta(\mathbf{e}_i, \mathbf{e}_j) = \underbrace{\arccos(\mathbf{e}_i \cdot \mathbf{e}_j)}_{= \pi / 2} - \arccos\left( \frac{F\mathbf{e}_i \cdot F\mathbf{e}_j}{\lambda(\mathbf{e}_i)\lambda(\mathbf{e}_j)} \right)`} />
               <p style={{ marginTop: '1rem', marginBottom: '2rem', color: 'var(--text-secondary)' }}>
                 This is because the chosen vectors are orthogonal basis vectors.
               </p>
 
               <p style={{ marginBottom: '1rem', color: 'var(--text-secondary)' }}>
-                Let's compute the dot product <InlineMath math={String.raw`F\vec{e}_i \cdot F\vec{e}_j`} /> :
+                Let's compute the dot product <InlineMath math={String.raw`F\mathbf{e}_i \cdot F\mathbf{e}_j`} /> :
               </p>
-              <BlockMath math={String.raw`F\vec{e}_i \cdot F\vec{e}_j = \vec{e}_i \cdot F^T F \vec{e}_j = \vec{e}_i \cdot F^2 \vec{e}_j`} />
+              <BlockMath math={String.raw`F\mathbf{e}_i \cdot F\mathbf{e}_j = \mathbf{e}_i \cdot F^T F \mathbf{e}_j = \mathbf{e}_i \cdot F^2 \mathbf{e}_j`} />
               <p style={{ marginTop: '1rem', marginBottom: '1rem', color: 'var(--text-secondary)', fontSize: '0.95rem' }}>
                 <em>Note: We use standard tensor algebra properties. In our specific case, <InlineMath math={String.raw`F^T F = F^2`} /> is true because <InlineMath math={String.raw`F`} /> is symmetric.</em>
               </p>
@@ -230,12 +263,10 @@ const AnalysisOfDeformationPage = () => {
               <p style={{ marginTop: '1rem', marginBottom: '1rem', color: 'var(--text-secondary)' }}>
                 Applying this to all basis vectors:
               </p>
-              <BlockMath math={String.raw`\vec{e}_1 \cdot F^2 \vec{e}_2 = \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix} \cdot \begin{bmatrix} \alpha^2 & 0 & 0 \\ 0 & \beta^2 & 0 \\ 0 & 0 & 1 \end{bmatrix} \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix} = \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix} \cdot \begin{pmatrix} 0 \\ \beta^2 \\ 0 \end{pmatrix} = 0`} />
-              <BlockMath math={String.raw`\vec{e}_1 \cdot F^2 \vec{e}_3 = 0`} />
-              <BlockMath math={String.raw`\vec{e}_2 \cdot F^2 \vec{e}_3 = 0`} />
+              <BlockMath math={String.raw`\begin{aligned} \mathbf{e}_1 \cdot F^2 \mathbf{e}_2 &= \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix} \cdot \begin{bmatrix} \alpha^2 & 0 & 0 \\ 0 & \beta^2 & 0 \\ 0 & 0 & 1 \end{bmatrix} \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix} \\ &= \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix} \cdot \begin{pmatrix} 0 \\ \beta^2 \\ 0 \end{pmatrix} = 0 \\ \mathbf{e}_1 \cdot F^2 \mathbf{e}_3 &= 0 \\ \mathbf{e}_2 \cdot F^2 \mathbf{e}_3 &= 0 \end{aligned}`} />
               
               <p style={{ marginTop: '2rem', marginBottom: '1rem', color: 'var(--text-secondary)' }}>
-                Therefore: <InlineMath math={String.raw`\delta \theta(\vec{e}_i, \vec{e}_j) = 0 \implies`} /> <strong>There is no angle variation (no shear).</strong>
+                Therefore: <InlineMath math={String.raw`\delta \theta(\mathbf{e}_i, \mathbf{e}_j) = 0 \implies`} /> <strong>There is no angle variation (no shear).</strong>
               </p>
             </div>
 
