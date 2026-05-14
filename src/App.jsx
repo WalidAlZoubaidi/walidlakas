@@ -107,7 +107,7 @@ const Home = () => {
       </div>
     </section>
 
-    <section className="section" style={{ background: 'rgba(14, 165, 233, 0.02)' }}>
+    <section className="section" style={{ background: '#f8fafc' }}>
       <div className="container">
         <h2 style={{ textAlign: 'center', marginBottom: '3rem' }}>
           <span className="gradient-text">My</span> Journey
