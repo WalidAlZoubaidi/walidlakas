@@ -279,9 +279,11 @@ function App() {
           </button>
         </div>
 
-        {/* Responsive Mobile Overlay Menu */}
+        {/* Responsive Mobile Overlay Menu (Bottom-Up Drawer) */}
         <div className={`mobile-menu ${mobileMenuOpen ? 'open' : ''}`}>
+          <div className="mobile-menu-backdrop" onClick={() => setMobileMenuOpen(false)} />
           <div className="mobile-menu-content">
+            <div className="drawer-pill" />
             <Link to="/" className={`mobile-link ${location.pathname === '/' ? 'active' : ''}`} onClick={() => setMobileMenuOpen(false)}>Home</Link>
             <Link to="/biomechanics" className={`mobile-link ${location.pathname === '/biomechanics' ? 'active' : ''}`} onClick={() => setMobileMenuOpen(false)}>Biomechanics</Link>
             <Link to="/mathematics" className={`mobile-link ${location.pathname === '/mathematics' ? 'active' : ''}`} onClick={() => setMobileMenuOpen(false)}>Mathematics</Link>
