@@ -1,5 +1,5 @@
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
-import { Mail, ArrowRight, Droplets, FunctionSquare, Building2, Atom, PenTool, Layers, Box, Wrench } from 'lucide-react';
+import { Mail, ArrowRight, Droplets, FunctionSquare, Building2, Atom, PenTool, Layers, Box, Wrench, Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import LiquidEther from '@/components/LiquidEther';
 import BasicsMMCPage from '@/pages/BasicsMMCPage';
@@ -237,6 +237,7 @@ const Home = () => {
 
 function App() {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -249,14 +250,15 @@ function App() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    setMobileMenuOpen(false); // Close mobile menu on page change
   }, [location.pathname]);
 
   return (
     <>
       <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
         <div className="container nav-container">
-          <Link to="/" className="nav-logo">
-            <img src="/logo.png" alt="Wave logo" style={{ width: '72px', height: '72px', borderRadius: '14px', marginRight: '1rem', boxShadow: '0 4px 18px rgba(14,165,233,0.5)' }} />
+          <Link to="/" className="nav-logo" onClick={() => setMobileMenuOpen(false)}>
+            <img src="/logo.png" alt="Wave logo" className="nav-logo-img" />
             <span className="gradient-text">W.</span> LAKAS
           </Link>
           <ul className="nav-links">
@@ -266,6 +268,26 @@ function App() {
             <li><Link to="/mechanics" className={`nav-link ${location.pathname.startsWith('/mechanics') ? 'active' : ''}`}>Mechanics</Link></li>
             <li><Link to="/blog" className={`nav-link ${location.pathname === '/blog' ? 'active' : ''}`}>Blog</Link></li>
           </ul>
+
+          {/* Mobile menu toggle button */}
+          <button 
+            className="mobile-menu-btn" 
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle mobile menu"
+          >
+            {mobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
+          </button>
+        </div>
+
+        {/* Responsive Mobile Overlay Menu */}
+        <div className={`mobile-menu ${mobileMenuOpen ? 'open' : ''}`}>
+          <div className="mobile-menu-content">
+            <Link to="/" className={`mobile-link ${location.pathname === '/' ? 'active' : ''}`} onClick={() => setMobileMenuOpen(false)}>Home</Link>
+            <Link to="/biomechanics" className={`mobile-link ${location.pathname === '/biomechanics' ? 'active' : ''}`} onClick={() => setMobileMenuOpen(false)}>Biomechanics</Link>
+            <Link to="/mathematics" className={`mobile-link ${location.pathname === '/mathematics' ? 'active' : ''}`} onClick={() => setMobileMenuOpen(false)}>Mathematics</Link>
+            <Link to="/mechanics" className={`mobile-link ${location.pathname.startsWith('/mechanics') ? 'active' : ''}`} onClick={() => setMobileMenuOpen(false)}>Mechanics</Link>
+            <Link to="/blog" className={`mobile-link ${location.pathname === '/blog' ? 'active' : ''}`} onClick={() => setMobileMenuOpen(false)}>Blog</Link>
+          </div>
         </div>
       </nav>
 
