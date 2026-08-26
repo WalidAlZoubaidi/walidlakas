@@ -37,42 +37,209 @@ const BlockMath = ({ math }) => {
   return <div className="notranslate" translate="no" style={{ margin: '1rem 0', overflowX: 'auto' }} dangerouslySetInnerHTML={{ __html: html }} />;
 };
 
-const VirtualWorkApplicationPage = () => {
+const text = {
+  en: {
+    title: 'Analytical Mechanics',
+    subtitle: 'Application Exercise',
+    introTitle: 'Introduction to the Principle of Virtual Work',
+    intro1: "The Principle of Virtual Work (PVW), or d'Alembert's principle, offers a highly powerful mathematical formulation of analytical mechanics. Unlike Newton's vectorial method (Fundamental Principle of Dynamics) which requires taking all forces into account, the PVW relies on a purely energetic approach.",
+    intro2: 'It states that at any given instant, the sum of the virtual works of active forces and inertia forces is zero for any geometrically admissible virtual displacement. Its decisive advantage is that it completely eliminates the need to calculate perfect constraint forces (such as the reaction of a joint or the tension of a cable), because the latter do no work during these displacements.',
+    applied: 'In Applied Mechanics',
+    appliedText: 'In engineering, this method is essential for analyzing highly constrained multi-degree-of-freedom systems, such as articulated robotics, spatial deployment mechanisms, or in civil engineering for studying the stability of complex structures.',
+    bio: 'In Biomechanics',
+    bioText: 'The biomechanics of human movement (gait analysis, prosthetics) models the skeleton as a poly-articulated system. The PVW allows isolating relevant unknowns and estimating muscle forces without having to calculate the extremely complex joint contact pressures.',
+    appTitle: 'Application: Pendulum with a Torsional Spring',
+    statement: 'Problem Statement',
+    statementText: 'Find the equation of motion for the given system; the rod has negligible mass, a concentrated mass',
+    statementText2: 'at one end, and a torsional spring with elastic constant',
+    statementText3: 'at the other, moving in a vertical plane.',
+    solution: 'Detailed Solution',
+    step1: '1. Problem Setup and Objective',
+    step1p1: 'The system is an inverted pendulum modified by adding a torsional spring at its base. The assembly evolves in a vertical plane.',
+    objective: 'Objective:',
+    step1p2: 'Determine the differential equation of motion governing the angle',
+    step1p3: 'Using the Principle of Virtual Work is ideal here because it allows us to bypass the calculation of the unknown reaction force at the pivot joint (the hinge at the origin).',
+    step2: '2. Geometric and Kinematic Parameterization',
+    step2p1: 'Since the system has only one degree of freedom, we choose the angle',
+    step2p2: 'as our single Lagrangian coordinate. The geometric constraint equation giving the position of the point mass',
+    step2p3: 'in the Cartesian coordinate system is written as:',
+    step2p4: 'By differentiating with respect to time, we obtain the velocity and acceleration vectors of point',
+    step2p5: 'which are essential for calculating the inertia force:',
+    step3: '3. Virtual Displacement',
+    step3p1: 'To apply the principle, we freeze time (the global configuration of the system is locked) and impose an infinitesimal virtual displacement compatible with the constraints. Here, this displacement corresponds to a tiny virtual angular variation',
+    step3p2: 'It is crucial to distinguish the actual coordinate',
+    step3p3: 'from the localized virtual displacement',
+    step3p4: 'The latter induces a spatial Cartesian displacement',
+    trig: 'We can rigorously evaluate this displacement vector using trigonometric addition formulas:',
+    linearize: 'Since the studied displacement is strictly infinitesimal',
+    linearize2: 'we linearize around the origin:',
+    note: 'Note:',
+    and: 'and',
+    tangent: 'This approach is mathematically equivalent to computing the tangent vector directly via differential calculus:',
+    step4: "4. d'Alembert's Energy Balance",
+    step4p1: 'The principle states that the sum of the virtual work of active forces',
+    step4p2: 'and the virtual work of inertia forces',
+    step4p3: 'is identically zero for any virtual evolution:',
+    inertiaCalc: 'Calculation of the virtual work of inertia forces:',
+    inertiaText: 'The inertia force is defined as opposing the acceleration vector',
+    inertiaText2: 'The dot product with the virtual displacement yields the virtual inertial energy:',
+    cancel: 'The terms in',
+    cancel2: 'which represent the centripetal acceleration, cancel out. By using the trigonometric identity',
+    cancel3: 'the expression simplifies greatly:',
+    activeCalc: 'Calculation of the virtual work of active forces:',
+    activeText: 'The system is subjected to two purely active forces: the restoring torque of the spring (which naturally opposes any rotation) and the weight of the concentrated mass',
+    project: 'By projecting the weight along the upward',
+    project2: 'axis, we perform the dot product:',
+    step5: '5. Conclusion: The Equation of Motion',
+    sumText: "By summing the different energetic terms in the principle's equation, we obtain:",
+    arbitrary: 'Given that this energetic equality must hold for any arbitrary non-zero virtual displacement',
+    arbitrary2: 'we can factor out the angular variation to extract the equation of motion:',
+    finalEq: 'Non-linear Differential Equation of Motion',
+    bioApp: 'Biomechanical Applications',
+    postural: '1. Postural Balance (Quiet Standing)',
+    posturalText: 'This seemingly abstract exercise is actually one of the most fundamental models in human biomechanics! The "inverted pendulum with a torsional spring" is the standard model used to study postural balance (orthostatic posture) in humans.',
+    rod: 'The Rod & Mass',
+    rodText: 'Represents the entire human body, with the mass concentrated at the center of gravity.',
+    pivot: 'The Pivot Point:',
+    pivotText: 'Represents the human ankle joint.',
+    spring: 'The Torsional Spring',
+    springText: 'Represents the active and passive stiffness of the calf muscles and the Achilles tendon.',
+    derived: 'The equation of motion we derived',
+    derived2: 'determines if a person will fall. If the muscular stiffness',
+    derived3: 'is not strong enough to counter gravity',
+    derived4: 'the system becomes unstable. This equation is widely used in evaluating neurological balance disorders!',
+    other: 'Other Notable Applications',
+    knee: 'Joint Stiffness (Knee Reflex)',
+    kneeText: 'A dangling lower leg acts as a standard pendulum. The knee is the pivot, and the ligaments/muscles (quadriceps) act as the spring',
+    kneeText2: 'This model is used clinically to measure joint stiffness and diagnose muscle spasticity by observing the oscillation frequency.',
+    exo: 'Exoskeletons & Prosthetics',
+    exoText: 'Passive orthoses often feature physical torsional springs at the hip or ankle. Engineers use this exact equation to optimize the spring constant',
+    exoText2: "allowing the device to store gravitational energy during the gait cycle and reduce the user's metabolic cost.",
+    cervical: 'Cervical Spine Stabilization',
+    cervicalText: 'The human head is a heavy mass balanced on the cervical spine (the rod). Neck muscles provide the necessary angular stiffness',
+    cervicalText2: 'to keep the head upright. This inverted pendulum model is crucial for simulating whiplash injuries in crash tests.',
+  },
+  fr: {
+    title: 'Mécanique analytique',
+    subtitle: 'Exercice d’application',
+    introTitle: 'Introduction au principe des travaux virtuels',
+    intro1: 'Le principe des travaux virtuels (PTV), ou principe de d’Alembert, offre une formulation mathématique très puissante de la mécanique analytique. Contrairement à la méthode vectorielle de Newton, qui nécessite de prendre en compte toutes les forces, le PTV repose sur une approche purement énergétique.',
+    intro2: 'Il affirme qu’à chaque instant, la somme des travaux virtuels des forces actives et des forces d’inertie est nulle pour tout déplacement virtuel géométriquement admissible. Son avantage décisif est qu’il élimine complètement le calcul des forces de liaison parfaites, comme la réaction d’une articulation ou la tension d’un câble, car ces forces ne travaillent pas lors de ces déplacements.',
+    applied: 'En mécanique appliquée',
+    appliedText: 'En ingénierie, cette méthode est essentielle pour analyser des systèmes très contraints à plusieurs degrés de liberté, comme la robotique articulée, les mécanismes de déploiement spatial ou encore l’étude de la stabilité de structures complexes en génie civil.',
+    bio: 'En biomécanique',
+    bioText: 'La biomécanique du mouvement humain, comme l’analyse de la marche ou les prothèses, modélise le squelette comme un système polyarticulé. Le PTV permet d’isoler les inconnues pertinentes et d’estimer les forces musculaires sans calculer les pressions de contact articulaires, extrêmement complexes.',
+    appTitle: 'Application : pendule avec ressort de torsion',
+    statement: 'Énoncé du problème',
+    statementText: 'Trouver l’équation du mouvement du système donné ; la tige est de masse négligeable, une masse concentrée',
+    statementText2: 'se trouve à une extrémité, et un ressort de torsion de constante élastique',
+    statementText3: 'se trouve à l’autre extrémité, le mouvement ayant lieu dans un plan vertical.',
+    solution: 'Solution détaillée',
+    step1: '1. Mise en place du problème et objectif',
+    step1p1: 'Le système est un pendule inversé modifié par l’ajout d’un ressort de torsion à sa base. L’ensemble évolue dans un plan vertical.',
+    objective: 'Objectif :',
+    step1p2: 'Déterminer l’équation différentielle du mouvement qui gouverne l’angle',
+    step1p3: 'L’utilisation du principe des travaux virtuels est idéale ici, car elle permet d’éviter le calcul de la réaction inconnue au pivot, c’est-à-dire la liaison en charnière à l’origine.',
+    step2: '2. Paramétrage géométrique et cinématique',
+    step2p1: 'Comme le système ne possède qu’un seul degré de liberté, on choisit l’angle',
+    step2p2: 'comme unique coordonnée lagrangienne. L’équation de contrainte géométrique donnant la position de la masse ponctuelle',
+    step2p3: 'dans le repère cartésien s’écrit :',
+    step2p4: 'En dérivant par rapport au temps, on obtient les vecteurs vitesse et accélération du point',
+    step2p5: 'qui sont essentiels pour calculer la force d’inertie :',
+    step3: '3. Déplacement virtuel',
+    step3p1: 'Pour appliquer le principe, on fige le temps, c’est-à-dire que la configuration globale du système est bloquée, puis on impose un déplacement virtuel infinitésimal compatible avec les contraintes. Ici, ce déplacement correspond à une petite variation angulaire virtuelle',
+    step3p2: 'Il est essentiel de distinguer la coordonnée réelle',
+    step3p3: 'du déplacement virtuel localisé',
+    step3p4: 'Ce dernier induit un déplacement cartésien spatial',
+    trig: 'On peut évaluer rigoureusement ce vecteur déplacement à l’aide des formules d’addition trigonométriques :',
+    linearize: 'Comme le déplacement étudié est strictement infinitésimal',
+    linearize2: 'on linéarise au voisinage de l’origine :',
+    note: 'Remarque :',
+    and: 'et',
+    tangent: 'Cette approche est mathématiquement équivalente au calcul direct du vecteur tangent par calcul différentiel :',
+    step4: '4. Bilan énergétique de d’Alembert',
+    step4p1: 'Le principe affirme que la somme du travail virtuel des forces actives',
+    step4p2: 'et du travail virtuel des forces d’inertie',
+    step4p3: 'est identiquement nulle pour toute évolution virtuelle :',
+    inertiaCalc: 'Calcul du travail virtuel des forces d’inertie :',
+    inertiaText: 'La force d’inertie est définie comme opposée au vecteur accélération',
+    inertiaText2: 'Le produit scalaire avec le déplacement virtuel donne l’énergie virtuelle inertielle :',
+    cancel: 'Les termes en',
+    cancel2: 'qui représentent l’accélération centripète, se simplifient. En utilisant l’identité trigonométrique',
+    cancel3: 'l’expression se simplifie fortement :',
+    activeCalc: 'Calcul du travail virtuel des forces actives :',
+    activeText: 'Le système est soumis à deux actions purement actives : le couple de rappel du ressort, qui s’oppose naturellement à toute rotation, et le poids de la masse concentrée',
+    project: 'En projetant le poids selon l’axe',
+    project2: 'orienté vers le haut, on effectue le produit scalaire :',
+    step5: '5. Conclusion : l’équation du mouvement',
+    sumText: 'En additionnant les différents termes énergétiques dans l’équation du principe, on obtient :',
+    arbitrary: 'Comme cette égalité énergétique doit être vraie pour tout déplacement virtuel arbitraire non nul',
+    arbitrary2: 'on peut factoriser la variation angulaire pour extraire l’équation du mouvement :',
+    finalEq: 'Équation différentielle non linéaire du mouvement',
+    bioApp: 'Applications biomécaniques',
+    postural: '1. Équilibre postural',
+    posturalText: 'Cet exercice, en apparence abstrait, est en réalité l’un des modèles fondamentaux de la biomécanique humaine. Le pendule inversé avec ressort de torsion est le modèle standard utilisé pour étudier l’équilibre postural, c’est-à-dire la posture orthostatique chez l’être humain.',
+    rod: 'La tige et la masse',
+    rodText: 'Représentent l’ensemble du corps humain, avec la masse concentrée au centre de gravité.',
+    pivot: 'Le point pivot :',
+    pivotText: 'Représente l’articulation de la cheville.',
+    spring: 'Le ressort de torsion',
+    springText: 'Représente la raideur active et passive des muscles du mollet et du tendon d’Achille.',
+    derived: 'L’équation du mouvement que nous avons obtenue',
+    derived2: 'détermine si une personne va tomber. Si la raideur musculaire',
+    derived3: 'n’est pas suffisante pour compenser la gravité',
+    derived4: 'le système devient instable. Cette équation est largement utilisée dans l’évaluation des troubles neurologiques de l’équilibre.',
+    other: 'Autres applications notables',
+    knee: 'Raideur articulaire (réflexe du genou)',
+    kneeText: 'Une jambe inférieure suspendue se comporte comme un pendule classique. Le genou est le pivot, et les ligaments ou muscles, notamment le quadriceps, jouent le rôle du ressort',
+    kneeText2: 'Ce modèle est utilisé cliniquement pour mesurer la raideur articulaire et diagnostiquer la spasticité musculaire en observant la fréquence d’oscillation.',
+    exo: 'Exosquelettes & prothèses',
+    exoText: 'Les orthèses passives comportent souvent des ressorts de torsion physiques au niveau de la hanche ou de la cheville. Les ingénieurs utilisent exactement cette équation pour optimiser la constante de raideur',
+    exoText2: 'ce qui permet au dispositif de stocker l’énergie gravitationnelle pendant le cycle de marche et de réduire le coût métabolique de l’utilisateur.',
+    cervical: 'Stabilisation de la colonne cervicale',
+    cervicalText: 'La tête humaine est une masse lourde équilibrée sur la colonne cervicale, qui joue le rôle de tige. Les muscles du cou fournissent la raideur angulaire nécessaire',
+    cervicalText2: 'pour maintenir la tête droite. Ce modèle de pendule inversé est crucial pour simuler les blessures de type coup du lapin lors des essais de collision.',
+  },
+};
+
+const VirtualWorkApplicationPage = ({ language = 'en' }) => {
+  const t = text[language] || text.en;
+
   return (
     <div className="page-header">
       <div className="container">
-        <h1 className="gradient-text">Analytical Mechanics</h1>
-        <p className="hero-subtitle" style={{marginBottom: 0}}>Application Exercise</p>
+        <h1 className="gradient-text">{t.title}</h1>
+        <p className="hero-subtitle" style={{marginBottom: 0}}>{t.subtitle}</p>
       </div>
       <div className="container page-content" style={{marginTop: '4rem'}}>
         
         {/* Introduction Section */}
         <div className="glass-panel" style={{ padding: '3rem', textAlign: 'left', marginBottom: '3rem' }}>
           <h2 style={{ marginBottom: '1.5rem', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-            <Atom size={28} style={{ color: 'var(--primary-color)' }} /> Introduction to the Principle of Virtual Work
+            <Atom size={28} style={{ color: 'var(--primary-color)' }} /> {t.introTitle}
           </h2>
           <p style={{ marginBottom: '1.5rem', fontSize: '1.1rem', lineHeight: '1.7', color: 'var(--text-secondary)' }}>
-            The <strong>Principle of Virtual Work (PVW)</strong>, or d'Alembert's principle, offers a highly powerful mathematical formulation of analytical mechanics. Unlike Newton's vectorial method (Fundamental Principle of Dynamics) which requires taking all forces into account, the PVW relies on a purely energetic approach.
+            {t.intro1}
           </p>
           <p style={{ marginBottom: '1.5rem', fontSize: '1.1rem', lineHeight: '1.7', color: 'var(--text-secondary)' }}>
-            It states that at any given instant, the sum of the virtual works of active forces and inertia forces is zero for any geometrically admissible virtual displacement. Its decisive advantage is that it <strong>completely eliminates the need to calculate perfect constraint forces</strong> (such as the reaction of a joint or the tension of a cable), because the latter do no work during these displacements.
+            {t.intro2}
           </p>
           
           <div className="grid-cards" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem', marginTop: '2.5rem' }}>
             <div style={{ background: 'rgba(255,255,255,0.02)', padding: '2rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.05)' }}>
               <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem', color: 'var(--text-primary)' }}>
-                <Compass size={24} color="var(--primary-color)"/> In Applied Mechanics
+                <Compass size={24} color="var(--primary-color)"/> {t.applied}
               </h3>
               <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', lineHeight: '1.6' }}>
-                In engineering, this method is essential for analyzing highly constrained multi-degree-of-freedom systems, such as articulated robotics, spatial deployment mechanisms, or in civil engineering for studying the stability of complex structures.
+                {t.appliedText}
               </p>
             </div>
             <div style={{ background: 'rgba(255,255,255,0.02)', padding: '2rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.05)' }}>
               <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem', color: 'var(--text-primary)' }}>
-                <Dna size={24} color="var(--primary-color)"/> In Biomechanics
+                <Dna size={24} color="var(--primary-color)"/> {t.bio}
               </h3>
               <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', lineHeight: '1.6' }}>
-                The biomechanics of human movement (gait analysis, prosthetics) models the skeleton as a poly-articulated system. The PVW allows isolating relevant unknowns and estimating muscle forces without having to calculate the extremely complex joint contact pressures.
+                {t.bioText}
               </p>
             </div>
           </div>
@@ -81,13 +248,13 @@ const VirtualWorkApplicationPage = () => {
         {/* Exercise Section */}
         <div className="glass-panel" style={{ padding: '3rem', textAlign: 'left' }}>
           <h2 style={{ marginBottom: '1.5rem', color: 'var(--text-primary)' }}>
-            Application: Pendulum with a Torsional Spring
+            {t.appTitle}
           </h2>
 
           <div style={{ background: 'rgba(255,255,255,0.03)', padding: '2rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.05)' }}>
-            <h3 style={{ marginBottom: '1rem', color: 'var(--text-primary)' }}>Problem Statement</h3>
+            <h3 style={{ marginBottom: '1rem', color: 'var(--text-primary)' }}>{t.statement}</h3>
             <p style={{ marginBottom: '1.5rem', fontSize: '1.1rem', lineHeight: '1.7', color: 'var(--text-secondary)' }}>
-              Find the equation of motion for the given system; the rod has negligible mass, a concentrated mass <InlineMath math={String.raw`m`} /> at one end, and a torsional spring with elastic constant <InlineMath math={String.raw`\mu`} /> at the other, moving in a vertical plane.
+              {t.statementText} <InlineMath math={String.raw`m`} /> {t.statementText2} <InlineMath math={String.raw`\mu`} /> {t.statementText3}
             </p>
 
             <div style={{ 
@@ -131,34 +298,34 @@ const VirtualWorkApplicationPage = () => {
               </svg>
             </div>
 
-            <h3 style={{ marginBottom: '1.5rem', color: 'var(--text-primary)', marginTop: '3rem', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '2rem' }}>Detailed Solution</h3>
+            <h3 style={{ marginBottom: '1.5rem', color: 'var(--text-primary)', marginTop: '3rem', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '2rem' }}>{t.solution}</h3>
             
             <div style={{ background: 'rgba(14, 165, 233, 0.03)', padding: '1.5rem', borderRadius: '12px', borderLeft: '4px solid var(--primary-color)', marginBottom: '2rem' }}>
-              <h4 style={{ marginBottom: '0.75rem', color: 'var(--text-primary)' }}>1. Problem Setup and Objective</h4>
+              <h4 style={{ marginBottom: '0.75rem', color: 'var(--text-primary)' }}>{t.step1}</h4>
               <p style={{ marginBottom: '0.75rem', fontSize: '1.05rem', lineHeight: '1.6', color: 'var(--text-secondary)' }}>
-                The system is an inverted pendulum modified by adding a torsional spring at its base. The assembly evolves in a vertical plane.
+                {t.step1p1}
               </p>
               <p style={{ marginBottom: '0', fontSize: '1.05rem', lineHeight: '1.6', color: 'var(--text-secondary)' }}>
-                <strong>Objective:</strong> Determine the differential equation of motion governing the angle <InlineMath math={String.raw`\theta(t)`} />. Using the Principle of Virtual Work is ideal here because it allows us to bypass the calculation of the unknown reaction force at the pivot joint (the hinge at the origin).
+                <strong>{t.objective}</strong> {t.step1p2} <InlineMath math={String.raw`\theta(t)`} />. {t.step1p3}
               </p>
             </div>
 
-            <h4 style={{ marginBottom: '1rem', color: 'var(--text-primary)', marginTop: '2rem' }}>2. Geometric and Kinematic Parameterization</h4>
+            <h4 style={{ marginBottom: '1rem', color: 'var(--text-primary)', marginTop: '2rem' }}>{t.step2}</h4>
             <p style={{ marginBottom: '1rem', fontSize: '1.1rem', lineHeight: '1.7', color: 'var(--text-secondary)' }}>
-              Since the system has only one degree of freedom, we choose the angle <InlineMath math={String.raw`\theta`} /> as our single <strong>Lagrangian coordinate</strong>. The geometric constraint equation giving the position of the point mass <InlineMath math={String.raw`P`} /> in the Cartesian coordinate system is written as:
+              {t.step2p1} <InlineMath math={String.raw`\theta`} /> {t.step2p2} <InlineMath math={String.raw`P`} /> {t.step2p3}
             </p>
 
             <BlockMath math={String.raw`P = l \begin{pmatrix} \sin\theta \\ \cos\theta \end{pmatrix}`} />
 
             <p style={{ marginBottom: '1rem', marginTop: '1.5rem', fontSize: '1.1rem', lineHeight: '1.7', color: 'var(--text-secondary)' }}>
-              By differentiating with respect to time, we obtain the velocity and acceleration vectors of point <InlineMath math={String.raw`P`} />, which are essential for calculating the inertia force:
+              {t.step2p4} <InlineMath math={String.raw`P`} />, {t.step2p5}
             </p>
 
             <BlockMath math={String.raw`\begin{cases} \dot{P} = l \dot{\theta} \begin{pmatrix} \cos\theta \\ -\sin\theta \end{pmatrix} \\ \ddot{P} = l \begin{pmatrix} -\sin(\theta)\dot{\theta}^2 + \cos(\theta)\ddot{\theta} \\ -\cos(\theta)\dot{\theta}^2 - \sin(\theta)\ddot{\theta} \end{pmatrix} \end{cases}`} />
 
-            <h4 style={{ marginBottom: '1rem', color: 'var(--text-primary)', marginTop: '3rem' }}>3. Virtual Displacement</h4>
+            <h4 style={{ marginBottom: '1rem', color: 'var(--text-primary)', marginTop: '3rem' }}>{t.step3}</h4>
             <p style={{ marginBottom: '1rem', fontSize: '1.1rem', lineHeight: '1.7', color: 'var(--text-secondary)' }}>
-              To apply the principle, we freeze time (the global configuration of the system is locked) and impose an <strong>infinitesimal virtual displacement</strong> compatible with the constraints. Here, this displacement corresponds to a tiny virtual angular variation <InlineMath math={String.raw`\delta\theta`} />.
+              {t.step3p1} <InlineMath math={String.raw`\delta\theta`} />.
             </p>
 
             <div style={{ 
@@ -214,41 +381,41 @@ const VirtualWorkApplicationPage = () => {
             </div>
 
             <p style={{ marginBottom: '1rem', fontSize: '1.1rem', lineHeight: '1.7', color: 'var(--text-secondary)' }}>
-              It is crucial to distinguish the actual coordinate <InlineMath math={String.raw`\theta`} /> from the localized virtual displacement <InlineMath math={String.raw`\delta\theta`} />. The latter induces a spatial Cartesian displacement <InlineMath math={String.raw`\delta P`} />:
+              {t.step3p2} <InlineMath math={String.raw`\theta`} /> {t.step3p3} <InlineMath math={String.raw`\delta\theta`} />. {t.step3p4} <InlineMath math={String.raw`\delta P`} />:
             </p>
 
             <BlockMath math={String.raw`\delta P = P(\theta + \delta\theta) - P(\theta)`} />
 
             <div style={{ background: 'rgba(255, 255, 255, 0.02)', padding: '1.5rem', borderRadius: '12px', marginBottom: '2rem' }}>
               <p style={{ marginBottom: '1rem', fontSize: '1.1rem', lineHeight: '1.7', color: 'var(--text-secondary)' }}>
-                We can rigorously evaluate this displacement vector using trigonometric addition formulas:
+                {t.trig}
               </p>
               <BlockMath math={String.raw`P(\theta+\delta\theta) = l \begin{pmatrix} \sin(\theta+\delta\theta) \\ \cos(\theta+\delta\theta) \end{pmatrix} = l \begin{pmatrix} \sin\theta\cos\delta\theta + \cos\theta\sin\delta\theta \\ \cos\theta\cos\delta\theta - \sin\theta\sin\delta\theta \end{pmatrix}`} />
               
               <div style={{ borderLeft: '4px solid var(--primary-color)', paddingLeft: '1.5rem', margin: '1.5rem 0' }}>
                 <p style={{ marginBottom: '0.5rem', fontSize: '1.05rem', color: 'var(--text-primary)' }}>
-                  Since the studied displacement is strictly infinitesimal (<InlineMath math={String.raw`\delta\theta \to 0`} />), we linearize around the origin: <InlineMath math={String.raw`\sin\delta\theta \approx \delta\theta`} /> and <InlineMath math={String.raw`\cos\delta\theta \approx 1`} />.
+                  {t.linearize} (<InlineMath math={String.raw`\delta\theta \to 0`} />), {t.linearize2} <InlineMath math={String.raw`\sin\delta\theta \approx \delta\theta`} /> {t.and} <InlineMath math={String.raw`\cos\delta\theta \approx 1`} />.
                 </p>
                 <p style={{ marginBottom: '0', fontSize: '0.95rem', color: 'var(--text-secondary)' }}>
-                  <em>Note: This approach is mathematically equivalent to computing the tangent vector directly via differential calculus: <InlineMath math={String.raw`\delta P = \frac{\partial P}{\partial \theta} \delta\theta`} />.</em>
+                  <em>{t.note} {t.tangent} <InlineMath math={String.raw`\delta P = \frac{\partial P}{\partial \theta} \delta\theta`} />.</em>
                 </p>
               </div>
 
               <BlockMath math={String.raw`\implies \delta P = l \begin{pmatrix} \sin\theta + \cos\theta\delta\theta - \sin\theta \\ \cos\theta - \sin\theta\delta\theta - \cos\theta \end{pmatrix} = l\delta\theta \begin{pmatrix} \cos\theta \\ -\sin\theta \end{pmatrix}`} />
             </div>
 
-            <h4 style={{ marginBottom: '1rem', color: 'var(--text-primary)', marginTop: '3rem' }}>4. d'Alembert's Energy Balance</h4>
+            <h4 style={{ marginBottom: '1rem', color: 'var(--text-primary)', marginTop: '3rem' }}>{t.step4}</h4>
             <p style={{ marginBottom: '1rem', fontSize: '1.1rem', lineHeight: '1.7', color: 'var(--text-secondary)' }}>
-              The principle states that the sum of the virtual work of active forces (<InlineMath math={String.raw`\delta\mathcal{L}^a`} />) and the virtual work of inertia forces (<InlineMath math={String.raw`\delta\mathcal{L}^m`} />) is identically zero for any virtual evolution:
+              {t.step4p1} (<InlineMath math={String.raw`\delta\mathcal{L}^a`} />) {t.step4p2} (<InlineMath math={String.raw`\delta\mathcal{L}^m`} />) {t.step4p3}
             </p>
 
             <BlockMath math={String.raw`\delta\mathcal{L}^a + \delta\mathcal{L}^m = 0 \quad \forall \delta\theta`} />
 
             <p style={{ marginBottom: '1rem', marginTop: '2.5rem', fontSize: '1.1rem', lineHeight: '1.7', color: 'var(--text-secondary)' }}>
-              <strong>Calculation of the virtual work of inertia forces:</strong>
+              <strong>{t.inertiaCalc}</strong>
             </p>
             <p style={{ marginBottom: '1rem', fontSize: '1.05rem', lineHeight: '1.7', color: 'var(--text-secondary)' }}>
-              The inertia force is defined as opposing the acceleration vector (<InlineMath math={String.raw`-m\ddot{P}`} />). The dot product with the virtual displacement yields the virtual inertial energy:
+              {t.inertiaText} (<InlineMath math={String.raw`-m\ddot{P}`} />). {t.inertiaText2}
             </p>
 
             <div style={{ overflowX: 'auto', padding: '1rem 0' }}>
@@ -260,16 +427,16 @@ const VirtualWorkApplicationPage = () => {
             </div>
 
             <p style={{ marginBottom: '1rem', marginTop: '1rem', fontSize: '1.1rem', lineHeight: '1.7', color: 'var(--text-secondary)' }}>
-              The terms in <InlineMath math={String.raw`\dot{\theta}^2`} /> (which represent the centripetal acceleration) cancel out. By using the trigonometric identity <InlineMath math={String.raw`\sin^2\theta + \cos^2\theta = 1`} />, the expression simplifies greatly:
+              {t.cancel} <InlineMath math={String.raw`\dot{\theta}^2`} /> ({t.cancel2} <InlineMath math={String.raw`\sin^2\theta + \cos^2\theta = 1`} />), {t.cancel3}
             </p>
 
             <BlockMath math={String.raw`\delta\mathcal{L}^m = -ml^2\ddot{\theta}\delta\theta`} />
 
             <p style={{ marginBottom: '1rem', marginTop: '3rem', fontSize: '1.1rem', lineHeight: '1.7', color: 'var(--text-secondary)' }}>
-              <strong>Calculation of the virtual work of active forces:</strong>
+              <strong>{t.activeCalc}</strong>
             </p>
             <p style={{ marginBottom: '1rem', fontSize: '1.05rem', lineHeight: '1.7', color: 'var(--text-secondary)' }}>
-              The system is subjected to two purely active forces: the restoring torque of the spring (which naturally opposes any rotation) and the weight of the concentrated mass <InlineMath math={String.raw`m`} />.
+              {t.activeText} <InlineMath math={String.raw`m`} />.
             </p>
 
             <div style={{ overflowX: 'auto', padding: '1rem 0' }}>
@@ -277,14 +444,14 @@ const VirtualWorkApplicationPage = () => {
             </div>
 
             <p style={{ marginBottom: '1rem', fontSize: '1.05rem', lineHeight: '1.7', color: 'var(--text-secondary)' }}>
-              By projecting the weight along the upward <InlineMath math={String.raw`y`} />-axis, we perform the dot product:
+              {t.project} <InlineMath math={String.raw`y`} />-{t.project2}
             </p>
 
             <BlockMath math={String.raw`\delta\mathcal{L}^a = -\mu\theta\delta\theta - mg \begin{pmatrix} 0 \\ 1 \end{pmatrix} \cdot l\delta\theta \begin{pmatrix} \cos\theta \\ -\sin\theta \end{pmatrix} = -\mu\theta\delta\theta + mgl\sin\theta\delta\theta`} />
 
-            <h4 style={{ marginBottom: '1rem', color: 'var(--text-primary)', marginTop: '3rem' }}>5. Conclusion: The Equation of Motion</h4>
+            <h4 style={{ marginBottom: '1rem', color: 'var(--text-primary)', marginTop: '3rem' }}>{t.step5}</h4>
             <p style={{ marginBottom: '1rem', fontSize: '1.1rem', lineHeight: '1.7', color: 'var(--text-secondary)' }}>
-              By summing the different energetic terms in the principle's equation, we obtain:
+              {t.sumText}
             </p>
 
             <div style={{ background: 'rgba(255,255,255,0.05)', padding: '1.5rem', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.1)', margin: '2rem 0' }}>
@@ -292,7 +459,7 @@ const VirtualWorkApplicationPage = () => {
             </div>
 
             <p style={{ marginBottom: '1rem', marginTop: '1rem', fontSize: '1.1rem', lineHeight: '1.7', color: 'var(--text-secondary)' }}>
-              Given that this energetic equality must hold for any arbitrary non-zero virtual displacement (<InlineMath math={String.raw`\delta\theta \neq 0`} />), we can factor out the angular variation to extract the equation of motion:
+              {t.arbitrary} (<InlineMath math={String.raw`\delta\theta \neq 0`} />), {t.arbitrary2}
             </p>
 
             <div style={{ 
@@ -306,7 +473,7 @@ const VirtualWorkApplicationPage = () => {
               overflow: 'hidden'
             }}>
               <div style={{ position: 'absolute', top: 0, left: 0, width: '4px', height: '100%', background: 'var(--primary-color)' }}></div>
-              <h4 style={{ marginBottom: '1rem', textAlign: 'center', color: 'var(--primary-color)' }}>Non-linear Differential Equation of Motion</h4>
+              <h4 style={{ marginBottom: '1rem', textAlign: 'center', color: 'var(--primary-color)' }}>{t.finalEq}</h4>
               <BlockMath math={String.raw`ml^2\ddot{\theta} - mgl\sin\theta + \mu\theta = 0`} />
             </div>
             
@@ -317,40 +484,40 @@ const VirtualWorkApplicationPage = () => {
         <div className="glass-panel" style={{ padding: '3rem', marginTop: '3rem', display: 'flex', flexDirection: 'column', gap: '2rem', borderTop: '4px solid var(--primary-color)' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
             <Dna size={32} color="var(--primary-color)" />
-            <h2 style={{ color: 'var(--text-primary)', margin: 0 }}>Biomechanical Applications</h2>
+            <h2 style={{ color: 'var(--text-primary)', margin: 0 }}>{t.bioApp}</h2>
           </div>
           
           <div>
-            <h3 style={{ marginBottom: '1.5rem', color: 'var(--text-primary)', fontSize: '1.4rem' }}>1. Postural Balance (Quiet Standing)</h3>
+            <h3 style={{ marginBottom: '1.5rem', color: 'var(--text-primary)', fontSize: '1.4rem' }}>{t.postural}</h3>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '3rem', alignItems: 'center' }}>
               <div style={{ flex: '1 1 400px' }}>
                 <p style={{ marginBottom: '1.5rem', fontSize: '1.1rem', lineHeight: '1.7', color: 'var(--text-secondary)' }}>
-                  This seemingly abstract exercise is actually one of the most fundamental models in human biomechanics! The "inverted pendulum with a torsional spring" is the standard model used to study <strong>postural balance</strong> (orthostatic posture) in humans.
+                  {t.posturalText}
                 </p>
                 
                 <ul style={{ listStyleType: 'none', padding: 0, marginBottom: '1.5rem' }}>
                   <li style={{ marginBottom: '1rem', display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
                     <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--primary-color)', marginTop: '8px', flexShrink: 0 }}></div>
                     <div>
-                      <strong style={{ color: 'var(--text-primary)' }}>The Rod & Mass (<InlineMath math={String.raw`m`} />):</strong> Represents the entire human body, with the mass concentrated at the center of gravity.
+                      <strong style={{ color: 'var(--text-primary)' }}>{t.rod} (<InlineMath math={String.raw`m`} />):</strong> {t.rodText}
                     </div>
                   </li>
                   <li style={{ marginBottom: '1rem', display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
                     <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--primary-color)', marginTop: '8px', flexShrink: 0 }}></div>
                     <div>
-                      <strong style={{ color: 'var(--text-primary)' }}>The Pivot Point:</strong> Represents the human ankle joint.
+                      <strong style={{ color: 'var(--text-primary)' }}>{t.pivot}</strong> {t.pivotText}
                     </div>
                   </li>
                   <li style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
                     <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--primary-color)', marginTop: '8px', flexShrink: 0 }}></div>
                     <div>
-                      <strong style={{ color: 'var(--text-primary)' }}>The Torsional Spring (<InlineMath math={String.raw`\mu`} />):</strong> Represents the active and passive stiffness of the calf muscles and the Achilles tendon.
+                      <strong style={{ color: 'var(--text-primary)' }}>{t.spring} (<InlineMath math={String.raw`\mu`} />):</strong> {t.springText}
                     </div>
                   </li>
                 </ul>
 
                 <p style={{ fontSize: '1.1rem', lineHeight: '1.7', color: 'var(--text-secondary)' }}>
-                  The equation of motion we derived, <InlineMath math={String.raw`ml^2\ddot{\theta} - mgl\sin\theta + \mu\theta = 0`} />, determines if a person will fall. If the muscular stiffness <InlineMath math={String.raw`\mu\theta`} /> is not strong enough to counter gravity (<InlineMath math={String.raw`mgl\sin\theta`} />), the system becomes unstable. This equation is widely used in evaluating neurological balance disorders!
+                  {t.derived}, <InlineMath math={String.raw`ml^2\ddot{\theta} - mgl\sin\theta + \mu\theta = 0`} />, {t.derived2} <InlineMath math={String.raw`\mu\theta`} /> {t.derived3} (<InlineMath math={String.raw`mgl\sin\theta`} />), {t.derived4}
                 </p>
               </div>
               
@@ -364,27 +531,27 @@ const VirtualWorkApplicationPage = () => {
           </div>
 
           <div style={{ marginTop: '1rem', paddingTop: '2.5rem', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
-            <h3 style={{ marginBottom: '1.5rem', color: 'var(--text-primary)', fontSize: '1.4rem' }}>Other Notable Applications</h3>
+            <h3 style={{ marginBottom: '1.5rem', color: 'var(--text-primary)', fontSize: '1.4rem' }}>{t.other}</h3>
             <div className="grid-cards" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem' }}>
               
               <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1.5rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.05)' }}>
-                <h4 style={{ color: 'var(--primary-color)', marginBottom: '0.75rem' }}>Joint Stiffness (Knee Reflex)</h4>
+                <h4 style={{ color: 'var(--primary-color)', marginBottom: '0.75rem' }}>{t.knee}</h4>
                 <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: '1.6', margin: 0 }}>
-                  A dangling lower leg acts as a standard pendulum. The knee is the pivot, and the ligaments/muscles (quadriceps) act as the spring <InlineMath math={String.raw`\mu`} />. This model is used clinically to measure joint stiffness and diagnose muscle spasticity by observing the oscillation frequency.
+                  {t.kneeText} <InlineMath math={String.raw`\mu`} />. {t.kneeText2}
                 </p>
               </div>
 
               <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1.5rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.05)' }}>
-                <h4 style={{ color: 'var(--primary-color)', marginBottom: '0.75rem' }}>Exoskeletons & Prosthetics</h4>
+                <h4 style={{ color: 'var(--primary-color)', marginBottom: '0.75rem' }}>{t.exo}</h4>
                 <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: '1.6', margin: 0 }}>
-                  Passive orthoses often feature physical torsional springs at the hip or ankle. Engineers use this exact equation to optimize the spring constant <InlineMath math={String.raw`\mu`} />, allowing the device to store gravitational energy during the gait cycle and reduce the user's metabolic cost.
+                  {t.exoText} <InlineMath math={String.raw`\mu`} />, {t.exoText2}
                 </p>
               </div>
 
               <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1.5rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.05)' }}>
-                <h4 style={{ color: 'var(--primary-color)', marginBottom: '0.75rem' }}>Cervical Spine Stabilization</h4>
+                <h4 style={{ color: 'var(--primary-color)', marginBottom: '0.75rem' }}>{t.cervical}</h4>
                 <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: '1.6', margin: 0 }}>
-                  The human head is a heavy mass balanced on the cervical spine (the rod). Neck muscles provide the necessary angular stiffness <InlineMath math={String.raw`\mu`} /> to keep the head upright. This inverted pendulum model is crucial for simulating whiplash injuries in crash tests.
+                  {t.cervicalText} <InlineMath math={String.raw`\mu`} /> {t.cervicalText2}
                 </p>
               </div>
 

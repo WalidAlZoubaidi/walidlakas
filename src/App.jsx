@@ -491,12 +491,12 @@ function App() {
           <Route path="/mathematics" element={<PageTemplate title={t.titles.mathematics} icon={FunctionSquare} t={t} />} />
           <Route path="/mechanics" element={<MechanicsPage t={t} />} />
           <Route path="/mechanics/structural-theory" element={<PageTemplate title={t.titles.structuralTheory} icon={Building2} t={t} />} />
-          <Route path="/mechanics/basics-of-continuum-mechanics" element={<BasicsMMCPage />} />
-          <Route path="/mechanics/basics-of-continuum-mechanics/spherical-deviatoric-parts" element={<SphericalDeviatoricPartsPage />} />
-          <Route path="/mechanics/basics-of-continuum-mechanics/analysis-of-deformation" element={<AnalysisOfDeformationPage />} />
+          <Route path="/mechanics/basics-of-continuum-mechanics" element={<BasicsMMCPage language={language} />} />
+          <Route path="/mechanics/basics-of-continuum-mechanics/spherical-deviatoric-parts" element={<SphericalDeviatoricPartsPage language={language} />} />
+          <Route path="/mechanics/basics-of-continuum-mechanics/analysis-of-deformation" element={<AnalysisOfDeformationPage language={language} />} />
           <Route path="/mechanics/continuum-mechanics" element={<PageTemplate title={t.titles.continuumMechanics} icon={Box} t={t} />} />
-          <Route path="/mechanics/analytical-mechanics" element={<AnalyticalMechanicsPage />} />
-          <Route path="/mechanics/analytical-mechanics/virtual-work-application" element={<VirtualWorkApplicationPage />} />
+          <Route path="/mechanics/analytical-mechanics" element={<AnalyticalMechanicsPage language={language} />} />
+          <Route path="/mechanics/analytical-mechanics/virtual-work-application" element={<VirtualWorkApplicationPage language={language} />} />
           <Route path="/blog" element={<PageTemplate title={t.titles.blog} icon={PenTool} t={t} />} />
         </Routes>
       </main>
