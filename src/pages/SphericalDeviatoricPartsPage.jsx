@@ -94,45 +94,45 @@ const SphericalDeviatoricPartsPage = ({ language = 'en' }) => {
             <BookOpen size={18} /> {t.tag}
           </p>
           <h2 style={{ fontSize: '1.9rem', marginBottom: '1.5rem', color: 'var(--text-primary)' }}>
-            {t.heading} <InlineMath math="\varepsilon" />
+            {t.heading} <InlineMath math={String.raw`\varepsilon`} />
           </h2>
 
           <p style={paragraphStyle}>
             {t.p1}
           </p>
           <p style={paragraphStyle}>
-            {t.p2Before} <InlineMath math="\varepsilon" />, {t.p2After} <InlineMath math="\varepsilon_s" /> {t.and} {t.p2End} <InlineMath math="\varepsilon_d" /> :
+            {t.p2Before} <InlineMath math={String.raw`\varepsilon`} />, {t.p2After} <InlineMath math={String.raw`\varepsilon_s`} /> {t.and} {t.p2End} <InlineMath math={String.raw`\varepsilon_d`} /> :
           </p>
 
-          <BlockMath math="\varepsilon = \varepsilon_s + \varepsilon_d" />
+          <BlockMath math={String.raw`\varepsilon = \varepsilon_s + \varepsilon_d`} />
 
           <p style={{ color: 'var(--text-secondary)', marginBottom: '0.75rem' }}>{t.with}</p>
-          <BlockMath math="\varepsilon_s = \frac{1}{3}\operatorname{tr}(\varepsilon)\,I" />
+          <BlockMath math={String.raw`\varepsilon_s = \frac{1}{3}\operatorname{tr}(\varepsilon)\,I`} />
           <p style={{ color: 'var(--text-secondary)', marginBottom: '0.75rem' }}>{t.and}</p>
-          <BlockMath math="\varepsilon_d = \varepsilon - \varepsilon_s" />
+          <BlockMath math={String.raw`\varepsilon_d = \varepsilon - \varepsilon_s`} />
 
           <p style={paragraphStyle}>{t.fromDefinition}</p>
-          <BlockMath math="\operatorname{tr}(\varepsilon_s) = \frac{1}{3}\operatorname{tr}(\varepsilon)\operatorname{tr}(I) = \operatorname{tr}(\varepsilon)" />
+          <BlockMath math={String.raw`\operatorname{tr}(\varepsilon_s) = \frac{1}{3}\operatorname{tr}(\varepsilon)\operatorname{tr}(I) = \operatorname{tr}(\varepsilon)`} />
           <p style={{ color: 'var(--text-secondary)', marginBottom: '0.75rem' }}>{t.and}</p>
-          <BlockMath math="\operatorname{tr}(\varepsilon_d) = 0" />
+          <BlockMath math={String.raw`\operatorname{tr}(\varepsilon_d) = 0`} />
 
           <p style={paragraphStyle}>
-            {t.p3Before} <InlineMath math="\varepsilon_s" /> {t.p3After} <InlineMath math="\varepsilon" /> {t.p3End} <InlineMath math="\varepsilon_s" />.
+            {t.p3Before} <InlineMath math={String.raw`\varepsilon_s`} /> {t.p3After} <InlineMath math={String.raw`\varepsilon`} /> {t.p3End} <InlineMath math={String.raw`\varepsilon_s`} />.
           </p>
           <p style={paragraphStyle}>
-            {t.p4Before} <InlineMath math="\varepsilon_d" />, {t.p4After}
+            {t.p4Before} <InlineMath math={String.raw`\varepsilon_d`} />, {t.p4After}
           </p>
           <p style={paragraphStyle}>
-            {t.p5Before} <InlineMath math="\varepsilon_s" /> {t.p5Middle} <InlineMath math="\varepsilon_d" /> {t.p5End}
+            {t.p5Before} <InlineMath math={String.raw`\varepsilon_s`} /> {t.p5Middle} <InlineMath math={String.raw`\varepsilon_d`} /> {t.p5End}
           </p>
 
           <h3 style={{ fontSize: '1.25rem', margin: '2rem 0 1rem', color: 'var(--text-primary)' }}>
-            {t.question} <InlineMath math="\varepsilon_s" />{t.questionEnd}
+            {t.question} <InlineMath math={String.raw`\varepsilon_s`} />{t.questionEnd}
           </h3>
           <p style={paragraphStyle}>{t.because}</p>
-          <BlockMath math="\varepsilon_s = \frac{1}{3}\operatorname{tr}(\varepsilon)\,I" />
+          <BlockMath math={String.raw`\varepsilon_s = \frac{1}{3}\operatorname{tr}(\varepsilon)\,I`} />
           <p style={paragraphStyle}>
-            {t.where} <InlineMath math="\frac{1}{3}\operatorname{tr}(\varepsilon)" /> {t.constant}
+            {t.where} <InlineMath math={String.raw`\frac{1}{3}\operatorname{tr}(\varepsilon)`} /> {t.constant}
           </p>
           <p style={paragraphStyle}>
             {t.p6}
