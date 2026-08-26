@@ -98,7 +98,7 @@ const Home = () => {
         <div className="hero-visual" style={{ pointerEvents: 'auto' }}>
           <div className="profile-image-container">
             <img 
-              src="/profile.jpg" 
+              src="/profile-new.png" 
               alt="Walid LAKAS" 
               className="profile-img"
             />
