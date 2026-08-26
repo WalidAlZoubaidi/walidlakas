@@ -163,6 +163,30 @@ a:hover {
   list-style: none;
 }
 
+.language-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-width: 74px;
+  height: 40px;
+  border: 1px solid #dbeafe;
+  border-radius: 8px;
+  background: #eff6ff;
+  color: #0369a1;
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.language-toggle:hover {
+  background: #dbeafe;
+  color: #0f172a;
+  transform: translateY(-1px);
+}
+
 .nav-link {
   font-size: 0.95rem;
   font-weight: 500;
@@ -593,11 +617,33 @@ footer {
   font-weight: 700;
 }
 
+.mobile-language-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.8rem 1rem;
+  margin-bottom: 0.5rem;
+  border: 1px solid #dbeafe;
+  border-radius: 12px;
+  background: #eff6ff;
+  color: #0369a1;
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
 /* =====================================================
    RESPONSIVE BREAKPOINTS — Tablet ≤ 968px
    ===================================================== */
 @media (max-width: 968px) {
   .nav-links {
+    display: none;
+  }
+
+  .language-toggle {
     display: none;
   }
 
