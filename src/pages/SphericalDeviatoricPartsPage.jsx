@@ -1,6 +1,38 @@
 import { Link } from 'react-router-dom';
 import { ArrowLeft, BookOpen } from 'lucide-react';
-import { BlockMath, InlineMath } from 'react-katex';
+import katex from 'katex';
+
+const InlineMath = ({ math }) => {
+  const cleanMath = typeof math === 'string' ? math : '';
+  let html = '';
+  try {
+    html = katex.renderToString(cleanMath, {
+      displayMode: false,
+      throwOnError: false,
+      strict: false,
+      trust: true,
+    });
+  } catch (e) {
+    html = `<span style="color: #ef4444;">${cleanMath}</span>`;
+  }
+  return <span className="notranslate" translate="no" dangerouslySetInnerHTML={{ __html: html }} />;
+};
+
+const BlockMath = ({ math }) => {
+  const cleanMath = typeof math === 'string' ? math : '';
+  let html = '';
+  try {
+    html = katex.renderToString(cleanMath, {
+      displayMode: true,
+      throwOnError: false,
+      strict: false,
+      trust: true,
+    });
+  } catch (e) {
+    html = `<div style="color: #ef4444;">${cleanMath}</div>`;
+  }
+  return <div className="notranslate" translate="no" style={{ margin: '1rem 0', overflowX: 'auto' }} dangerouslySetInnerHTML={{ __html: html }} />;
+};
 
 const paragraphStyle = {
   fontSize: '1rem',
