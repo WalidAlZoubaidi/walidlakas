@@ -3,6 +3,7 @@ import { Mail, ArrowRight, Droplets, FunctionSquare, Building2, Atom, PenTool, L
 import { useState, useEffect } from 'react';
 import LiquidEther from '@/components/LiquidEther';
 import BasicsMMCPage from '@/pages/BasicsMMCPage';
+import SphericalDeviatoricPartsPage from '@/pages/SphericalDeviatoricPartsPage';
 import AnalysisOfDeformationPage from '@/pages/AnalysisOfDeformationPage';
 import AnalyticalMechanicsPage from '@/pages/AnalyticalMechanicsPage';
 import VirtualWorkApplicationPage from '@/pages/VirtualWorkApplicationPage';
@@ -491,6 +492,7 @@ function App() {
           <Route path="/mechanics" element={<MechanicsPage t={t} />} />
           <Route path="/mechanics/structural-theory" element={<PageTemplate title={t.titles.structuralTheory} icon={Building2} t={t} />} />
           <Route path="/mechanics/basics-of-continuum-mechanics" element={<BasicsMMCPage />} />
+          <Route path="/mechanics/basics-of-continuum-mechanics/spherical-deviatoric-parts" element={<SphericalDeviatoricPartsPage />} />
           <Route path="/mechanics/basics-of-continuum-mechanics/analysis-of-deformation" element={<AnalysisOfDeformationPage />} />
           <Route path="/mechanics/continuum-mechanics" element={<PageTemplate title={t.titles.continuumMechanics} icon={Box} t={t} />} />
           <Route path="/mechanics/analytical-mechanics" element={<AnalyticalMechanicsPage />} />
