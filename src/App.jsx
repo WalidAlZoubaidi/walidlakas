@@ -399,6 +399,10 @@ function App() {
   const location = useLocation();
   const t = translations[language];
   const nextLanguage = language === 'en' ? 'fr' : 'en';
+  const languageFlags = {
+    en: '🇬🇧',
+    fr: '🇫🇷',
+  };
 
   const toggleLanguage = () => {
     setLanguage(nextLanguage);
@@ -441,6 +445,7 @@ function App() {
             title={t.nav.languageLabel}
           >
             <Languages size={18} />
+            <span className="language-flag" aria-hidden="true">{languageFlags[language]}</span>
             <span>{language.toUpperCase()}</span>
           </button>
 
@@ -466,6 +471,7 @@ function App() {
               aria-label={t.nav.languageLabel}
             >
               <Languages size={18} />
+              <span className="language-flag" aria-hidden="true">{languageFlags[language]}</span>
               {language.toUpperCase()} / {nextLanguage.toUpperCase()}
             </button>
             <Link to="/" className={`mobile-link ${location.pathname === '/' ? 'active' : ''}`} onClick={() => setMobileMenuOpen(false)}>{t.nav.home}</Link>
