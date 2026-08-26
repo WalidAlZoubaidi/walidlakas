@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide Détaillé OpenFOAM - Jour 1</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #fff;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+        h2 {
+            color: #2980b9;
+            margin-top: 40px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+        h3 {
+            color: #16a085;
+            margin-top: 20px;
+        }
+        p {
+            margin-bottom: 15px;
+        }
+        code {
+            background-color: #f4f6f7;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95em;
+            color: #c7254e;
+        }
+        pre {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+        pre code {
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
+            font-size: 0.9em;
+        }
+        .note {
+            background-color: #e8f4f8;
+            border-left: 4px solid #3498db;
+            padding: 12px 15px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .warning {
+            background-color: #fcf3cf;
+            border-left: 4px solid #f1c40f;
+            padding: 12px 15px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        ol {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 15px;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        @media print {
+            body {
+                padding: 0;
+                background-color: #fff;
+            }
+            pre {
+                border: 1px solid #ccc;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Guide Détaillé des Projets OpenFOAM - Jour 1</h1>
+    <p style="text-align: center; font-style: italic;">Ce document récapitule les deux projets réalisés aujourd'hui, explique le rôle de chaque commande et détaille les modifications possibles.</p>
+
+    <h2>🏎️ Projet 1 : La Cavité Entraînée (Lid-driven Cavity)</h2>
+    <p><strong>Objectif</strong> : Simuler l'écoulement d'un fluide dans une boîte carrée dont le couvercle glisse à vitesse constante.</p>
+
+    <h3>Les Étapes Pas à Pas :</h3>
+    <ol>
+        <li><strong>Préparer l'espace</strong> :
+            <pre><code>mkdir -p $FOAM_RUN
+cd $FOAM_RUN</code></pre>
+        </li>
+        <li><strong>Copier le tutoriel</strong> :
+            <pre><code>cp -r $FOAM_TUTORIALS/incompressible/icoFoam/cavity/cavity .
+cd cavity</code></pre>
+        </li>
+        <li><strong>Générer le maillage</strong> :
+            <pre><code>blockMesh</code></pre>
+            <div class="note">
+                <strong>Ce que fait la commande</strong> : Elle lit le fichier <code>system/blockMeshDict</code> et découpe la boîte en petites cellules de calcul.<br>
+                <strong>Modifications possibles</strong> : Modifier le nombre de divisions (ex: changer <code>(20 20 1)</code> en <code>(3 3 1)</code>) pour avoir un maillage très grossier.
+            </div>
+        </li>
+        <li><strong>Lancer le calcul</strong> :
+            <pre><code>icoFoam</code></pre>
+            <div class="note">
+                <strong>Ce que fait la commande</strong> : C'est le solveur pour les fluides incompressibles et laminaires.
+            </div>
+        </li>
+        <li><strong>Visualiser</strong> :
+            <pre><code>paraFoam</code></pre>
+        </li>
+    </ol>
+
+    <h2>🌊 Projet 2 : La Rupture de Barrage (Dam Break)</h2>
+    <p><strong>Objectif</strong> : Simuler l'effondrement d'une colonne d'eau sous l'effet de la gravité et son impact sur un obstacle.</p>
+
+    <h3>Les Étapes Pas à Pas :</h3>
+    <ol>
+        <li><strong>Copier le projet</strong> :
+            <pre><code>cd $FOAM_RUN
+cp -r $FOAM_TUTORIALS/multiphase/interFoam/laminar/damBreak/damBreak .
+cd damBreak</code></pre>
+        </li>
+        <li><strong>Initialiser les fichiers de conditions limites</strong> :
+            <pre><code>cp -r 0.orig 0</code></pre>
+            <div class="warning">
+                <strong>Pourquoi ?</strong> : Les tutoriels protègent les fichiers de départ dans <code>0.orig</code>. Pour qu'OpenFOAM puisse travailler, il lui faut un dossier nommé <code>0</code>.
+            </div>
+        </li>
+        <li><strong>Créer le maillage</strong> :
+            <pre><code>blockMesh</code></pre>
+        </li>
+        <li><strong>Placer l'eau</strong> :
+            <pre><code>setFields</code></pre>
+            <div class="note">
+                <strong>Ce que fait la commande</strong> : Elle lit le fichier <code>system/setFieldsDict</code> et remplit une zone spécifique avec de l'eau.<br>
+                <strong>Modifications possibles</strong> : Modifier les coordonnées de la boîte dans <code>setFieldsDict</code> pour changer la forme de l'eau.
+            </div>
+        </li>
+        <li><strong>Lancer la simulation</strong> :
+            <pre><code>interFoam</code></pre>
+            <div class="note">
+                <strong>Ce que fait la commande</strong> : C'est le solveur pour deux fluides (ici eau et air).
+            </div>
+        </li>
+        <li><strong>Visualiser</strong> :
+            <pre><code>paraFoam</code></pre>
+        </li>
+    </ol>
+
+    <h2>🔧 Détail des Commandes et Astuces</h2>
+
+    <h3><code>blockMesh</code></h3>
+    <p><strong>Fichier lié</strong> : <code>system/blockMeshDict</code></p>
+    <p>Vous pouvez changer la résolution de la grille. Plus il y a de mailles, plus le calcul est précis mais plus il est long.</p>
+
+    <h3><code>setFields</code></h3>
+    <p><strong>Fichier lié</strong> : <code>system/setFieldsDict</code></p>
+    <p>Vous pouvez changer la géométrie de la zone d'eau initiale en modifiant les coordonnées de la <code>box</code>.</p>
+
+    <h3>Les Solveurs (<code>icoFoam</code>, <code>interFoam</code>)</h3>
+    <p><strong>Fichier lié</strong> : <code>system/controlDict</code></p>
+    <p>Modifications possibles :</p>
+    <ul>
+        <li><code>endTime</code> : Changer la durée totale de la simulation.</li>
+        <li><code>deltaT</code> : Changer le pas de temps.</li>
+        <li><code>writeInterval</code> : Changer la fréquence d'enregistrement des résultats pour ParaView.</li>
+    </ul>
+
+    <div class="note">
+        <strong>💡 Comment obtenir votre PDF :</strong><br>
+        1. Ouvrez ce fichier (<code>recap_openfoam_jour1.html</code>) dans votre navigateur web.<br>
+        2. Utilisez le raccourci <strong>Ctrl + P</strong> (ou "Imprimer").<br>
+        3. Dans la destination, choisissez <strong>"Enregistrer au format PDF"</strong>.
+    </div>
+</body>
+</html>
