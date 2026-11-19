@@ -1,5 +1,5 @@
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
-import { Mail, MapPin, ArrowRight, ArrowLeft, Wind, Clock, Droplets, FunctionSquare, Building2, Atom, PenTool, Layers, Box, Wrench, Menu, X } from 'lucide-react';
+import { Mail, MapPin, ArrowRight, ArrowLeft, Wind, Clock, ExternalLink, Droplets, FunctionSquare, Building2, Atom, PenTool, Layers, Box, Wrench, Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import LiquidEther from '@/components/LiquidEther';
 import BasicsMMCPage from '@/pages/BasicsMMCPage';
@@ -89,6 +89,7 @@ const translations = {
         teacherTitle: 'Mathematics Teacher',
         teacherBody: 'Taught at high school and middle school levels. Served as a jury member for the Baccalauréat Grand Oral.',
         engineerTitle: 'Research Engineer',
+        engieUrl: 'https://innovation.engie.com/en/lab-crigen-professionnal-services',
         engineerSubject: 'Research subject:',
         engineerBody: 'Numerical treatment of thermal diffusion through solid thickness of a cryogenic tank.',
         masterTitle: "Research Master's in Fluid Mechanics",
@@ -185,6 +186,7 @@ const translations = {
         teacherTitle: 'Professeur de mathématiques',
         teacherBody: 'Enseignement au lycée et au collège. Membre du jury pour le Grand Oral du Baccalauréat.',
         engineerTitle: 'Ingénieur de recherche',
+        engieUrl: 'https://innovation.engie.com/fr/lab-crigen-professionnal-services',
         engineerSubject: 'Sujet de recherche :',
         engineerBody: "Traitement numérique de la diffusion thermique dans l'épaisseur solide d'un réservoir cryogénique.",
         masterTitle: 'Master recherche en mécanique des fluides',
@@ -280,6 +282,7 @@ const translations = {
         teacherTitle: 'مدرّس رياضيات',
         teacherBody: 'درّست في المرحلتين الإعدادية والثانوية، وشاركت في لجنة تحكيم الامتحان الشفهي للبكالوريا الفرنسية.',
         engineerTitle: 'مهندس باحث',
+        engieUrl: 'https://innovation.engie.com/en/lab-crigen-professionnal-services',
         engineerSubject: 'موضوع البحث:',
         engineerBody: 'النمذجة العددية للانتشار الحراري عبر سُمك الجدار الصلب لخزان يعمل في درجات حرارة شديدة الانخفاض.',
         masterTitle: 'ماجستير بحثي في ميكانيكا الموائع',
@@ -449,7 +452,7 @@ const Home = ({ t }) => {
                 </div>
                 <h3 style={{ margin: 0 }}>{t.home.journey.founderTitle}</h3>
               </div>
-              <p style={{ color: 'var(--text-secondary)' }}>Pepro</p>
+              <p><a className="org-link" href="https://pepro.fr" target="_blank" rel="noopener noreferrer">Pepro <ExternalLink size={14} /></a></p>
               <p style={{ fontSize: '0.9rem', marginTop: '0.5rem' }}>{t.home.journey.founderBody}</p>
             </div>
           </div>
@@ -462,7 +465,7 @@ const Home = ({ t }) => {
                 </div>
                 <h3 style={{ margin: 0 }}>{t.home.journey.teacherTitle}</h3>
               </div>
-              <p style={{ color: 'var(--text-secondary)' }}>{t.home.journey.educationMinistry}</p>
+              <p><a className="org-link" href="https://www.education.gouv.fr/" target="_blank" rel="noopener noreferrer">{t.home.journey.educationMinistry} <ExternalLink size={14} /></a></p>
               <p style={{ fontSize: '0.9rem', marginTop: '0.5rem' }}>{t.home.journey.teacherBody}</p>
             </div>
           </div>
@@ -475,7 +478,7 @@ const Home = ({ t }) => {
                 </div>
                 <h3 style={{ margin: 0 }}>{t.home.journey.engineerTitle}</h3>
               </div>
-              <p style={{ color: 'var(--text-secondary)' }}>Engie</p>
+              <p><a className="org-link" href={t.home.journey.engieUrl} target="_blank" rel="noopener noreferrer"><bdi>ENGIE Lab CRIGEN</bdi> <ExternalLink size={14} /></a></p>
               <p style={{ fontSize: '0.9rem', marginTop: '0.5rem' }}>{t.home.journey.engineerSubject} <em style={{ color: 'var(--text-primary)' }}>{t.home.journey.engineerBody}</em></p>
             </div>
           </div>

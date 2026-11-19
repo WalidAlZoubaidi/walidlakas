@@ -625,6 +625,24 @@ footer::before {
   height: 64px;
 }
 
+.org-link {
+  display: inline;
+  color: var(--tl-accent, var(--accent-primary));
+  font-weight: 600;
+  border-bottom: 1px dashed currentColor;
+}
+
+.org-link:hover {
+  color: var(--tl-accent, var(--accent-primary));
+  border-bottom-style: solid;
+}
+
+.org-link svg {
+  display: inline;
+  vertical-align: -2px;
+  margin-inline-start: 0.2rem;
+}
+
 /* Timeline */
 .timeline {
   position: relative;
