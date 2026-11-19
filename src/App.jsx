@@ -56,7 +56,7 @@ const translations = {
     },
     home: {
       subtitle: 'Research Engineer in Fluid Mechanics & Energy',
-      description: 'My website aims to share my work and serve as an information resource for engineers and higher education students. My interests are varied, but they revolve around applied mathematics and fluid/solid mechanics.',
+      description: 'My main interest is computational fluid dynamics (CFD). I use this site to share my work and resources for engineers and university students.',
       contact: 'Get in touch',
       blog: 'Read my blog',
       journeyTitlePrefix: 'My',
@@ -133,7 +133,7 @@ const translations = {
     },
     home: {
       subtitle: 'Ingénieur de recherche en mécanique des fluides & énergie',
-      description: "Mon site a pour objectif de partager mes travaux et d'être une ressource d'informations pour un ingénieur ou un étudiant du supérieur. Mes centres d'intérêts sont variés mais tournent autour des mathématiques appliquées et de la mécanique des fluides/solides.",
+      description: "Je m’intéresse avant tout à la mécanique des fluides numérique (CFD). Sur ce site, je partage mes travaux et des ressources pour les ingénieurs et les étudiants du supérieur.",
       contact: 'Me contacter',
       blog: 'Lire mon blog',
       journeyTitlePrefix: 'Mon',
