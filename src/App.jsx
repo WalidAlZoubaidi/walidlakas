@@ -85,7 +85,7 @@ const translations = {
       journey: {
         founderTitle: 'Founder & Researcher',
         founderBody: 'Research and scientific software publishing.',
-        educationMinistry: "Ministère de l’Éducation Nationale",
+        educationMinistry: 'French Ministry of National Education',
         teacherTitle: 'Mathematics Teacher',
         teacherBody: 'Taught at high school and middle school levels. Served as a jury member for the Baccalauréat Grand Oral.',
         engineerTitle: 'Research Engineer',
@@ -310,6 +310,18 @@ const translations = {
   },
 };
 
+// External organisation link; the last word stays glued to the icon so it never wraps alone
+const OrgLink = ({ href, children }) => {
+  const words = children.split(' ');
+  const last = words.pop();
+  return (
+    <a className="org-link" href={href} target="_blank" rel="noopener noreferrer">
+      {words.length > 0 && `${words.join(' ')} `}
+      <span className="org-link-tail">{last}<ExternalLink size={14} /></span>
+    </a>
+  );
+};
+
 // Page Components Placeholder
 const PageTemplate = ({ title, icon: Icon, t }) => (
   <div className="page-header">
@@ -452,7 +464,7 @@ const Home = ({ t }) => {
                 </div>
                 <h3 style={{ margin: 0 }}>{t.home.journey.founderTitle}</h3>
               </div>
-              <p><a className="org-link" href="https://pepro.fr" target="_blank" rel="noopener noreferrer">Pepro <ExternalLink size={14} /></a></p>
+              <p><OrgLink href="https://pepro.fr">Pepro</OrgLink></p>
               <p style={{ fontSize: '0.9rem', marginTop: '0.5rem' }}>{t.home.journey.founderBody}</p>
             </div>
           </div>
@@ -465,7 +477,7 @@ const Home = ({ t }) => {
                 </div>
                 <h3 style={{ margin: 0 }}>{t.home.journey.teacherTitle}</h3>
               </div>
-              <p><a className="org-link" href="https://www.education.gouv.fr/" target="_blank" rel="noopener noreferrer">{t.home.journey.educationMinistry} <ExternalLink size={14} /></a></p>
+              <p><OrgLink href="https://www.education.gouv.fr/">{t.home.journey.educationMinistry}</OrgLink></p>
               <p style={{ fontSize: '0.9rem', marginTop: '0.5rem' }}>{t.home.journey.teacherBody}</p>
             </div>
           </div>
@@ -478,7 +490,7 @@ const Home = ({ t }) => {
                 </div>
                 <h3 style={{ margin: 0 }}>{t.home.journey.engineerTitle}</h3>
               </div>
-              <p><a className="org-link" href={t.home.journey.engieUrl} target="_blank" rel="noopener noreferrer"><bdi>ENGIE Lab CRIGEN</bdi> <ExternalLink size={14} /></a></p>
+              <p><bdi><OrgLink href={t.home.journey.engieUrl}>ENGIE Lab CRIGEN</OrgLink></bdi></p>
               <p style={{ fontSize: '0.9rem', marginTop: '0.5rem' }}>{t.home.journey.engineerSubject} <em style={{ color: 'var(--text-primary)' }}>{t.home.journey.engineerBody}</em></p>
             </div>
           </div>

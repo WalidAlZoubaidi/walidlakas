@@ -637,6 +637,10 @@ footer::before {
   border-bottom-style: solid;
 }
 
+.org-link-tail {
+  white-space: nowrap;
+}
+
 .org-link svg {
   display: inline;
   vertical-align: -2px;
@@ -1140,4 +1144,21 @@ footer::before {
 :root[dir="rtl"] .read-more svg.lucide-arrow-right,
 :root[dir="rtl"] .read-more svg.lucide-arrow-left {
   transform: scaleX(-1);
+}
+
+/* RTL timeline (desktop): mirror the two columns around the centre line */
+@media (min-width: 769px) {
+  :root[dir="rtl"] .timeline-item.right {
+    left: -50%;
+  }
+
+  :root[dir="rtl"] .timeline-item.left::after {
+    right: auto;
+    left: -8px;
+  }
+
+  :root[dir="rtl"] .timeline-item.right::after {
+    left: auto;
+    right: -8px;
+  }
 }
