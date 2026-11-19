@@ -7,6 +7,8 @@ import SphericalDeviatoricPartsPage from '@/pages/SphericalDeviatoricPartsPage';
 import AnalysisOfDeformationPage from '@/pages/AnalysisOfDeformationPage';
 import AnalyticalMechanicsPage from '@/pages/AnalyticalMechanicsPage';
 import VirtualWorkApplicationPage from '@/pages/VirtualWorkApplicationPage';
+import MathematicsPage from '@/pages/MathematicsPage';
+import JacobianMatrixPage from '@/pages/JacobianMatrixPage';
 
 const LinkedinIcon = ({ size = 24, color = "currentColor" }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -631,7 +633,7 @@ function App() {
           <ul className="nav-links">
             <li><Link to="/" className={`nav-link ${location.pathname === '/' ? 'active' : ''}`}>{t.nav.home}</Link></li>
             <li><Link to="/biomechanics" className={`nav-link ${location.pathname.startsWith('/biomechanics') ? 'active' : ''}`}>{t.nav.biomechanics}</Link></li>
-            <li><Link to="/mathematics" className={`nav-link ${location.pathname === '/mathematics' ? 'active' : ''}`}>{t.nav.mathematics}</Link></li>
+            <li><Link to="/mathematics" className={`nav-link ${location.pathname.startsWith('/mathematics') ? 'active' : ''}`}>{t.nav.mathematics}</Link></li>
             <li><Link to="/mechanics" className={`nav-link ${location.pathname.startsWith('/mechanics') ? 'active' : ''}`}>{t.nav.mechanics}</Link></li>
             <li><Link to="/blog" className={`nav-link ${location.pathname === '/blog' ? 'active' : ''}`}>{t.nav.blog}</Link></li>
           </ul>
@@ -656,7 +658,7 @@ function App() {
             {languageSelect('mobile-language-toggle')}
             <Link to="/" className={`mobile-link ${location.pathname === '/' ? 'active' : ''}`} onClick={() => setMobileMenuOpen(false)}>{t.nav.home}</Link>
             <Link to="/biomechanics" className={`mobile-link ${location.pathname.startsWith('/biomechanics') ? 'active' : ''}`} onClick={() => setMobileMenuOpen(false)}>{t.nav.biomechanics}</Link>
-            <Link to="/mathematics" className={`mobile-link ${location.pathname === '/mathematics' ? 'active' : ''}`} onClick={() => setMobileMenuOpen(false)}>{t.nav.mathematics}</Link>
+            <Link to="/mathematics" className={`mobile-link ${location.pathname.startsWith('/mathematics') ? 'active' : ''}`} onClick={() => setMobileMenuOpen(false)}>{t.nav.mathematics}</Link>
             <Link to="/mechanics" className={`mobile-link ${location.pathname.startsWith('/mechanics') ? 'active' : ''}`} onClick={() => setMobileMenuOpen(false)}>{t.nav.mechanics}</Link>
             <Link to="/blog" className={`mobile-link ${location.pathname === '/blog' ? 'active' : ''}`} onClick={() => setMobileMenuOpen(false)}>{t.nav.blog}</Link>
           </div>
@@ -668,7 +670,8 @@ function App() {
           <Route path="/" element={<Home t={t} />} />
           <Route path="/biomechanics" element={<BiomechanicsPage t={t} />} />
           <Route path="/biomechanics/cfd" element={<CfdPage t={t} />} />
-          <Route path="/mathematics" element={<PageTemplate title={t.titles.mathematics} icon={FunctionSquare} t={t} />} />
+          <Route path="/mathematics" element={<MathematicsPage language={language} />} />
+          <Route path="/mathematics/multivariable-functions/jacobian-matrix" element={<JacobianMatrixPage language={language} />} />
           <Route path="/mechanics" element={<MechanicsPage t={t} />} />
           <Route path="/mechanics/structural-theory" element={<PageTemplate title={t.titles.structuralTheory} icon={Building2} t={t} />} />
           <Route path="/mechanics/basics-of-continuum-mechanics" element={<BasicsMMCPage language={language} />} />
