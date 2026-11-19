@@ -1,5 +1,5 @@
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
-import { Mail, ArrowRight, Droplets, FunctionSquare, Building2, Atom, PenTool, Layers, Box, Wrench, Menu, X } from 'lucide-react';
+import { Mail, MapPin, ArrowRight, Droplets, FunctionSquare, Building2, Atom, PenTool, Layers, Box, Wrench, Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import LiquidEther from '@/components/LiquidEther';
 import BasicsMMCPage from '@/pages/BasicsMMCPage';
@@ -59,6 +59,8 @@ const translations = {
     home: {
       subtitle: 'Research Engineer in Fluid Mechanics & Energy',
       description: 'My website aims to share my work and serve as an information resource for engineers and higher education students. My interests are varied, but they revolve around applied mathematics and fluid/solid mechanics. I am particularly interested in computational fluid dynamics (CFD).',
+      location: 'Based in Paris, France',
+      photoAlt: 'The Eiffel Tower in Paris under a blue sky',
       contact: 'Get in touch',
       blog: 'Read my blog',
       journeyTitlePrefix: 'My',
@@ -139,6 +141,8 @@ const translations = {
     home: {
       subtitle: 'Ingénieur de recherche en mécanique des fluides & énergie',
       description: "Mon site a pour objectif de partager mes travaux et d'être une ressource d'informations pour un ingénieur ou un étudiant du supérieur. Mes centres d'intérêts sont variés mais tournent autour des mathématiques appliquées et de la mécanique des fluides/solides. Je m’intéresse particulièrement à la mécanique des fluides numérique (CFD).",
+      location: 'Basé à Paris, France',
+      photoAlt: 'La tour Eiffel à Paris sous un ciel bleu',
       contact: 'Me contacter',
       blog: 'Lire mon blog',
       journeyTitlePrefix: 'Mon',
@@ -219,6 +223,8 @@ const translations = {
     home: {
       subtitle: 'مهندس باحث في ميكانيكا الموائع والطاقة',
       description: 'أهدف من خلال هذا الموقع إلى مشاركة أعمالي وتقديم مصادر معرفية للمهندسين وطلاب التعليم العالي. تتنوع اهتماماتي وتدور حول الرياضيات التطبيقية وميكانيكا الموائع والمواد الصلبة. وأهتم خصوصًا بديناميكا الموائع الحسابية (CFD).',
+      location: 'مقيم في باريس، فرنسا',
+      photoAlt: 'برج إيفل في باريس تحت سماء زرقاء',
       contact: 'تواصل معي',
       blog: 'اقرأ مدونتي',
       journeyTitlePrefix: 'مسيرتي',
@@ -284,25 +290,25 @@ const MechanicsPage = ({ t }) => (
     </div>
     <div className="container page-content" style={{marginTop: '4rem'}}>
       <div className="grid-cards">
-        <div className="glass-card research-card">
+        <div className="glass-card research-card accent-amber">
           <div className="card-icon"><Building2 size={24} /></div>
           <h3>{t.mechanics.cards[0].title}</h3>
           <p>{t.mechanics.cards[0].body}</p>
           <Link to="/mechanics/structural-theory" className="read-more">{t.mechanics.explore} <ArrowRight size={16}/></Link>
         </div>
-        <div className="glass-card research-card">
+        <div className="glass-card research-card accent-sky">
           <div className="card-icon"><Layers size={24} /></div>
           <h3>{t.mechanics.cards[1].title}</h3>
           <p>{t.mechanics.cards[1].body}</p>
           <Link to="/mechanics/basics-of-continuum-mechanics" className="read-more">{t.mechanics.explore} <ArrowRight size={16}/></Link>
         </div>
-        <div className="glass-card research-card">
+        <div className="glass-card research-card accent-violet">
           <div className="card-icon"><Box size={24} /></div>
           <h3>{t.mechanics.cards[2].title}</h3>
           <p>{t.mechanics.cards[2].body}</p>
           <Link to="/mechanics/continuum-mechanics" className="read-more">{t.mechanics.explore} <ArrowRight size={16}/></Link>
         </div>
-        <div className="glass-card research-card">
+        <div className="glass-card research-card accent-emerald">
           <div className="card-icon"><Atom size={24} /></div>
           <h3>{t.mechanics.cards[3].title}</h3>
           <p>{t.mechanics.cards[3].body}</p>
@@ -318,10 +324,11 @@ const Home = ({ t }) => {
   <>
     <section className="hero" style={{ position: 'relative', overflow: 'hidden' }}>
       <div className="hero-background" aria-hidden="true">
-        <LiquidEther colors={['#0284c7', '#0ea5e9', '#38bdf8']} />
+        <LiquidEther colors={['#0284c7', '#7c3aed', '#ec4899']} />
       </div>
-      <div className="container hero-intro" style={{ position: 'relative', zIndex: 1, pointerEvents: 'none' }}>
+      <div className="container hero-intro hero-grid" style={{ position: 'relative', zIndex: 1, pointerEvents: 'none' }}>
         <div className="hero-content" style={{ pointerEvents: 'auto' }}>
+          <p className="location-chip"><MapPin size={16} /> {t.home.location}</p>
           <h1 dir="ltr">Walid <span className="gradient-text">LAKAS</span></h1>
           <h2 className="hero-subtitle">{t.home.subtitle}</h2>
           <p className="hero-description">
@@ -339,10 +346,16 @@ const Home = ({ t }) => {
             </Link>
           </div>
         </div>
+        <figure className="hero-photo" style={{ pointerEvents: 'auto' }}>
+          <img src="/paris-eiffel.webp" alt={t.home.photoAlt} width="800" height="1280" />
+          <figcaption className="hero-photo-badge">
+            <MapPin size={16} /> Paris
+          </figcaption>
+        </figure>
       </div>
     </section>
 
-    <section className="section" style={{ background: '#f8fafc' }}>
+    <section className="section section-tinted">
       <div className="container">
         <h2 style={{ textAlign: 'center', marginBottom: '3rem' }}>
           <span className="gradient-text">{t.home.journeyTitlePrefix}</span> {t.home.journeyTitleSuffix}
@@ -445,19 +458,19 @@ const Home = ({ t }) => {
       <div className="container">
         <h2><span className="gradient-text">{t.home.researchTitle}</span> {t.home.domainsTitle}</h2>
         <div className="grid-cards">
-          <div className="glass-card research-card">
+          <div className="glass-card research-card accent-rose">
             <div className="card-icon"><Droplets size={24} /></div>
             <h3>{t.nav.biomechanics}</h3>
             <p>{t.home.domains.biomechanics}</p>
             <Link to="/biomechanics" className="read-more">{t.home.domains.explore} <ArrowRight size={16}/></Link>
           </div>
-          <div className="glass-card research-card">
+          <div className="glass-card research-card accent-violet">
             <div className="card-icon"><FunctionSquare size={24} /></div>
             <h3>{t.nav.mathematics}</h3>
             <p>{t.home.domains.mathematics}</p>
             <Link to="/mathematics" className="read-more">{t.home.domains.explore} <ArrowRight size={16}/></Link>
           </div>
-          <div className="glass-card research-card">
+          <div className="glass-card research-card accent-amber">
             <div className="card-icon"><Wrench size={24} /></div>
             <h3>{t.nav.mechanics}</h3>
             <p>{t.home.domains.mechanics}</p>
@@ -579,6 +592,7 @@ function App() {
             <div>
               <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.5rem', marginBottom: '0.5rem' }}>Walid LAKAS</h3>
               <p style={{ color: 'var(--text-secondary)' }}>{t.footer.role}</p>
+              <p className="footer-location"><MapPin size={16} /> {t.home.location}</p>
             </div>
             <div className="contact-info">
               <a href="https://www.linkedin.com/in/walid-l-11b09325a/" target="_blank" rel="noopener noreferrer" className="contact-item">
