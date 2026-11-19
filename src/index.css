@@ -566,8 +566,60 @@ footer::before {
   color: #64748b;
 }
 
+.empty-state h2 {
+  font-size: 1.75rem;
+  color: #0f172a;
+  margin-bottom: 0.75rem;
+}
+
+.empty-state p {
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.soon-badge {
+  display: inline-block;
+  vertical-align: middle;
+  margin-inline-start: 0.5rem;
+  padding: 0.15rem 0.7rem;
+  border-radius: 999px;
+  background: #fce7f3;
+  color: #be185d;
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.empty-state .soon-badge {
+  margin: 0 0 1rem;
+}
+
+.empty-state .soon-badge + h2 {
+  margin-top: 0;
+}
+
+.back-link {
+  margin-top: 2rem;
+  justify-content: center;
+}
+
+.empty-state .back-link svg {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  color: inherit;
+}
+
+.grid-cards.grid-fill {
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+:root[dir="rtl"] .back-link svg {
+  transform: scaleX(-1);
+}
+
 .empty-state svg {
-  margin-bottom: 1rem;
+  margin: 0 auto 1rem;
   color: #cbd5e1;
   width: 64px;
   height: 64px;

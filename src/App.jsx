@@ -1,5 +1,5 @@
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
-import { Mail, MapPin, ArrowRight, Droplets, FunctionSquare, Building2, Atom, PenTool, Layers, Box, Wrench, Menu, X } from 'lucide-react';
+import { Mail, MapPin, ArrowRight, ArrowLeft, Wind, Clock, Droplets, FunctionSquare, Building2, Atom, PenTool, Layers, Box, Wrench, Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import LiquidEther from '@/components/LiquidEther';
 import BasicsMMCPage from '@/pages/BasicsMMCPage';
@@ -32,6 +32,20 @@ const translations = {
       subtitle: 'Research & Publications',
       heading: 'Content coming soon',
       body: 'This section is currently being updated with recent research and publications.',
+    },
+    biomechanicsPage: {
+      subtitle: 'Mechanics applied to living systems',
+      explore: 'Explore',
+      cfdTitle: 'CFD',
+      cfdBody: 'Computational fluid dynamics: numerical methods, tools such as OpenFOAM, and applications to biological flows.',
+    },
+    cfd: {
+      title: 'CFD',
+      subtitle: 'Computational Fluid Dynamics',
+      badge: 'Coming soon',
+      heading: 'Content on its way',
+      body: 'Articles and tutorials on computational fluid dynamics are being prepared: governing equations, meshing, turbulence models, and step-by-step OpenFOAM cases. Check back soon!',
+      back: 'Back to Biomechanics',
     },
     mechanics: {
       title: 'Mechanics',
@@ -115,6 +129,20 @@ const translations = {
       heading: 'Contenu à venir',
       body: 'Cette section est actuellement mise à jour avec des recherches et publications récentes.',
     },
+    biomechanicsPage: {
+      subtitle: 'La mécanique appliquée au vivant',
+      explore: 'Explorer',
+      cfdTitle: 'CFD',
+      cfdBody: 'Mécanique des fluides numérique : méthodes, outils comme OpenFOAM et applications aux écoulements biologiques.',
+    },
+    cfd: {
+      title: 'CFD',
+      subtitle: 'Mécanique des fluides numérique',
+      badge: 'Bientôt disponible',
+      heading: 'Du contenu arrive bientôt',
+      body: 'Des articles et tutoriels sur la mécanique des fluides numérique sont en préparation : équations de conservation, maillage, modèles de turbulence et cas OpenFOAM pas à pas. Revenez bientôt !',
+      back: 'Retour à la biomécanique',
+    },
     mechanics: {
       title: 'Mécanique',
       subtitle: 'Disciplines et théories fondamentales de la mécanique',
@@ -197,6 +225,20 @@ const translations = {
       heading: 'المحتوى قريبًا',
       body: 'يجري تحديث هذا القسم لإضافة أحدث الأبحاث والمنشورات.',
     },
+    biomechanicsPage: {
+      subtitle: 'الميكانيكا في خدمة الأنظمة الحية',
+      explore: 'استكشف',
+      cfdTitle: 'CFD',
+      cfdBody: 'ديناميكا الموائع الحسابية: الطرق العددية، وأدوات مثل OpenFOAM، وتطبيقاتها على التدفقات الحيوية.',
+    },
+    cfd: {
+      title: 'CFD',
+      subtitle: 'ديناميكا الموائع الحسابية',
+      badge: 'قريبًا',
+      heading: 'المحتوى في الطريق',
+      body: 'يجري إعداد مقالات ودروس حول ديناميكا الموائع الحسابية: معادلات الحفظ، وإنشاء الشبكات، ونماذج الاضطراب، وحالات OpenFOAM خطوة بخطوة. عُد قريبًا!',
+      back: 'العودة إلى الميكانيكا الحيوية',
+    },
     mechanics: {
       title: 'الميكانيكا',
       subtitle: 'التخصصات والنظريات الأساسية في الميكانيكا',
@@ -277,6 +319,43 @@ const PageTemplate = ({ title, icon: Icon, t }) => (
         <Icon size={64} />
         <h2>{t.placeholder.heading}</h2>
         <p>{t.placeholder.body}</p>
+      </div>
+    </div>
+  </div>
+);
+
+const BiomechanicsPage = ({ t }) => (
+  <div className="page-header">
+    <div className="container">
+      <h1 className="gradient-text">{t.titles.biomechanics}</h1>
+      <p className="hero-subtitle" style={{marginBottom: 0}}>{t.biomechanicsPage.subtitle}</p>
+    </div>
+    <div className="container page-content" style={{marginTop: '4rem'}}>
+      <div className="grid-cards grid-fill">
+        <div className="glass-card research-card accent-sky">
+          <div className="card-icon"><Wind size={24} /></div>
+          <h3>{t.biomechanicsPage.cfdTitle} <span className="soon-badge">{t.cfd.badge}</span></h3>
+          <p>{t.biomechanicsPage.cfdBody}</p>
+          <Link to="/biomechanics/cfd" className="read-more">{t.biomechanicsPage.explore} <ArrowRight size={16}/></Link>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+const CfdPage = ({ t }) => (
+  <div className="page-header">
+    <div className="container">
+      <h1 className="gradient-text">{t.cfd.title}</h1>
+      <p className="hero-subtitle" style={{marginBottom: 0}}>{t.cfd.subtitle}</p>
+    </div>
+    <div className="container page-content" style={{marginTop: '4rem'}}>
+      <div className="glass-panel empty-state">
+        <Clock size={64} />
+        <span className="soon-badge">{t.cfd.badge}</span>
+        <h2>{t.cfd.heading}</h2>
+        <p>{t.cfd.body}</p>
+        <Link to="/biomechanics" className="read-more back-link"><ArrowLeft size={16}/> {t.cfd.back}</Link>
       </div>
     </div>
   </div>
@@ -536,7 +615,7 @@ function App() {
           </Link>
           <ul className="nav-links">
             <li><Link to="/" className={`nav-link ${location.pathname === '/' ? 'active' : ''}`}>{t.nav.home}</Link></li>
-            <li><Link to="/biomechanics" className={`nav-link ${location.pathname === '/biomechanics' ? 'active' : ''}`}>{t.nav.biomechanics}</Link></li>
+            <li><Link to="/biomechanics" className={`nav-link ${location.pathname.startsWith('/biomechanics') ? 'active' : ''}`}>{t.nav.biomechanics}</Link></li>
             <li><Link to="/mathematics" className={`nav-link ${location.pathname === '/mathematics' ? 'active' : ''}`}>{t.nav.mathematics}</Link></li>
             <li><Link to="/mechanics" className={`nav-link ${location.pathname.startsWith('/mechanics') ? 'active' : ''}`}>{t.nav.mechanics}</Link></li>
             <li><Link to="/blog" className={`nav-link ${location.pathname === '/blog' ? 'active' : ''}`}>{t.nav.blog}</Link></li>
@@ -561,7 +640,7 @@ function App() {
             <div className="drawer-pill" />
             {languageSelect('mobile-language-toggle')}
             <Link to="/" className={`mobile-link ${location.pathname === '/' ? 'active' : ''}`} onClick={() => setMobileMenuOpen(false)}>{t.nav.home}</Link>
-            <Link to="/biomechanics" className={`mobile-link ${location.pathname === '/biomechanics' ? 'active' : ''}`} onClick={() => setMobileMenuOpen(false)}>{t.nav.biomechanics}</Link>
+            <Link to="/biomechanics" className={`mobile-link ${location.pathname.startsWith('/biomechanics') ? 'active' : ''}`} onClick={() => setMobileMenuOpen(false)}>{t.nav.biomechanics}</Link>
             <Link to="/mathematics" className={`mobile-link ${location.pathname === '/mathematics' ? 'active' : ''}`} onClick={() => setMobileMenuOpen(false)}>{t.nav.mathematics}</Link>
             <Link to="/mechanics" className={`mobile-link ${location.pathname.startsWith('/mechanics') ? 'active' : ''}`} onClick={() => setMobileMenuOpen(false)}>{t.nav.mechanics}</Link>
             <Link to="/blog" className={`mobile-link ${location.pathname === '/blog' ? 'active' : ''}`} onClick={() => setMobileMenuOpen(false)}>{t.nav.blog}</Link>
@@ -572,7 +651,8 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home t={t} />} />
-          <Route path="/biomechanics" element={<PageTemplate title={t.titles.biomechanics} icon={Droplets} t={t} />} />
+          <Route path="/biomechanics" element={<BiomechanicsPage t={t} />} />
+          <Route path="/biomechanics/cfd" element={<CfdPage t={t} />} />
           <Route path="/mathematics" element={<PageTemplate title={t.titles.mathematics} icon={FunctionSquare} t={t} />} />
           <Route path="/mechanics" element={<MechanicsPage t={t} />} />
           <Route path="/mechanics/structural-theory" element={<PageTemplate title={t.titles.structuralTheory} icon={Building2} t={t} />} />
