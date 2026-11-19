@@ -234,14 +234,14 @@ const Home = ({ t }) => {
       <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0, opacity: 0.6 }}>
         <LiquidEther colors={['#0284c7', '#0ea5e9', '#38bdf8']} />
       </div>
-      <div className="container hero-grid" style={{ position: 'relative', zIndex: 1, pointerEvents: 'none' }}>
+      <div className="container hero-intro" style={{ position: 'relative', zIndex: 1, pointerEvents: 'none' }}>
         <div className="hero-content" style={{ pointerEvents: 'auto' }}>
           <h1>Walid <span className="gradient-text">LAKAS</span></h1>
           <h2 className="hero-subtitle">{t.home.subtitle}</h2>
           <p className="hero-description">
             {t.home.description}
           </p>
-          <div style={{ display: 'flex', gap: '1rem' }}>
+          <div className="hero-actions">
             <a href="mailto:walid.lks@gmail.com" className="btn btn-primary">
               <Mail size={20} /> {t.home.contact}
             </a>
@@ -251,15 +251,6 @@ const Home = ({ t }) => {
             <Link to="/blog" className="btn btn-secondary">
               {t.home.blog}
             </Link>
-          </div>
-        </div>
-        <div className="hero-visual" style={{ pointerEvents: 'auto' }}>
-          <div className="profile-image-container">
-            <img 
-              src="/profile-new.png" 
-              alt="Walid LAKAS" 
-              className="profile-img"
-            />
           </div>
         </div>
       </div>
