@@ -37,6 +37,23 @@ const translations = {
     virtualWorkBody: 'Exercice d’application sur le principe des travaux virtuels : déterminer l’équation du mouvement d’un pendule avec ressort de torsion.',
     virtualWorkCta: 'Voir l’application',
   },
+  ar: {
+    title: "الميكانيكا التحليلية",
+    subtitle: "صياغتا لاغرانج وهاملتون",
+    aboutTitle: "عن هذا القسم",
+    aboutBody: "يتناول هذا القسم مبادئ الميكانيكا التحليلية، ويركز على صياغة معادلات الحركة للأنظمة الميكانيكية المعقدة باستخدام مقاربتي لاغرانج وهاملتون. ستجد ملاحظات نظرية وتمارين موجّهة لإتقان هاتين الصياغتين.",
+    conceptPrefix: "مراجعة",
+    conceptSuffix: "المفاهيم",
+    conceptIntro: "ستجد هنا مراجعات نظرية موجزة في قسم مستقل عن التطبيقات المخصصة لحل المسائل.",
+    emptyConceptTitle: "مراجعات المفاهيم قريبًا",
+    emptyConceptBody: "سيضم هذا القسم مراجعات موجزة للإحداثيات اللاغرانجية والشغل الافتراضي وميكانيكا هاملتون والمبادئ التغايرية.",
+    problemPrefix: "حلّ",
+    problemSuffix: "المسائل",
+    problemIntro: "تجد التطبيقات والتمارين الموجّهة في قسم مستقل عن مراجعات المفاهيم الموجزة.",
+    virtualWorkTitle: "مبدأ الشغل الافتراضي",
+    virtualWorkBody: "تمرين تطبيقي على مبدأ الشغل الافتراضي لتحديد معادلة حركة بندول مزوّد بنابض التواء.",
+    virtualWorkCta: "اطّلع على التطبيق",
+  },
 };
 
 const AnalyticalMechanicsPage = ({ language = 'en' }) => {
@@ -51,7 +68,7 @@ const AnalyticalMechanicsPage = ({ language = 'en' }) => {
       <div className="container page-content" style={{marginTop: '4rem'}}>
         
         {/* Category Introduction */}
-        <div className="glass-panel" style={{ padding: '3rem', textAlign: 'left', marginBottom: '3rem' }}>
+        <div className="glass-panel" style={{ padding: '3rem', textAlign: 'start', marginBottom: '3rem' }}>
           <h2 style={{ marginBottom: '1.5rem', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
             <Atom size={28} style={{ color: 'var(--primary-color)' }} /> {t.aboutTitle}
           </h2>

@@ -18,7 +18,7 @@ const InlineMath = ({ math }) => {
   } catch (e) {
     html = `<span style="color: #ef4444;">${cleanMath}</span>`;
   }
-  return <span className="notranslate" translate="no" dangerouslySetInnerHTML={{ __html: html }} />;
+  return <span className="notranslate" translate="no" dir="ltr" dangerouslySetInnerHTML={{ __html: html }} />;
 };
 
 const BlockMath = ({ math }) => {
@@ -34,11 +34,12 @@ const BlockMath = ({ math }) => {
   } catch (e) {
     html = `<div style="color: #ef4444;">${cleanMath}</div>`;
   }
-  return <div className="notranslate" translate="no" style={{ margin: '1rem 0', overflowX: 'auto' }} dangerouslySetInnerHTML={{ __html: html }} />;
+  return <div className="notranslate" translate="no" dir="ltr" style={{ margin: '1rem 0', overflowX: 'auto' }} dangerouslySetInnerHTML={{ __html: html }} />;
 };
 
 const text = {
   en: {
+    postureAlt: "Biomechanics of postural balance showing the inverted pendulum model",
     title: 'Analytical Mechanics',
     subtitle: 'Application Exercise',
     introTitle: 'Introduction to the Principle of Virtual Work',
@@ -120,6 +121,7 @@ const text = {
     cervicalText2: 'to keep the head upright. This inverted pendulum model is crucial for simulating whiplash injuries in crash tests.',
   },
   fr: {
+    postureAlt: "Équilibre postural représenté par un pendule inversé",
     title: 'Mécanique analytique',
     subtitle: 'Exercice d’application',
     introTitle: 'Introduction au principe des travaux virtuels',
@@ -200,6 +202,88 @@ const text = {
     cervicalText: 'La tête humaine est une masse lourde équilibrée sur la colonne cervicale, qui joue le rôle de tige. Les muscles du cou fournissent la raideur angulaire nécessaire',
     cervicalText2: 'pour maintenir la tête droite. Ce modèle de pendule inversé est crucial pour simuler les blessures de type coup du lapin lors des essais de collision.',
   },
+  ar: {
+    title: "الميكانيكا التحليلية",
+    subtitle: "تمرين تطبيقي",
+    introTitle: "مقدمة في مبدأ الشغل الافتراضي",
+    intro1: "يقدم مبدأ الشغل الافتراضي، أو مبدأ دالمبير، صياغة رياضية فعّالة في الميكانيكا التحليلية. وعلى خلاف طريقة نيوتن المتجهية التي تتطلب حصر القوى كلها، يعتمد هذا المبدأ على مقاربة قائمة على الشغل والطاقة.",
+    intro2: "ينص المبدأ على أن مجموع الأشغال الافتراضية للقوى الفاعلة وقوى العطالة يساوي صفرًا في كل لحظة، لأي إزاحة افتراضية متوافقة هندسيًا مع القيود. وتكمن ميزته في الاستغناء عن حساب قوى القيود المثالية، مثل رد فعل المفصل أو شد الحبل، لأنها لا تبذل شغلًا في هذه الإزاحات.",
+    applied: "في الميكانيكا التطبيقية",
+    appliedText: "تفيد هذه الطريقة في تحليل أنظمة هندسية شديدة التقييد ومتعددة درجات الحرية، مثل الروبوتات المفصلية وآليات الانتشار الفضائي، وفي دراسة استقرار المنشآت المعقدة في الهندسة المدنية.",
+    bio: "في الميكانيكا الحيوية",
+    bioText: "تُمثّل الميكانيكا الحيوية لحركة الإنسان الهيكل العظمي بنظام متعدد المفاصل، مثلًا في تحليل المشي وتصميم الأطراف الاصطناعية. ويتيح المبدأ عزل المجاهيل المطلوبة وتقدير القوى العضلية دون حساب ضغوط التلامس المعقدة في المفاصل.",
+    appTitle: "تطبيق: بندول مزوّد بنابض التواء",
+    statement: "نص المسألة",
+    statementText: "أوجد معادلة حركة النظام المعطى. كتلة القضيب مهملة، وتوجد كتلة مركّزة",
+    statementText2: "عند أحد طرفيه، ونابض التواء ثابت مرونته",
+    statementText3: "عند الطرف الآخر. وتحدث الحركة في مستوى رأسي.",
+    solution: "الحل المفصل",
+    step1: "١. وصف المسألة والهدف",
+    step1p1: "النظام بندول مقلوب أضيف إليه نابض التواء عند قاعدته. وتتحرك المجموعة في مستوى رأسي.",
+    objective: "الهدف:",
+    step1p2: "إيجاد المعادلة التفاضلية للحركة التي تحكم الزاوية",
+    step1p3: "يناسب مبدأ الشغل الافتراضي هذه المسألة لأنه يتيح تفادي حساب رد الفعل المجهول عند المفصل المحوري الواقع في الأصل.",
+    step2: "٢. التوصيف الهندسي والحركي",
+    step2p1: "بما أن للنظام درجة حرية واحدة، نختار الزاوية",
+    step2p2: "إحداثيًا لاغرانجيًا وحيدًا. وتُكتب معادلة القيد الهندسي التي تعطي موضع الكتلة النقطية",
+    step2p3: "في الإحداثيات الديكارتية كما يلي:",
+    step2p4: "بالاشتقاق بالنسبة إلى الزمن نحصل على متجهي السرعة والتسارع للنقطة",
+    step2p5: "وهما ضروريان لحساب قوة العطالة:",
+    step3: "٣. الإزاحة الافتراضية",
+    step3p1: "لتطبيق المبدأ، نثبّت الزمن بحيث يبقى الوضع العام للنظام ثابتًا، ثم نفرض إزاحة افتراضية متناهية الصغر تتوافق مع القيود. وتقابلها هنا زيادة زاوية افتراضية صغيرة",
+    step3p2: "يجب التمييز بين الإحداثي الفعلي",
+    step3p3: "والإزاحة الافتراضية الموضعية",
+    step3p4: "وتولّد الأخيرة إزاحة مكانية في الإحداثيات الديكارتية",
+    trig: "نستطيع حساب متجه الإزاحة بدقة باستخدام صيغ جمع الزوايا المثلثية:",
+    linearize: "بما أن الإزاحة المدروسة متناهية الصغر تمامًا",
+    linearize2: "نستخدم التقريب الخطي حول الصفر:",
+    note: "ملاحظة:",
+    and: "و",
+    tangent: "تكافئ هذه الطريقة رياضيًا حساب المتجه المماس مباشرة باستخدام التفاضل:",
+    step4: "٤. معادلة دالمبير للشغل الافتراضي",
+    step4p1: "ينص المبدأ على أن مجموع الشغل الافتراضي للقوى الفاعلة",
+    step4p2: "والشغل الافتراضي لقوى العطالة",
+    step4p3: "يساوي صفرًا لأي إزاحة افتراضية:",
+    inertiaCalc: "حساب الشغل الافتراضي لقوى العطالة:",
+    inertiaText: "تُعرَّف قوة العطالة في الاتجاه المعاكس لمتجه التسارع",
+    inertiaText2: "ويعطي الجداء السلمي مع الإزاحة الافتراضية شغل قوة العطالة:",
+    cancel: "تتلاشى الحدود التي تتضمن",
+    cancel2: "وتمثّل التسارع المركزي. وباستخدام المتطابقة المثلثية",
+    cancel3: "يتبسّط التعبير إلى:",
+    activeCalc: "حساب الشغل الافتراضي للقوى الفاعلة:",
+    activeText: "يخضع النظام لفعلين: عزم الإرجاع للنابض، الذي يعاكس الدوران، ووزن الكتلة المركّزة",
+    project: "بإسقاط الوزن على المحور",
+    project2: "الموجّه إلى الأعلى نحسب الجداء السلمي:",
+    step5: "٥. الاستنتاج: معادلة الحركة",
+    sumText: "بجمع حدود الشغل في معادلة المبدأ نحصل على:",
+    arbitrary: "بما أن هذه المساواة تتحقق لأي إزاحة افتراضية اختيارية غير صفرية",
+    arbitrary2: "يمكن استخراج التغير الزاوي عاملًا مشتركًا للحصول على معادلة الحركة:",
+    finalEq: "المعادلة التفاضلية غير الخطية للحركة",
+    bioApp: "تطبيقات في الميكانيكا الحيوية",
+    postural: "١. الاتزان الوضعي أثناء الوقوف الهادئ",
+    posturalText: "هذا التمرين نموذج أساسي في الميكانيكا الحيوية للإنسان. ويُستخدم نموذج البندول المقلوب مع نابض الالتواء لدراسة الاتزان الوضعي عند الوقوف.",
+    rod: "القضيب والكتلة",
+    rodText: "يمثلان جسم الإنسان بأكمله، مع تركّز الكتلة في مركز الثقل.",
+    pivot: "نقطة الارتكاز:",
+    pivotText: "تمثّل مفصل الكاحل.",
+    spring: "نابض الالتواء",
+    springText: "يمثّل الصلابة الفاعلة والسلبية لعضلات ربلة الساق ووتر أخيل.",
+    derived: "معادلة الحركة التي اشتققناها",
+    derived2: "تحدد ما إذا كان الشخص سيسقط. إذا كانت صلابة العضلات",
+    derived3: "غير كافية لمعادلة أثر الجاذبية",
+    derived4: "يصبح النظام غير مستقر. وتُستخدم هذه المعادلة على نطاق واسع في تقييم اضطرابات الاتزان العصبية.",
+    other: "تطبيقات أخرى",
+    knee: "صلابة المفصل (منعكس الركبة)",
+    kneeText: "يتصرف الجزء السفلي المعلّق من الساق كبندول عادي. وتعمل الركبة نقطة ارتكاز، في حين تقوم الأربطة والعضلات، ومنها العضلة رباعية الرؤوس، بدور النابض",
+    kneeText2: "يُستخدم هذا النموذج سريريًا لقياس صلابة المفصل وتشخيص التشنّج العضلي بملاحظة تردد الاهتزاز.",
+    exo: "الهياكل الخارجية والأطراف الاصطناعية",
+    exoText: "غالبًا ما تتضمن أجهزة التقويم السلبية نوابض التواء عند الورك أو الكاحل. ويستخدم المهندسون هذه المعادلة لضبط ثابت صلابة النابض",
+    exoText2: "مما يتيح للجهاز تخزين طاقة الجاذبية خلال دورة المشي ويقلل الجهد الأيضي للمستخدم.",
+    cervical: "تثبيت العمود الفقري العنقي",
+    cervicalText: "رأس الإنسان كتلة ثقيلة متوازنة فوق العمود الفقري العنقي الممثّل بالقضيب. وتوفر عضلات الرقبة الصلابة الزاوية اللازمة",
+    cervicalText2: "لإبقاء الرأس قائمًا. ويفيد نموذج البندول المقلوب في محاكاة إصابات الرقبة الارتدادية في اختبارات التصادم.",
+    postureAlt: "الاتزان الوضعي ممثّلًا بنموذج البندول المقلوب",
+  },
 };
 
 const VirtualWorkApplicationPage = ({ language = 'en' }) => {
@@ -214,7 +298,7 @@ const VirtualWorkApplicationPage = ({ language = 'en' }) => {
       <div className="container page-content" style={{marginTop: '4rem'}}>
         
         {/* Introduction Section */}
-        <div className="glass-panel" style={{ padding: '3rem', textAlign: 'left', marginBottom: '3rem' }}>
+        <div className="glass-panel" style={{ padding: '3rem', textAlign: 'start', marginBottom: '3rem' }}>
           <h2 style={{ marginBottom: '1.5rem', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
             <Atom size={28} style={{ color: 'var(--primary-color)' }} /> {t.introTitle}
           </h2>
@@ -246,7 +330,7 @@ const VirtualWorkApplicationPage = ({ language = 'en' }) => {
         </div>
 
         {/* Exercise Section */}
-        <div className="glass-panel" style={{ padding: '3rem', textAlign: 'left' }}>
+        <div className="glass-panel" style={{ padding: '3rem', textAlign: 'start' }}>
           <h2 style={{ marginBottom: '1.5rem', color: 'var(--text-primary)' }}>
             {t.appTitle}
           </h2>
@@ -269,7 +353,7 @@ const VirtualWorkApplicationPage = ({ language = 'en' }) => {
               border: '1px solid rgba(255,255,255,0.05)',
               color: 'var(--text-primary)'
             }}>
-              <svg viewBox="0 0 300 250" style={{ width: '100%', height: 'auto', maxWidth: '350px' }}>
+              <svg direction="ltr" viewBox="0 0 300 250" style={{ width: '100%', height: 'auto', maxWidth: '350px' }}>
                 <defs>
                   <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
                     <polygon points="0 0, 10 3.5, 0 7" fill="currentColor" />
@@ -300,7 +384,7 @@ const VirtualWorkApplicationPage = ({ language = 'en' }) => {
 
             <h3 style={{ marginBottom: '1.5rem', color: 'var(--text-primary)', marginTop: '3rem', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '2rem' }}>{t.solution}</h3>
             
-            <div style={{ background: 'rgba(14, 165, 233, 0.03)', padding: '1.5rem', borderRadius: '12px', borderLeft: '4px solid var(--primary-color)', marginBottom: '2rem' }}>
+            <div style={{ background: 'rgba(14, 165, 233, 0.03)', padding: '1.5rem', borderRadius: '12px', borderInlineStart: '4px solid var(--primary-color)', marginBottom: '2rem' }}>
               <h4 style={{ marginBottom: '0.75rem', color: 'var(--text-primary)' }}>{t.step1}</h4>
               <p style={{ marginBottom: '0.75rem', fontSize: '1.05rem', lineHeight: '1.6', color: 'var(--text-secondary)' }}>
                 {t.step1p1}
@@ -339,7 +423,7 @@ const VirtualWorkApplicationPage = ({ language = 'en' }) => {
               margin: '2rem auto',
               border: '1px solid rgba(255,255,255,0.05)'
             }}>
-              <svg viewBox="0 0 300 250" style={{ width: '100%', height: 'auto', maxWidth: '350px' }}>
+              <svg direction="ltr" viewBox="0 0 300 250" style={{ width: '100%', height: 'auto', maxWidth: '350px' }}>
                 <defs>
                   <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
                     <polygon points="0 0, 10 3.5, 0 7" fill="currentColor" />
@@ -392,7 +476,7 @@ const VirtualWorkApplicationPage = ({ language = 'en' }) => {
               </p>
               <BlockMath math={String.raw`P(\theta+\delta\theta) = l \begin{pmatrix} \sin(\theta+\delta\theta) \\ \cos(\theta+\delta\theta) \end{pmatrix} = l \begin{pmatrix} \sin\theta\cos\delta\theta + \cos\theta\sin\delta\theta \\ \cos\theta\cos\delta\theta - \sin\theta\sin\delta\theta \end{pmatrix}`} />
               
-              <div style={{ borderLeft: '4px solid var(--primary-color)', paddingLeft: '1.5rem', margin: '1.5rem 0' }}>
+              <div style={{ borderInlineStart: '4px solid var(--primary-color)', paddingInlineStart: '1.5rem', margin: '1.5rem 0' }}>
                 <p style={{ marginBottom: '0.5rem', fontSize: '1.05rem', color: 'var(--text-primary)' }}>
                   {t.linearize} (<InlineMath math={String.raw`\delta\theta \to 0`} />), {t.linearize2} <InlineMath math={String.raw`\sin\delta\theta \approx \delta\theta`} /> {t.and} <InlineMath math={String.raw`\cos\delta\theta \approx 1`} />.
                 </p>
@@ -524,7 +608,7 @@ const VirtualWorkApplicationPage = ({ language = 'en' }) => {
               <div style={{ flex: '1 1 300px', display: 'flex', justifyContent: 'center' }}>
                 <div style={{ position: 'relative', width: '100%', maxWidth: '400px', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.4)', border: '1px solid rgba(255,255,255,0.1)' }}>
                   <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'linear-gradient(135deg, rgba(14,165,233,0.2) 0%, transparent 100%)', pointerEvents: 'none' }}></div>
-                  <img src="/biomechanics-posture.png" alt="Biomechanics of postural balance showing the inverted pendulum model" style={{ width: '100%', height: 'auto', display: 'block' }} />
+                  <img src="/biomechanics-posture.png" alt={t.postureAlt} style={{ width: '100%', height: 'auto', display: 'block' }} />
                 </div>
               </div>
             </div>

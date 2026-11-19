@@ -1,5 +1,5 @@
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
-import { Mail, ArrowRight, Droplets, FunctionSquare, Building2, Atom, PenTool, Layers, Box, Wrench, Menu, X, Languages } from 'lucide-react';
+import { Mail, ArrowRight, Droplets, FunctionSquare, Building2, Atom, PenTool, Layers, Box, Wrench, Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import LiquidEther from '@/components/LiquidEther';
 import BasicsMMCPage from '@/pages/BasicsMMCPage';
@@ -24,7 +24,9 @@ const translations = {
       mathematics: 'Mathematics',
       mechanics: 'Mechanics',
       blog: 'Blog',
-      languageLabel: 'Switch language',
+      languageLabel: 'Choose language',
+      menuLabel: 'Toggle mobile menu',
+      logoAlt: 'Wave logo',
     },
     placeholder: {
       subtitle: 'Research & Publications',
@@ -67,6 +69,7 @@ const translations = {
       journey: {
         founderTitle: 'Founder & Researcher',
         founderBody: 'Research and scientific software publishing.',
+        educationMinistry: "Ministère de l’Éducation Nationale",
         teacherTitle: 'Mathematics Teacher',
         teacherBody: 'Taught at high school and middle school levels. Served as a jury member for the Baccalauréat Grand Oral.',
         engineerTitle: 'Research Engineer',
@@ -101,7 +104,9 @@ const translations = {
       mathematics: 'Mathématiques',
       mechanics: 'Mécanique',
       blog: 'Blog',
-      languageLabel: 'Changer de langue',
+      languageLabel: 'Choisir la langue',
+      menuLabel: 'Afficher ou masquer le menu',
+      logoAlt: 'Logo de la vague',
     },
     placeholder: {
       subtitle: 'Recherche & Publications',
@@ -144,6 +149,7 @@ const translations = {
       journey: {
         founderTitle: 'Fondateur & chercheur',
         founderBody: 'Recherche et édition de logiciels scientifiques.',
+        educationMinistry: "Ministère de l’Éducation Nationale",
         teacherTitle: 'Professeur de mathématiques',
         teacherBody: 'Enseignement au lycée et au collège. Membre du jury pour le Grand Oral du Baccalauréat.',
         engineerTitle: 'Ingénieur de recherche',
@@ -169,6 +175,86 @@ const translations = {
       structuralTheory: 'Théorie des structures',
       continuumMechanics: 'Mécanique des milieux continus (MMC)',
       blog: 'Blog de recherche',
+    },
+  },
+  ar: {
+    nav: {
+      home: 'الرئيسية',
+      biomechanics: 'الميكانيكا الحيوية',
+      mathematics: 'الرياضيات',
+      mechanics: 'الميكانيكا',
+      blog: 'المدونة',
+      languageLabel: 'اختر اللغة',
+      menuLabel: 'القائمة',
+      logoAlt: 'شعار الموجة',
+    },
+    placeholder: {
+      subtitle: 'الأبحاث والمنشورات',
+      heading: 'المحتوى قريبًا',
+      body: 'يجري تحديث هذا القسم لإضافة أحدث الأبحاث والمنشورات.',
+    },
+    mechanics: {
+      title: 'الميكانيكا',
+      subtitle: 'التخصصات والنظريات الأساسية في الميكانيكا',
+      explore: 'استكشف',
+      cards: [
+        {
+          title: 'نظرية المنشآت',
+          body: 'تحليل سلوك المنشآت الصلبة تحت تأثير أحمال ديناميكية وحرارية متنوعة.',
+        },
+        {
+          title: 'أساسيات ميكانيكا الأوساط المتصلة',
+          body: 'المبادئ الأساسية والإجهاد والانفعال وحركيات الأوساط المتصلة.',
+        },
+        {
+          title: 'ميكانيكا الأوساط المتصلة',
+          body: 'المفاهيم المتقدمة والمعادلات التأسيسية في ميكانيكا الأوساط المتصلة.',
+        },
+        {
+          title: 'الميكانيكا التحليلية',
+          body: 'تطبيق المبادئ الأساسية باستخدام صياغتي لاغرانج وهاملتون.',
+        },
+      ],
+    },
+    home: {
+      subtitle: 'مهندس باحث في ميكانيكا الموائع والطاقة',
+      description: 'أهدف من خلال هذا الموقع إلى مشاركة أعمالي وتقديم مصادر معرفية للمهندسين وطلاب التعليم العالي. تتنوع اهتماماتي وتدور حول الرياضيات التطبيقية وميكانيكا الموائع والمواد الصلبة. وأهتم خصوصًا بديناميكا الموائع الحسابية (CFD).',
+      contact: 'تواصل معي',
+      blog: 'اقرأ مدونتي',
+      journeyTitlePrefix: 'مسيرتي',
+      journeyTitleSuffix: 'المهنية والأكاديمية',
+      researchTitle: 'مجالات',
+      domainsTitle: 'البحث',
+      verifiedDiploma: 'شهادة موثّقة بتقنية سلسلة الكتل',
+      journey: {
+        founderTitle: 'مؤسس وباحث',
+        founderBody: 'البحث ونشر البرمجيات العلمية.',
+        teacherTitle: 'مدرّس رياضيات',
+        teacherBody: 'درّست في المرحلتين الإعدادية والثانوية، وشاركت في لجنة تحكيم الامتحان الشفهي للبكالوريا الفرنسية.',
+        engineerTitle: 'مهندس باحث',
+        engineerSubject: 'موضوع البحث:',
+        engineerBody: 'النمذجة العددية للانتشار الحراري عبر سُمك الجدار الصلب لخزان يعمل في درجات حرارة شديدة الانخفاض.',
+        masterTitle: 'ماجستير بحثي في ميكانيكا الموائع',
+        bachelorTitle: 'إجازة في الرياضيات التطبيقية',
+        educationMinistry: 'وزارة التربية الوطنية الفرنسية',
+      },
+      domains: {
+        explore: 'استكشف الأبحاث',
+        biomechanics: 'تطبيق مبادئ الميكانيكا في الطب، مع التركيز على المحاكاة المتقدمة ونمذجة الأنظمة الحيوية ووظائف أعضاء الإنسان لتطوير الرعاية الصحية.',
+        mathematics: 'تطوير نماذج رياضية متينة وطرق عددية لحل المسائل الهندسية المعقدة غير الخطية.',
+        mechanics: 'دراسة نظرية المنشآت وميكانيكا الأوساط المتصلة والميكانيكا التحليلية.',
+      },
+    },
+    footer: {
+      role: 'مهندس باحث في ميكانيكا الموائع والطاقة',
+      rights: 'جميع الحقوق محفوظة.',
+    },
+    titles: {
+      biomechanics: 'الميكانيكا الحيوية',
+      mathematics: 'الرياضيات',
+      structuralTheory: 'نظرية المنشآت',
+      continuumMechanics: 'ميكانيكا الأوساط المتصلة',
+      blog: 'مدونة الأبحاث',
     },
   },
 };
@@ -236,7 +322,7 @@ const Home = ({ t }) => {
       </div>
       <div className="container hero-intro" style={{ position: 'relative', zIndex: 1, pointerEvents: 'none' }}>
         <div className="hero-content" style={{ pointerEvents: 'auto' }}>
-          <h1>Walid <span className="gradient-text">LAKAS</span></h1>
+          <h1 dir="ltr">Walid <span className="gradient-text">LAKAS</span></h1>
           <h2 className="hero-subtitle">{t.home.subtitle}</h2>
           <p className="hero-description">
             {t.home.description}
@@ -280,11 +366,11 @@ const Home = ({ t }) => {
               <div className="timeline-date">2025</div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '0.5rem' }}>
                 <div style={{ width: '64px', height: '64px', backgroundColor: '#ffffff', borderRadius: '12px', padding: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, boxShadow: '0 2px 8px rgba(0,0,0,0.2)' }}>
-                  <img src="/education.png" alt="Ministère de l'Éducation Nationale" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
+                  <img src="/education.png" alt={t.home.journey.educationMinistry} style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
                 </div>
                 <h3 style={{ margin: 0 }}>{t.home.journey.teacherTitle}</h3>
               </div>
-              <p style={{ color: 'var(--text-secondary)' }}>Ministère de l'Éducation Nationale</p>
+              <p style={{ color: 'var(--text-secondary)' }}>{t.home.journey.educationMinistry}</p>
               <p style={{ fontSize: '0.9rem', marginTop: '0.5rem' }}>{t.home.journey.teacherBody}</p>
             </div>
           </div>
@@ -361,19 +447,19 @@ const Home = ({ t }) => {
         <div className="grid-cards">
           <div className="glass-card research-card">
             <div className="card-icon"><Droplets size={24} /></div>
-            <h3>Biomechanics</h3>
+            <h3>{t.nav.biomechanics}</h3>
             <p>{t.home.domains.biomechanics}</p>
             <Link to="/biomechanics" className="read-more">{t.home.domains.explore} <ArrowRight size={16}/></Link>
           </div>
           <div className="glass-card research-card">
             <div className="card-icon"><FunctionSquare size={24} /></div>
-            <h3>Mathematics</h3>
+            <h3>{t.nav.mathematics}</h3>
             <p>{t.home.domains.mathematics}</p>
             <Link to="/mathematics" className="read-more">{t.home.domains.explore} <ArrowRight size={16}/></Link>
           </div>
           <div className="glass-card research-card">
             <div className="card-icon"><Wrench size={24} /></div>
-            <h3>Mechanics</h3>
+            <h3>{t.nav.mechanics}</h3>
             <p>{t.home.domains.mechanics}</p>
             <Link to="/mechanics" className="read-more">{t.home.domains.explore} <ArrowRight size={16}/></Link>
           </div>
@@ -387,19 +473,32 @@ const Home = ({ t }) => {
 function App() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [language, setLanguage] = useState(() => localStorage.getItem('language') || 'en');
+  const [language, setLanguage] = useState(() => {
+    const savedLanguage = localStorage.getItem('language');
+    return Object.hasOwn(translations, savedLanguage) ? savedLanguage : 'en';
+  });
   const location = useLocation();
   const t = translations[language];
-  const nextLanguage = language === 'en' ? 'fr' : 'en';
-  const languageFlags = {
-    en: '🇬🇧',
-    fr: '🇫🇷',
-  };
 
-  const toggleLanguage = () => {
-    setLanguage(nextLanguage);
-    localStorage.setItem('language', nextLanguage);
-  };
+  useEffect(() => {
+    document.documentElement.lang = language;
+    document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
+    localStorage.setItem('language', language);
+  }, [language]);
+
+  const languageSelect = (className) => (
+    <select
+      className={className}
+      value={language}
+      onChange={(event) => setLanguage(event.target.value)}
+      aria-label={t.nav.languageLabel}
+      translate="no"
+    >
+      <option value="en" lang="en">English</option>
+      <option value="fr" lang="fr">Français</option>
+      <option value="ar" lang="ar">العربية</option>
+    </select>
+  );
 
   useEffect(() => {
     const handleScroll = () => {
@@ -419,8 +518,8 @@ function App() {
       <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
         <div className="container nav-container">
           <Link to="/" className="nav-logo" onClick={() => setMobileMenuOpen(false)}>
-            <img src="/logo.png" alt="Wave logo" className="nav-logo-img" />
-            <span className="gradient-text">W.</span> LAKAS
+            <img src="/logo.png" alt={t.nav.logoAlt} className="nav-logo-img" />
+            <bdi dir="ltr"><span className="gradient-text">W.</span> LAKAS</bdi>
           </Link>
           <ul className="nav-links">
             <li><Link to="/" className={`nav-link ${location.pathname === '/' ? 'active' : ''}`}>{t.nav.home}</Link></li>
@@ -429,23 +528,14 @@ function App() {
             <li><Link to="/mechanics" className={`nav-link ${location.pathname.startsWith('/mechanics') ? 'active' : ''}`}>{t.nav.mechanics}</Link></li>
             <li><Link to="/blog" className={`nav-link ${location.pathname === '/blog' ? 'active' : ''}`}>{t.nav.blog}</Link></li>
           </ul>
-          <button
-            type="button"
-            className="language-toggle"
-            onClick={toggleLanguage}
-            aria-label={t.nav.languageLabel}
-            title={t.nav.languageLabel}
-          >
-            <Languages size={18} />
-            <span className="language-flag" aria-hidden="true">{languageFlags[language]}</span>
-            <span>{language.toUpperCase()}</span>
-          </button>
+          {languageSelect('language-toggle')}
 
           {/* Mobile menu toggle button */}
           <button 
             className="mobile-menu-btn" 
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle mobile menu"
+            aria-label={t.nav.menuLabel}
+            aria-expanded={mobileMenuOpen}
           >
             {mobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
           </button>
@@ -456,16 +546,7 @@ function App() {
           <div className="mobile-menu-backdrop" onClick={() => setMobileMenuOpen(false)} />
           <div className="mobile-menu-content">
             <div className="drawer-pill" />
-            <button
-              type="button"
-              className="mobile-language-toggle"
-              onClick={toggleLanguage}
-              aria-label={t.nav.languageLabel}
-            >
-              <Languages size={18} />
-              <span className="language-flag" aria-hidden="true">{languageFlags[language]}</span>
-              {language.toUpperCase()} / {nextLanguage.toUpperCase()}
-            </button>
+            {languageSelect('mobile-language-toggle')}
             <Link to="/" className={`mobile-link ${location.pathname === '/' ? 'active' : ''}`} onClick={() => setMobileMenuOpen(false)}>{t.nav.home}</Link>
             <Link to="/biomechanics" className={`mobile-link ${location.pathname === '/biomechanics' ? 'active' : ''}`} onClick={() => setMobileMenuOpen(false)}>{t.nav.biomechanics}</Link>
             <Link to="/mathematics" className={`mobile-link ${location.pathname === '/mathematics' ? 'active' : ''}`} onClick={() => setMobileMenuOpen(false)}>{t.nav.mathematics}</Link>
@@ -504,7 +585,7 @@ function App() {
                 <LinkedinIcon size={18} /> LinkedIn
               </a>
               <a href="mailto:walid.lks@gmail.com" className="contact-item">
-                <Mail size={18} /> walid.lks@gmail.com
+                <Mail size={18} /> <bdi>walid.lks@gmail.com</bdi>
               </a>
             </div>
           </div>

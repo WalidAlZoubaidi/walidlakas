@@ -37,6 +37,23 @@ const translations = {
     analysisBody: 'Exercices guidés sur les gradients de déformation, les vecteurs déplacement, les taux d’allongement et les transformations cinématiques.',
     analysisCta: 'Voir les notes',
   },
+  ar: {
+    title: "أساسيات ميكانيكا الأوساط المتصلة",
+    subtitle: "المبادئ الأساسية والحركيات",
+    aboutTitle: "عن هذا القسم",
+    aboutBody: "يضم هذا القسم المفاهيم الأساسية والصيغ الرياضية في ميكانيكا الأوساط المتصلة. ستجد هنا ملاحظات مفصلة وتمارين واشتقاقات تغطي حركيات الأوساط المتصلة وديناميكياتها. اختر موضوعًا أدناه للاطلاع عليه.",
+    conceptPrefix: "مراجعة",
+    conceptSuffix: "المفاهيم",
+    conceptTitle: "الجزآن الكروي والانحرافي لموتر الانفعال",
+    conceptBody: "مراجعة موجزة لتفكيك الموتر إلى مركبة تصف تغير الحجم وأخرى تصف تغير الشكل.",
+    conceptCta: "اقرأ المراجعة",
+    problemPrefix: "حلّ",
+    problemSuffix: "المسائل",
+    problemIntro: "تجد التطبيقات والتمارين الموجّهة في قسم مستقل عن مراجعات المفاهيم الموجزة.",
+    analysisTitle: "تحليل التشوّه",
+    analysisBody: "تمارين موجّهة على تدرّج التشوّه ومتجهات الإزاحة ونسب الاستطالة والتحويلات الحركية.",
+    analysisCta: "اطّلع على الملاحظات",
+  },
 };
 
 const BasicsMMCPage = ({ language = 'en' }) => {
@@ -51,7 +68,7 @@ const BasicsMMCPage = ({ language = 'en' }) => {
       <div className="container page-content" style={{marginTop: '4rem'}}>
         
         {/* Category Introduction */}
-        <div className="glass-panel" style={{ padding: '3rem', textAlign: 'left', marginBottom: '3rem' }}>
+        <div className="glass-panel" style={{ padding: '3rem', textAlign: 'start', marginBottom: '3rem' }}>
           <h2 style={{ marginBottom: '1.5rem', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
             <Layers size={28} style={{ color: 'var(--primary-color)' }} /> {t.aboutTitle}
           </h2>

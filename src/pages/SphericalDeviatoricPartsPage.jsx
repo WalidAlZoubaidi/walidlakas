@@ -15,7 +15,7 @@ const InlineMath = ({ math }) => {
   } catch (e) {
     html = `<span style="color: #ef4444;">${cleanMath}</span>`;
   }
-  return <span className="notranslate" translate="no" dangerouslySetInnerHTML={{ __html: html }} />;
+  return <span className="notranslate" translate="no" dir="ltr" dangerouslySetInnerHTML={{ __html: html }} />;
 };
 
 const BlockMath = ({ math }) => {
@@ -31,7 +31,7 @@ const BlockMath = ({ math }) => {
   } catch (e) {
     html = `<div style="color: #ef4444;">${cleanMath}</div>`;
   }
-  return <div className="notranslate" translate="no" style={{ margin: '1rem 0', overflowX: 'auto' }} dangerouslySetInnerHTML={{ __html: html }} />;
+  return <div className="notranslate" translate="no" dir="ltr" style={{ margin: '1rem 0', overflowX: 'auto' }} dangerouslySetInnerHTML={{ __html: html }} />;
 };
 
 const paragraphStyle = {
@@ -100,6 +100,35 @@ const translations = {
     p6: 'Si l’on utilise par exemple les formules de taux de changement de longueur vues précédemment, on constate que, selon une base quelconque, tous les vecteurs sont changés de la même quantité. Nous obtenons donc une déformation qui possède une symétrie sphérique.',
     p7: 'En réalité, on appelle tenseur sphérique tout tenseur qui est un multiple de l’identité. Cette décomposition en partie sphérique et déviatorique est particulièrement importante pour les critères de résistance des solides isotropes.',
   },
+  ar: {
+    title: "الجزآن الكروي والانحرافي",
+    subtitle: "مراجعة المفهوم",
+    back: "العودة إلى أساسيات ميكانيكا الأوساط المتصلة",
+    tag: "تفكيك الموترات",
+    heading: "الجزآن الكروي والانحرافي للموتر",
+    p1: "تتعدد طرق تفكيك موترات الرتبة الثانية، ومنها التفكيك القطبي والتفكيك الثنائي المعياري والتفكيك إلى جزأين متناظر ومضاد للتناظر.",
+    p2Before: "نقدّم الآن طريقة كلاسيكية أخرى واسعة الاستخدام في الميكانيكا، وهي تفكيك الموتر. ونفكّك هنا الموتر",
+    p2After: "إلى جزء كروي",
+    p2End: "وجزء انحرافي",
+    with: "حيث",
+    and: "و",
+    fromDefinition: "نستنتج من هذا التعريف ما يلي:",
+    p3Before: "إذا استحضرنا معنى أثر موتر الانفعال في نظرية الانفعالات المتناهية الصغر، فإن",
+    p3After: "يصف تشوّهًا يصاحبه تغير في الحجم. بعبارة أخرى، تتركز جميع تغيرات الحجم في الموتر",
+    p3End: "ضمن الجزء",
+    p4Before: "أما",
+    p4After: "فيصف تحولًا ثابت الحجم، أي تشوّهًا يتغير فيه الشكل مع بقاء الحجم ثابتًا.",
+    p5Before: "إذًا، يمثّل الموتر",
+    p5Middle: "تغيّر الحجم مع ثبات الشكل، في حين أن الموتر",
+    p5End: "يمثّل تغيّر الشكل مع ثبات الحجم.",
+    question: "لماذا لا يتغير الشكل في",
+    questionEnd: "؟",
+    because: "لأنه موتر كروي:",
+    where: "حيث",
+    constant: "ثابت.",
+    p6: "إذا استخدمنا صيغ نسب تغير الطول المذكورة سابقًا، نجد أن جميع المتجهات تتغير بالنسبة نفسها في أي أساس. وهكذا نحصل على تشوّه ذي تناظر كروي.",
+    p7: "الموتر الكروي هو كل موتر يساوي حاصل ضرب موتر الوحدة في عدد. ويكتسب هذا التفكيك إلى جزأين كروي وانحرافي أهمية خاصة في معايير مقاومة المواد الصلبة متساوية الخواص.",
+  },
 };
 
 const SphericalDeviatoricPartsPage = ({ language = 'en' }) => {
@@ -112,7 +141,7 @@ const SphericalDeviatoricPartsPage = ({ language = 'en' }) => {
         <p className="hero-subtitle" style={{ marginBottom: 0 }}>{t.subtitle}</p>
       </div>
 
-      <div className="container page-content" style={{ marginTop: '4rem', textAlign: 'left' }}>
+      <div className="container page-content" style={{ marginTop: '4rem', textAlign: 'start' }}>
         <Link
           to="/mechanics/basics-of-continuum-mechanics"
           className="read-more"

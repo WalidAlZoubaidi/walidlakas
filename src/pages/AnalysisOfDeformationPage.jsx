@@ -18,7 +18,7 @@ const InlineMath = ({ math }) => {
   } catch (e) {
     html = `<span style="color: #ef4444;">${cleanMath}</span>`;
   }
-  return <span className="notranslate" translate="no" dangerouslySetInnerHTML={{ __html: html }} />;
+  return <span className="notranslate" translate="no" dir="ltr" dangerouslySetInnerHTML={{ __html: html }} />;
 };
 
 const BlockMath = ({ math }) => {
@@ -34,11 +34,12 @@ const BlockMath = ({ math }) => {
   } catch (e) {
     html = `<div style="color: #ef4444;">${cleanMath}</div>`;
   }
-  return <div className="notranslate" translate="no" style={{ margin: '1rem 0', overflowX: 'auto' }} dangerouslySetInnerHTML={{ __html: html }} />;
+  return <div className="notranslate" translate="no" dir="ltr" style={{ margin: '1rem 0', overflowX: 'auto' }} dangerouslySetInnerHTML={{ __html: html }} />;
 };
 
 const text = {
   en: {
+    muscleAlt: "Biomechanics of muscle contraction modeled as cylinder deformation",
     mainTitle: 'Basics of Continuum Mechanics',
     subtitle: 'Fundamentals & Kinematics',
     introTitle: 'Introduction to Continuum Mechanics',
@@ -127,6 +128,7 @@ const text = {
     bio3End4: 'This simple relation defines the exact radial expansion of a muscle given its longitudinal contraction!',
   },
   fr: {
+    muscleAlt: "Contraction musculaire modélisée par la déformation d’un cylindre",
     mainTitle: 'Bases de la mécanique des milieux continus',
     subtitle: 'Fondamentaux & cinématique',
     introTitle: 'Introduction à la mécanique des milieux continus',
@@ -214,6 +216,95 @@ const text = {
     bio3End3: 'on trouve',
     bio3End4: 'Cette relation simple définit l’expansion radiale exacte d’un muscle connaissant sa contraction longitudinale.',
   },
+  ar: {
+    mainTitle: "أساسيات ميكانيكا الأوساط المتصلة",
+    subtitle: "المبادئ الأساسية والحركيات",
+    introTitle: "مقدمة في ميكانيكا الأوساط المتصلة",
+    intro1: "ميكانيكا الأوساط المتصلة فرع من الميكانيكا يدرس السلوك الميكانيكي للمواد عند تمثيلها بوسط متصل بدلًا من مجموعة جسيمات منفصلة. ويتيح هذا التمثيل استخدام المعادلات التفاضلية لوصف سلوك المادة في المكان والزمان.",
+    intro2Start: "يركز هذا القسم على",
+    intro2Strong: "تحليل التشوّه",
+    intro2End: "وهو أحد أسس الحركيات. فمن خلال دراسة انتقال الجسم من وضع مرجعي إلى وضع مشوّه، نعرّف كميات أساسية مثل تدرّج التشوّه وحقول الإزاحة ونسب الاستطالة وتغيرات الحجم. وتوضح التمارين التالية هذه المفاهيم بخطوات رياضية متدرجة.",
+    partTitle: "الجزء الأول: تحليل التشوّه",
+    partIntro: "تتضمن ورقة التمارين هذه مسائل موجّهة في تحليل التشوّه، وهو من المفاهيم الأساسية في ميكانيكا الأوساط المتصلة.",
+    exercise1: "التمرين الأول",
+    consider: "لنأخذ التحويل المعرّف كما يلي:",
+    whereAlphaBeta: "حيث إن",
+    and: "و",
+    constants: "ثابتان.",
+    answer: "الإجابة:",
+    explanation: "الشرح:",
+    conclusion: "الاستنتاج:",
+    qA: "أ) اكتب تدرّج التشوّه",
+    expA: "تدرّج التشوّه موتر من الرتبة الثانية يحوّل عناصر الخط من الوضع المرجعي إلى الوضع الحالي.",
+    fromEquation: "من المعادلة",
+    deduce: "نستنتج ما يلي:",
+    qB: "ب) تحقّق من أن التحويل المعطى يمثّل تشوّهًا مقبولًا.",
+    expB: "يجب أن يكون التشوّه الممكن فيزيائيًا تقابلًا واحدًا لواحد (من دون تداخل المادة أو تمزقها) وأن يحافظ على الاتجاه، مما يقتضي أن يكون محدد يعقوبي موجبًا تمامًا",
+    checkValid: "للإجابة، نتحقق من أن التحويل تقابلي ومن أن",
+    bijective: "يمكن التحقق من التقابل مباشرة لأن التحويل خطي:",
+    uniqueCoords: "لكل إحداثي على المستوى العياني",
+    uniqueCoordsEnd: "إحداثي وحيد يقابله على المستوى المجهري",
+    viceVersa: "والعكس صحيح.",
+    verifyDet: "لنتحقق من أن",
+    validIf: "إذًا،",
+    validIfEnd: "يمثّل تشوّهًا مقبولًا إذا كان",
+    shareSign: "لهما الإشارة نفسها.",
+    qC: "ج) أوجد متجه الإزاحة",
+    qD: "د) اكتب تدرّج الإزاحة",
+    qE: "هـ) أوجد معادلة الأسطوانة بعد التشوّه، إذا كانت معادلتها الأصلية",
+    cylinderAltered: "كيف تتغير الأسطوانة بفعل التشوّه؟ (ملاحظة: الارتفاع غير محدد).",
+    weHave: "لدينا:",
+    injecting: "بالتعويض في المعادلة",
+    obtain: "نحصل على:",
+    elliptical: "هذه معادلة أسطوانة إهليلجية. يحوّل التشوّه الأسطوانة الدائرية الأصلية إلى أسطوانة إهليلجية.",
+    qF: "و) احسب معدل تغير الطول محليًا",
+    whereE: "حيث إن",
+    arbitraryDirection: "اتجاه اختياري.",
+    takeVector: "لنأخذ متجهًا",
+    applyingFormula: "بتطبيق الصيغة:",
+    evaluating: "بحساب",
+    consequently: "وبالتالي:",
+    qG: "ز) احسب نسبة الاستطالة",
+    qH: "ح) احسب معدل تغير المساحة محليًا",
+    normalSurface: "هو العمودي على عنصر السطح الأصلي في",
+    expH: "نستخدم صيغة نانسون المعرّفة بدلالة موتر العوامل المرافقة",
+    inOurCase: "في حالتنا:",
+    since: "بما أن",
+    therefore: "إذًا:",
+    qI: "ط) أوجد المتجه العمودي",
+    postTransformation: "بعد التحويل لعنصر السطح المعرّف أصلًا بالصيغة",
+    qJ: "ي) احسب معدل تغير الحجم",
+    qK: "ك) احسب التغير الكلي في حجم الأسطوانة الواردة في السؤال (هـ).",
+    qL: "ل) احسب تغير الزاوية بين متجهات الأساس",
+    expL: "نبحث عن تشوّه القص بدراسة ما يحدث لمتجهات الوحدة المتعامدة أصلًا بعد التحويل.",
+    becauseOrthogonal: "السبب هو أن المتجهات المختارة متجهات أساس متعامدة.",
+    computeDot: "لنحسب الجداء السلمي",
+    note: "ملاحظة:",
+    noteL: "نستخدم الخصائص المعتادة لجبر الموترات. في هذه الحالة،",
+    noteLEnd: "تتحقق هذه العلاقة لأن",
+    noteLEnd2: "متناظر.",
+    weKnow: "نعلم أن:",
+    applyingBasis: "بتطبيق ذلك على جميع متجهات الأساس:",
+    noAngle: "لا تتغير الزوايا، وبالتالي لا يحدث قص.",
+    biomechanicsTitle: "تطبيق في الميكانيكا الحيوية: انقباض العضلات",
+    bioIntroStart: "لا يقتصر هذا التمرين على مسألة رياضية نظرية، بل يمثّل أيضًا",
+    bioIntroStrong: "انقباض عضلة هيكلية.",
+    bioIntroEnd: "غالبًا ما تُمثّل الأنسجة الحيوية الرخوة هندسيًا على هيئة أسطوانات.",
+    bio1Strong: "الحركيات دون قص:",
+    bio1: "أثبتنا في السؤال (ل) أن الزوايا لا تتغير. وتمثّل هذه الاستطالة الصرفة انقباض ألياف العضلة بانتظام على طول محورها الرئيسي دون التواء.",
+    bio2Strong: "الأسطوانة (السؤال هـ):",
+    bio2: "عندما تنقبض العضلة الممثّلة بأسطوانة، فإنها تقصر طوليًا",
+    bio2End: "وتتمدد في الاتجاه الشعاعي",
+    bio2End2: "فتصبح أسطوانة إهليلجية أو أسطوانة أكثر سمكًا.",
+    bio3Strong: "عدم الانضغاط (السؤال ي):",
+    bio3: "تحتوي الأنسجة البشرية على نحو ٧٠٪ من الماء، لذا يمكن تمثيلها رياضيًا على أنها",
+    bio3Strong2: "غير قابلة للانضغاط.",
+    bio3End: "وهذا يعني أن التغير في الحجم يساوي صفرًا تمامًا",
+    bio3End2: "وباستخدام النتيجة",
+    bio3End3: "نجد أن",
+    bio3End4: "تحدد هذه العلاقة التمدد الشعاعي للعضلة بدلالة مقدار انقباضها الطولي.",
+    muscleAlt: "انقباض العضلة ممثّلًا بتشوّه أسطوانة",
+  },
 };
 
 const AnalysisOfDeformationPage = ({ language = 'en' }) => {
@@ -228,7 +319,7 @@ const AnalysisOfDeformationPage = ({ language = 'en' }) => {
       <div className="container page-content" style={{marginTop: '4rem'}}>
         
         {/* Introduction Section */}
-        <div className="glass-panel" style={{ padding: '3rem', textAlign: 'left', marginBottom: '2rem' }}>
+        <div className="glass-panel" style={{ padding: '3rem', textAlign: 'start', marginBottom: '2rem' }}>
           <h2 style={{ marginBottom: '1.5rem', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
             <Layers size={28} style={{ color: 'var(--primary-color)' }} /> {t.introTitle}
           </h2>
@@ -241,7 +332,7 @@ const AnalysisOfDeformationPage = ({ language = 'en' }) => {
         </div>
 
         {/* Exercise Section */}
-        <div className="glass-panel" style={{ padding: '3rem', textAlign: 'left' }}>
+        <div className="glass-panel" style={{ padding: '3rem', textAlign: 'start' }}>
           <h2 style={{ marginBottom: '1.5rem', color: 'var(--text-primary)' }}>
             {t.partTitle}
           </h2>
@@ -492,7 +583,7 @@ const AnalysisOfDeformationPage = ({ language = 'en' }) => {
             <div style={{ flex: '1 1 300px', display: 'flex', justifyContent: 'center' }}>
               <div style={{ position: 'relative', width: '100%', maxWidth: '400px', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.4)', border: '1px solid rgba(255,255,255,0.1)' }}>
                 <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'linear-gradient(135deg, rgba(14,165,233,0.2) 0%, transparent 100%)', pointerEvents: 'none' }}></div>
-                <img src="/biomechanics-muscle.png" alt="Biomechanics of muscle contraction modeled as cylinder deformation" style={{ width: '100%', height: 'auto', display: 'block' }} />
+                <img src="/biomechanics-muscle.png" alt={t.muscleAlt} style={{ width: '100%', height: 'auto', display: 'block' }} />
               </div>
             </div>
           </div>

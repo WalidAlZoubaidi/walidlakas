@@ -152,7 +152,7 @@ a:hover {
   width: 64px;
   height: 64px;
   border-radius: 14px;
-  margin-right: 1rem;
+  margin-inline-end: 1rem;
   box-shadow: 0 4px 18px rgba(14,165,233,0.5);
   transition: var(--transition-smooth);
 }
@@ -164,11 +164,8 @@ a:hover {
 }
 
 .language-toggle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.35rem;
-  min-width: 92px;
+  min-width: 108px;
+  padding-inline: 0.65rem;
   height: 40px;
   border: 1px solid #dbeafe;
   border-radius: 8px;
@@ -179,11 +176,6 @@ a:hover {
   font-weight: 700;
   cursor: pointer;
   transition: var(--transition-smooth);
-}
-
-.language-flag {
-  font-size: 1rem;
-  line-height: 1;
 }
 
 .language-toggle:hover {
@@ -589,7 +581,7 @@ footer {
   font-weight: 600;
   color: #334155;
   border-bottom: 1px solid #f1f5f9;
-  transition: color 0.18s ease, padding-left 0.18s ease;
+  transition: color 0.18s ease, padding-inline-start 0.18s ease;
 }
 
 .mobile-link:last-child {
@@ -598,7 +590,7 @@ footer {
 
 .mobile-link:hover {
   color: #0ea5e9;
-  padding-left: 0.4rem;
+  padding-inline-start: 0.4rem;
 }
 
 .mobile-link.active {
@@ -607,10 +599,6 @@ footer {
 }
 
 .mobile-language-toggle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.45rem;
   width: 100%;
   padding: 0.8rem 1rem;
   margin-bottom: 0.5rem;
@@ -689,7 +677,7 @@ footer {
     width: 42px;
     height: 42px;
     border-radius: 10px;
-    margin-right: 0.6rem;
+    margin-inline-end: 0.6rem;
     box-shadow: 0 2px 10px rgba(14, 165, 233, 0.3);
   }
 
@@ -814,14 +802,15 @@ footer {
 
   /* --- Timeline mobile — single column left-aligned --- */
   .timeline::after {
-    left: 20px;
+    left: auto;
+    inset-inline-start: 20px;
+    margin-left: 0;
     background: #e2e8f0;
   }
 
   .timeline-item {
     width: 100%;
-    padding-left: 52px;
-    padding-right: 0.5rem;
+    padding-inline: 52px 0.5rem;
   }
 
   .timeline-item.right {
@@ -830,7 +819,9 @@ footer {
 
   .timeline-item::after,
   .timeline-item.right::after {
-    left: 12px;
+    left: auto;
+    right: auto;
+    inset-inline-start: 12px;
     background: #fff;
     border-color: #0ea5e9;
   }
@@ -898,4 +889,9 @@ footer {
   p[style*="color: var(--text-secondary)"] {
     color: #64748b !important;
   }
+}
+
+:root[dir="rtl"] .read-more svg.lucide-arrow-right,
+:root[dir="rtl"] .read-more svg.lucide-arrow-left {
+  transform: scaleX(-1);
 }
