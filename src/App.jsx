@@ -231,7 +231,7 @@ const Home = ({ t }) => {
   return (
   <>
     <section className="hero" style={{ position: 'relative', overflow: 'hidden' }}>
-      <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0, opacity: 0.6 }}>
+      <div className="hero-background" aria-hidden="true">
         <LiquidEther colors={['#0284c7', '#0ea5e9', '#38bdf8']} />
       </div>
       <div className="container hero-intro" style={{ position: 'relative', zIndex: 1, pointerEvents: 'none' }}>

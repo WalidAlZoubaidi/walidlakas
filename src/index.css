@@ -231,6 +231,25 @@ a:hover {
   text-align: center;
 }
 
+.hero-background {
+  position: absolute;
+  inset: 0;
+  opacity: 0.12;
+}
+
+.hero-intro .gradient-text {
+  background-image: linear-gradient(135deg, #075985, #1d4ed8);
+}
+
+.hero-intro .hero-subtitle {
+  color: #1e293b;
+  font-weight: 600;
+}
+
+.hero-intro .btn-primary {
+  background: linear-gradient(135deg, #0369a1, #1d4ed8);
+}
+
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
@@ -252,8 +271,8 @@ a:hover {
 }
 
 .hero-description {
-  font-size: 1.05rem;
-  color: #64748b;
+  font-size: 1.2rem;
+  color: #334155;
   margin: 0 auto 2.5rem;
   max-width: 600px;
   line-height: 1.75;
@@ -702,8 +721,7 @@ footer {
   }
 
   .hero-description {
-    font-size: 0.95rem;
-    color: #64748b;
+    font-size: 1.0625rem;
     margin: 0 auto 2rem;
     max-width: 100%;
     line-height: 1.7;
