@@ -1502,3 +1502,14 @@ footer::before {
 .app-card .read-more {
   margin-top: 1rem;
 }
+
+/* Keep each inline formula on one line (KaTeX would otherwise break after ∈, =, …) */
+.math-inline {
+  display: inline-block;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.math-glue {
+  white-space: nowrap;
+}
