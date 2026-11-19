@@ -1370,3 +1370,94 @@ footer::before {
     padding: 1rem;
   }
 }
+
+/* Hidden exercise solutions */
+.try-first {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  color: #0369a1 !important;
+  font-weight: 500;
+}
+
+.try-first svg {
+  flex-shrink: 0;
+  margin-top: 0.35rem;
+}
+
+.solution {
+  margin: 0.75rem 0 1rem;
+  border-radius: 12px;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+}
+
+.solution summary {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.7rem 1rem;
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: #047857;
+  user-select: none;
+}
+
+.solution summary::-webkit-details-marker {
+  display: none;
+}
+
+.solution summary::after {
+  content: '▾';
+  margin-inline-start: auto;
+  transition: transform 0.2s ease;
+}
+
+.solution[open] summary::after {
+  transform: rotate(180deg);
+}
+
+.solution summary:hover {
+  background: #dcfce7;
+  border-radius: 12px;
+}
+
+.solution-body {
+  padding: 0.25rem 1.25rem 1rem;
+  border-top: 1px dashed #bbf7d0;
+}
+
+.solution-body .result-box {
+  background: #fff;
+}
+
+.solution-note {
+  font-size: 0.95rem !important;
+  color: #64748b !important;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .math-article .exercise {
+    padding: 0.85rem 0.7rem;
+    border-inline-start-width: 3px;
+  }
+
+  .solution-body {
+    padding: 0.25rem 0.6rem 0.75rem;
+  }
+
+  .solution summary {
+    padding: 0.65rem 0.75rem;
+  }
+
+  .result-box {
+    padding: 0.25rem 0.5rem;
+  }
+
+  .math-block .katex-display > .katex {
+    font-size: 1em;
+  }
+}

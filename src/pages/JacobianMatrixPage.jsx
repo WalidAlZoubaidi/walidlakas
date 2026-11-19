@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowLeft, BookOpen, ListChecks, Link2, Lightbulb, PenLine, Clock } from 'lucide-react';
+import { ArrowLeft, BookOpen, ListChecks, Link2, Lightbulb, PenLine, Eye } from 'lucide-react';
 import { MathText, BlockMath } from '@/components/MathText';
 
 const R = String.raw;
@@ -24,6 +24,24 @@ const M = {
   exJa: R`J_f(a) = \begin{pmatrix} 2a_1 & 2a_2 \\ \sin a_2 & a_1\cos a_2 \\ e^{a_1} & 1 \end{pmatrix}`,
   ex1f: R`\forall (x,y) \in \mathbb{R}^2, \quad f(x,y) = \left(\cos x - \sin y,\; \sin x + 2\cos y,\; e^x - e^y\right)`,
   ex1g: R`\forall (u,v,w) \in \mathbb{R}^3, \quad g(u,v,w) = u^2 + v^2 + w`,
+  solAComponents: R`f_1(x,y) = \cos x - \sin y, \qquad f_2(x,y) = \sin x + 2\cos y, \qquad f_3(x,y) = e^x - e^y`,
+  solAJ: R`J_f(x,y) = \begin{pmatrix} -\sin x & -\cos y \\ \cos x & -2\sin y \\ e^x & -e^y \end{pmatrix}`,
+  solBJ: R`J_g(u,v,w) = \begin{pmatrix} 2u & 2v & 1 \end{pmatrix}`,
+  solCiCompose: R`(g \circ f)(x,y) = g\big(f(x,y)\big) = (\cos x - \sin y)^2 + (\sin x + 2\cos y)^2 + e^x - e^y`,
+  solCiExpanded: R`(g \circ f)(x,y) = 2 + 3\cos^2 y + 4\sin x\cos y - 2\cos x\sin y + e^x - e^y`,
+  solCiPartials: R`\begin{aligned}
+    \frac{\partial (g \circ f)}{\partial x}(x,y) &= 4\cos x\cos y + 2\sin x\sin y + e^x \\[1ex]
+    \frac{\partial (g \circ f)}{\partial y}(x,y) &= -2\cos x\cos y - 4\sin x\sin y - 3\sin(2y) - e^y
+  \end{aligned}`,
+  solResult: R`J_{g \circ f}(x,y) = \begin{pmatrix} 4\cos x\cos y + 2\sin x\sin y + e^x & \; -2\cos x\cos y - 4\sin x\sin y - 3\sin(2y) - e^y \end{pmatrix}`,
+  solCiiChain: R`J_{g \circ f}(x,y) = J_g\big(f(x,y)\big) \cdot J_f(x,y)`,
+  solCiiJg: R`J_g\big(f(x,y)\big) = \begin{pmatrix} 2(\cos x - \sin y) & 2(\sin x + 2\cos y) & 1 \end{pmatrix}`,
+  solCiiProduct: R`\begin{pmatrix} 2(\cos x - \sin y) & 2(\sin x + 2\cos y) & 1 \end{pmatrix}
+    \begin{pmatrix} -\sin x & -\cos y \\ \cos x & -2\sin y \\ e^x & -e^y \end{pmatrix}`,
+  solCiiColumns: R`\begin{aligned}
+    \text{(1)} &: \; -2\sin x(\cos x - \sin y) + 2\cos x(\sin x + 2\cos y) + e^x = 4\cos x\cos y + 2\sin x\sin y + e^x \\[1ex]
+    \text{(2)} &: \; -2\cos y(\cos x - \sin y) - 4\sin y(\sin x + 2\cos y) - e^y = -2\cos x\cos y - 4\sin x\sin y - 3\sin(2y) - e^y
+  \end{aligned}`,
 };
 
 const translations = {
@@ -61,7 +79,20 @@ const translations = {
     exC: R`Find the Jacobian matrix $J_{g \circ f}(x,y)$ of $g \circ f$ at the point $(x,y)$:`,
     exCi: R`by writing $g \circ f$ explicitly;`,
     exCii: 'using a matrix product.',
-    correctionSoon: 'Solutions coming soon.',
+    tryFirst: 'Try it yourself first: each solution is hidden below its exercise.',
+    showSolution: 'Show solution',
+    solA1: 'The component functions are:',
+    solA2: R`They are of class $C^1$ on $\mathbb{R}^2$, so $f$ is differentiable on $\mathbb{R}^2$. Computing the partial derivatives and arranging them row by row gives:`,
+    solB: R`$g$ is a polynomial function, hence of class $C^1$ on $\mathbb{R}^3$. Since $g$ is real-valued ($p = 1$), its Jacobian is a $1 \times 3$ row matrix:`,
+    solCi1: 'Compose directly:',
+    solCi2: R`Expanding and using $\cos^2 + \sin^2 = 1$:`,
+    solCi3: R`$g \circ f$ is real-valued, so its Jacobian is the row of its two partial derivatives:`,
+    solCiNote: R`For the derivative in $y$, we used $-6\cos y\sin y = -3\sin(2y)$.`,
+    solCii1: 'By the chain rule:',
+    solCii2: R`$J_g$ is evaluated at $f(x,y)$, that is at $u = \cos x - \sin y$ and $v = \sin x + 2\cos y$:`,
+    solCii3: R`We compute the product of a $1 \times 3$ matrix by a $3 \times 2$ matrix:`,
+    solCii4: 'Column by column:',
+    solCii5: 'We recover the result of question (i):',
   },
   fr: {
     title: R`Comment déterminer la matrice jacobienne d’une fonction de $\mathbb{R}^n$ dans $\mathbb{R}^p$ ?`,
@@ -97,7 +128,20 @@ const translations = {
     exC: R`Déterminer la matrice jacobienne $J_{g \circ f}(x,y)$ de $g \circ f$ au point $(x,y)$ :`,
     exCi: R`en explicitant $g \circ f$ ;`,
     exCii: 'au moyen d’un produit de matrices.',
-    correctionSoon: 'Correction à venir.',
+    tryFirst: 'Cherchez d’abord par vous-même : la correction est masquée sous chaque exercice.',
+    showSolution: 'Afficher la correction',
+    solA1: 'Les fonctions coordonnées sont :',
+    solA2: R`Elles sont de classe $C^1$ sur $\mathbb{R}^2$, donc $f$ est différentiable sur $\mathbb{R}^2$. On calcule les dérivées partielles et on les range ligne par ligne :`,
+    solB: R`$g$ est une fonction polynomiale, donc de classe $C^1$ sur $\mathbb{R}^3$. Comme $g$ est à valeurs réelles ($p = 1$), sa jacobienne est une matrice ligne $1 \times 3$ :`,
+    solCi1: 'On compose directement :',
+    solCi2: R`En développant et en utilisant $\cos^2 + \sin^2 = 1$ :`,
+    solCi3: R`$g \circ f$ est à valeurs réelles : sa jacobienne est la ligne de ses deux dérivées partielles :`,
+    solCiNote: R`Pour la dérivée en $y$, on a utilisé $-6\cos y\sin y = -3\sin(2y)$.`,
+    solCii1: 'D’après la règle de la chaîne :',
+    solCii2: R`On évalue $J_g$ au point $f(x,y)$, c’est-à-dire en $u = \cos x - \sin y$ et $v = \sin x + 2\cos y$ :`,
+    solCii3: R`On effectue le produit d’une matrice $1 \times 3$ par une matrice $3 \times 2$ :`,
+    solCii4: 'Colonne par colonne :',
+    solCii5: 'On retrouve bien le résultat de la question (i) :',
   },
   ar: {
     title: R`كيف نحدّد المصفوفة اليعقوبية لدالة من $\mathbb{R}^n$ إلى $\mathbb{R}^p$؟`,
@@ -133,9 +177,30 @@ const translations = {
     exC: R`حدّد المصفوفة اليعقوبية $J_{g \circ f}(x,y)$ للدالة $g \circ f$ عند النقطة $(x,y)$:`,
     exCi: R`بكتابة $g \circ f$ صراحةً؛`,
     exCii: 'باستعمال جداء المصفوفات.',
-    correctionSoon: 'الحل قريبًا.',
+    tryFirst: 'حاول أولًا بنفسك: الحل مخفي تحت كل تمرين.',
+    showSolution: 'إظهار الحل',
+    solA1: 'الدوال الإحداثية هي:',
+    solA2: R`هذه الدوال من الصنف $C^1$ على $\mathbb{R}^2$، إذن $f$ قابلة للاشتقاق على $\mathbb{R}^2$. نحسب المشتقات الجزئية ونرتّبها صفًا صفًا:`,
+    solB: R`$g$ دالة حدودية، إذن من الصنف $C^1$ على $\mathbb{R}^3$. وبما أن قيم $g$ حقيقية ($p = 1$)، فمصفوفتها اليعقوبية مصفوفة صفّية من النوع $1 \times 3$:`,
+    solCi1: 'نركّب الدالتين مباشرة:',
+    solCi2: R`بالنشر واستعمال $\cos^2 + \sin^2 = 1$:`,
+    solCi3: R`قيم $g \circ f$ حقيقية، إذن مصفوفتها اليعقوبية هي صف مشتقتيها الجزئيتين:`,
+    solCiNote: R`في المشتقة بالنسبة إلى $y$ استعملنا $-6\cos y\sin y = -3\sin(2y)$.`,
+    solCii1: 'حسب قاعدة السلسلة:',
+    solCii2: R`نحسب $J_g$ عند النقطة $f(x,y)$، أي عند $u = \cos x - \sin y$ و$v = \sin x + 2\cos y$:`,
+    solCii3: R`نحسب جداء مصفوفة $1 \times 3$ في مصفوفة $3 \times 2$:`,
+    solCii4: 'عمودًا عمودًا:',
+    solCii5: 'نجد النتيجة نفسها التي حصلنا عليها في السؤال (i):',
   },
 };
+
+// Hidden solution block: the reader opens it once they have tried the exercise
+const Solution = ({ label, children }) => (
+  <details className="solution">
+    <summary><Eye size={16} /> {label}</summary>
+    <div className="solution-body">{children}</div>
+  </details>
+);
 
 const JacobianMatrixPage = ({ language = 'en' }) => {
   const t = translations[language] || translations.en;
@@ -195,22 +260,54 @@ const JacobianMatrixPage = ({ language = 'en' }) => {
 
         <article className="glass-panel math-article">
           <h2><PenLine size={22} /> {t.exercisesHeading}</h2>
+          <p className="try-first"><Lightbulb size={18} /> <span>{t.tryFirst}</span></p>
           <div className="exercise">
             <p><strong>a.</strong> <MathText text={t.exA} /></p>
             <BlockMath math={M.ex1f} />
             <p><MathText text={t.exAQ} /></p>
+            <Solution label={t.showSolution}>
+              <p>{t.solA1}</p>
+              <BlockMath math={M.solAComponents} />
+              <p><MathText text={t.solA2} /></p>
+              <div className="result-box"><BlockMath math={M.solAJ} /></div>
+            </Solution>
           </div>
           <div className="exercise">
             <p><strong>b.</strong> <MathText text={t.exB} /></p>
             <BlockMath math={M.ex1g} />
             <p><MathText text={t.exBQ} /></p>
+            <Solution label={t.showSolution}>
+              <p><MathText text={t.solB} /></p>
+              <div className="result-box"><BlockMath math={M.solBJ} /></div>
+            </Solution>
           </div>
           <div className="exercise">
             <p><strong>c.</strong> <MathText text={t.exC} /></p>
             <p className="sub-item">(i) <MathText text={t.exCi} /></p>
+            <Solution label={`${t.showSolution} (i)`}>
+              <p>{t.solCi1}</p>
+              <BlockMath math={M.solCiCompose} />
+              <p><MathText text={t.solCi2} /></p>
+              <BlockMath math={M.solCiExpanded} />
+              <p><MathText text={t.solCi3} /></p>
+              <BlockMath math={M.solCiPartials} />
+              <p className="solution-note"><MathText text={t.solCiNote} /></p>
+              <div className="result-box"><BlockMath math={M.solResult} /></div>
+            </Solution>
             <p className="sub-item">(ii) {t.exCii}</p>
+            <Solution label={`${t.showSolution} (ii)`}>
+              <p>{t.solCii1}</p>
+              <BlockMath math={M.solCiiChain} />
+              <p><MathText text={t.solCii2} /></p>
+              <BlockMath math={M.solCiiJg} />
+              <p><MathText text={t.solCii3} /></p>
+              <BlockMath math={M.solCiiProduct} />
+              <p>{t.solCii4}</p>
+              <BlockMath math={M.solCiiColumns} />
+              <p>{t.solCii5}</p>
+              <div className="result-box"><BlockMath math={M.solResult} /></div>
+            </Solution>
           </div>
-          <p className="soon-note"><Clock size={16} /> {t.correctionSoon}</p>
         </article>
       </div>
     </div>
