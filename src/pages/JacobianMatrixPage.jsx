@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowLeft, BookOpen, ListChecks, Link2, Lightbulb, PenLine, Eye } from 'lucide-react';
+import { ArrowLeft, ArrowRight, BookOpen, ListChecks, Link2, Lightbulb, PenLine, Eye, Sparkles, BrainCircuit, Navigation, Brain, Bot, Wind, Layers } from 'lucide-react';
 import { MathText, BlockMath } from '@/components/MathText';
 
 const R = String.raw;
@@ -44,6 +44,15 @@ const M = {
   \end{aligned}`,
 };
 
+const APPS = [
+  { icon: BrainCircuit, accent: 'accent-violet', math: R`J_{g \circ f} = J_g\big(f\big) \cdot J_f` },
+  { icon: Navigation, accent: 'accent-sky', math: R`h(x) \approx h(\hat{x}) + J_h(\hat{x})\,(x - \hat{x})` },
+  { icon: Brain, accent: 'accent-rose', math: R`\det J_\varphi(x) > 1 \;\Rightarrow\; dV > dV_0` },
+  { icon: Bot, accent: 'accent-amber', math: R`\dot{X} = J(q)\,\dot{q}` },
+  { icon: Wind, accent: 'accent-sky', math: R`x_{k+1} = x_k - J_F(x_k)^{-1}\,F(x_k)`, to: '/biomechanics/cfd' },
+  { icon: Layers, accent: 'accent-emerald', math: R`F = J_\varphi, \qquad \det F = \frac{dV}{dV_0}`, to: '/mechanics/basics-of-continuum-mechanics/analysis-of-deformation' },
+];
+
 const translations = {
   en: {
     title: R`How to find the Jacobian matrix of a function from $\mathbb{R}^n$ to $\mathbb{R}^p$?`,
@@ -80,6 +89,17 @@ const translations = {
     exCi: R`by writing $g \circ f$ explicitly;`,
     exCii: 'using a matrix product.',
     tryFirst: 'Try it yourself first: each solution is hidden below its exercise.',
+    appsHeading: 'What is it used for?',
+    appsIntro: 'The Jacobian matrix is not just a textbook exercise: it is at work behind many technologies of everyday life.',
+    appsLink: 'Related page',
+    apps: [
+      { title: 'Artificial intelligence', body: 'Neural networks are trained by backpropagation, which is nothing but the chain rule applied to hundreds of composed functions: exactly the matrix-product method of exercise c (ii).' },
+      { title: 'GPS and navigation', body: 'Your phone fuses GPS, accelerometer and gyroscope with an extended Kalman filter, which replaces the non-linear measurement equations by their Jacobian to estimate your position in real time.' },
+      { title: 'Medical imaging', body: 'To compare two brain MRIs, we compute the deformation that maps one onto the other. The determinant of its Jacobian shows where tissue has shrunk or grown: a tool for monitoring Alzheimer’s disease or tumour growth.' },
+      { title: 'Robotics and prosthetics', body: 'The Jacobian links the speed of each joint to the speed of the tool or hand. It lets a surgical robot faithfully reproduce the surgeon’s gesture, and a robotic prosthesis move smoothly.' },
+      { title: 'CFD and weather forecasting', body: 'Flow solvers such as OpenFOAM handle non-linear equations with Newton’s method, which builds and inverts a Jacobian at every iteration: aerodynamics, blood flow, weather forecasts.' },
+      { title: 'Continuum mechanics', body: 'The deformation gradient F is the Jacobian of the motion, and its determinant measures the local change of volume: the starting point of strain analysis.' },
+    ],
     showSolution: 'Show solution',
     solA1: 'The component functions are:',
     solA2: R`They are of class $C^1$ on $\mathbb{R}^2$, so $f$ is differentiable on $\mathbb{R}^2$. Computing the partial derivatives and arranging them row by row gives:`,
@@ -129,6 +149,17 @@ const translations = {
     exCi: R`en explicitant $g \circ f$ ;`,
     exCii: 'au moyen d’un produit de matrices.',
     tryFirst: 'Cherchez d’abord par vous-même : la correction est masquée sous chaque exercice.',
+    appsHeading: 'À quoi ça sert ?',
+    appsIntro: 'La matrice jacobienne n’est pas qu’un exercice de manuel : elle est à l’œuvre derrière de nombreuses technologies du quotidien.',
+    appsLink: 'Page associée',
+    apps: [
+      { title: 'Intelligence artificielle', body: 'Les réseaux de neurones s’entraînent par rétropropagation du gradient, qui n’est autre que la règle de la chaîne appliquée à des centaines de fonctions composées : exactement la méthode par produit de matrices de l’exercice c (ii).' },
+      { title: 'GPS et navigation', body: 'Votre téléphone combine GPS, accéléromètre et gyroscope grâce au filtre de Kalman étendu, qui remplace les équations de mesure non linéaires par leur jacobienne pour estimer votre position en temps réel.' },
+      { title: 'Imagerie médicale', body: 'Pour comparer deux IRM cérébrales, on calcule la déformation qui superpose l’une sur l’autre. Le déterminant de sa jacobienne montre où les tissus se sont rétractés ou ont grossi : un outil de suivi de la maladie d’Alzheimer ou de la croissance d’une tumeur.' },
+      { title: 'Robotique et prothèses', body: 'La jacobienne relie la vitesse de chaque articulation à celle de l’outil ou de la main. C’est elle qui permet à un robot chirurgical de reproduire fidèlement le geste du chirurgien, et à une prothèse robotisée de bouger de façon fluide.' },
+      { title: 'CFD et météo', body: 'Les solveurs d’écoulement comme OpenFOAM traitent les équations non linéaires par la méthode de Newton, qui construit et inverse une jacobienne à chaque itération : aérodynamique, écoulement sanguin, prévisions météo.' },
+      { title: 'Mécanique des milieux continus', body: 'Le gradient de déformation F est la jacobienne du mouvement, et son déterminant mesure le changement de volume local : c’est le point de départ de l’analyse des déformations.' },
+    ],
     showSolution: 'Afficher la correction',
     solA1: 'Les fonctions coordonnées sont :',
     solA2: R`Elles sont de classe $C^1$ sur $\mathbb{R}^2$, donc $f$ est différentiable sur $\mathbb{R}^2$. On calcule les dérivées partielles et on les range ligne par ligne :`,
@@ -178,6 +209,17 @@ const translations = {
     exCi: R`بكتابة $g \circ f$ صراحةً؛`,
     exCii: 'باستعمال جداء المصفوفات.',
     tryFirst: 'حاول أولًا بنفسك: الحل مخفي تحت كل تمرين.',
+    appsHeading: 'فيمَ تُستخدم؟',
+    appsIntro: 'المصفوفة اليعقوبية ليست مجرد تمرين مدرسي: إنها تعمل خلف كثير من التقنيات التي نستعملها يوميًا.',
+    appsLink: 'صفحة ذات صلة',
+    apps: [
+      { title: 'الذكاء الاصطناعي', body: 'تُدرَّب الشبكات العصبية بخوارزمية الانتشار العكسي، وهي ليست سوى قاعدة السلسلة مطبَّقة على مئات الدوال المركّبة: أي طريقة جداء المصفوفات نفسها في التمرين (ii) c.' },
+      { title: 'نظام GPS والملاحة', body: 'يدمج هاتفك بيانات GPS ومقياس التسارع والجيروسكوب بواسطة مرشّح كالمان الموسَّع، الذي يستبدل معادلات القياس غير الخطية بمصفوفتها اليعقوبية لتقدير موقعك في الوقت الحقيقي.' },
+      { title: 'التصوير الطبي', body: 'لمقارنة صورتي رنين مغناطيسي للدماغ، نحسب التشوّه الذي ينقل إحداهما إلى الأخرى. ويبيّن محدِّد مصفوفته اليعقوبية أين تقلّصت الأنسجة أو نمت: أداة لمتابعة مرض ألزهايمر أو نموّ الأورام.' },
+      { title: 'الروبوتات والأطراف الاصطناعية', body: 'تربط المصفوفة اليعقوبية سرعة كل مفصل بسرعة الأداة أو اليد. وبفضلها يعيد الروبوت الجراحي حركة الجرّاح بدقة، وتتحرك الأطراف الاصطناعية الآلية بسلاسة.' },
+      { title: 'ديناميكا الموائع الحسابية والأرصاد', body: 'تعالج برامج محاكاة التدفق مثل OpenFOAM المعادلات غير الخطية بطريقة نيوتن، التي تبني مصفوفة يعقوبية وتعكسها في كل تكرار: الديناميكا الهوائية، وتدفق الدم، والتنبؤات الجوية.' },
+      { title: 'ميكانيكا الأوساط المتصلة', body: 'تدرّج التشوّه F هو المصفوفة اليعقوبية للحركة، ومحدِّده يقيس التغيّر المحلي في الحجم: وهو نقطة الانطلاق في تحليل التشوّهات.' },
+    ],
     showSolution: 'إظهار الحل',
     solA1: 'الدوال الإحداثية هي:',
     solA2: R`هذه الدوال من الصنف $C^1$ على $\mathbb{R}^2$، إذن $f$ قابلة للاشتقاق على $\mathbb{R}^2$. نحسب المشتقات الجزئية ونرتّبها صفًا صفًا:`,
@@ -307,6 +349,24 @@ const JacobianMatrixPage = ({ language = 'en' }) => {
               <p>{t.solCii5}</p>
               <div className="result-box"><BlockMath math={M.solResult} /></div>
             </Solution>
+          </div>
+        </article>
+
+        <article className="glass-panel math-article">
+          <h2><Sparkles size={22} /> {t.appsHeading}</h2>
+          <p>{t.appsIntro}</p>
+          <div className="apps-grid">
+            {APPS.map(({ icon: Icon, accent, math, to }, i) => (
+              <div key={i} className={`glass-card research-card app-card ${accent}`}>
+                <div className="card-icon"><Icon size={24} /></div>
+                <h3>{t.apps[i].title}</h3>
+                <p>{t.apps[i].body}</p>
+                <div className="app-formula"><BlockMath math={math} /></div>
+                {to && (
+                  <Link to={to} className="read-more">{t.appsLink} <ArrowRight size={16} /></Link>
+                )}
+              </div>
+            ))}
           </div>
         </article>
       </div>

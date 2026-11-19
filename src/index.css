@@ -1461,3 +1461,44 @@ footer::before {
     font-size: 1em;
   }
 }
+
+/* Real-world applications */
+.apps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.app-card {
+  padding: 1.5rem;
+}
+
+.math-article .app-card h3 {
+  color: var(--text-primary);
+  font-size: 1.15rem;
+  margin: 0 0 0.5rem;
+}
+
+.math-article .app-card p {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: #475569;
+  margin-bottom: 1rem;
+}
+
+.app-formula {
+  margin-top: auto;
+  border-radius: 10px;
+  background: var(--card-tint);
+  padding: 0 0.5rem;
+}
+
+.app-formula .math-block {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.app-card .read-more {
+  margin-top: 1rem;
+}
