@@ -1,5 +1,5 @@
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
-import { Mail, MapPin, ArrowRight, ArrowLeft, Wind, Clock, ExternalLink, Droplets, FunctionSquare, Building2, Atom, PenTool, Layers, Box, Wrench, Menu, X } from 'lucide-react';
+import { Mail, MapPin, ArrowRight, ArrowLeft, Wind, Clock, ExternalLink, Droplets, FunctionSquare, Building2, Atom, Layers, Box, Wrench, Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import LiquidEther from '@/components/LiquidEther';
 import BasicsMMCPage from '@/pages/BasicsMMCPage';
@@ -9,6 +9,7 @@ import AnalyticalMechanicsPage from '@/pages/AnalyticalMechanicsPage';
 import VirtualWorkApplicationPage from '@/pages/VirtualWorkApplicationPage';
 import MathematicsPage from '@/pages/MathematicsPage';
 import JacobianMatrixPage from '@/pages/JacobianMatrixPage';
+import { BlogPage, BlogPostPage } from '@/pages/BlogPage';
 
 const LinkedinIcon = ({ size = 24, color = "currentColor" }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -635,7 +636,7 @@ function App() {
             <li><Link to="/biomechanics" className={`nav-link ${location.pathname.startsWith('/biomechanics') ? 'active' : ''}`}>{t.nav.biomechanics}</Link></li>
             <li><Link to="/mathematics" className={`nav-link ${location.pathname.startsWith('/mathematics') ? 'active' : ''}`}>{t.nav.mathematics}</Link></li>
             <li><Link to="/mechanics" className={`nav-link ${location.pathname.startsWith('/mechanics') ? 'active' : ''}`}>{t.nav.mechanics}</Link></li>
-            <li><Link to="/blog" className={`nav-link ${location.pathname === '/blog' ? 'active' : ''}`}>{t.nav.blog}</Link></li>
+            <li><Link to="/blog" className={`nav-link ${location.pathname.startsWith('/blog') ? 'active' : ''}`}>{t.nav.blog}</Link></li>
           </ul>
           {languageSelect('language-toggle')}
 
@@ -660,7 +661,7 @@ function App() {
             <Link to="/biomechanics" className={`mobile-link ${location.pathname.startsWith('/biomechanics') ? 'active' : ''}`} onClick={() => setMobileMenuOpen(false)}>{t.nav.biomechanics}</Link>
             <Link to="/mathematics" className={`mobile-link ${location.pathname.startsWith('/mathematics') ? 'active' : ''}`} onClick={() => setMobileMenuOpen(false)}>{t.nav.mathematics}</Link>
             <Link to="/mechanics" className={`mobile-link ${location.pathname.startsWith('/mechanics') ? 'active' : ''}`} onClick={() => setMobileMenuOpen(false)}>{t.nav.mechanics}</Link>
-            <Link to="/blog" className={`mobile-link ${location.pathname === '/blog' ? 'active' : ''}`} onClick={() => setMobileMenuOpen(false)}>{t.nav.blog}</Link>
+            <Link to="/blog" className={`mobile-link ${location.pathname.startsWith('/blog') ? 'active' : ''}`} onClick={() => setMobileMenuOpen(false)}>{t.nav.blog}</Link>
           </div>
         </div>
       </nav>
@@ -680,7 +681,8 @@ function App() {
           <Route path="/mechanics/continuum-mechanics" element={<PageTemplate title={t.titles.continuumMechanics} icon={Box} t={t} />} />
           <Route path="/mechanics/analytical-mechanics" element={<AnalyticalMechanicsPage language={language} />} />
           <Route path="/mechanics/analytical-mechanics/virtual-work-application" element={<VirtualWorkApplicationPage language={language} />} />
-          <Route path="/blog" element={<PageTemplate title={t.titles.blog} icon={PenTool} t={t} />} />
+          <Route path="/blog" element={<BlogPage language={language} />} />
+          <Route path="/blog/:slug" element={<BlogPostPage language={language} />} />
         </Routes>
       </main>
 
