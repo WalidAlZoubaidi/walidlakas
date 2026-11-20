@@ -37,7 +37,7 @@ const translations = {
   en: {
     title: 'How to find the Fourier coefficients of a periodic function?',
     subtitle: 'Fourier Series',
-    back: 'Back to Mathematics',
+    back: 'Back to the chapter',
     tag: 'Method',
     defHeading: 'Definition',
     def1: R`Let $f$ be a function from $\mathbb{R}$ to $\mathbb{R}$, $T$-periodic and integrable on $[0, T]$. We set:`,
@@ -59,7 +59,7 @@ const translations = {
   fr: {
     title: 'Comment déterminer les coefficients de Fourier d’une fonction périodique ?',
     subtitle: 'Séries de Fourier',
-    back: 'Retour aux mathématiques',
+    back: 'Retour au chapitre',
     tag: 'Méthode',
     defHeading: 'Définition',
     def1: R`Soit $f$ une fonction de $\mathbb{R}$ dans $\mathbb{R}$, $T$-périodique et intégrable sur $[0, T]$. On pose :`,
@@ -81,7 +81,7 @@ const translations = {
   ar: {
     title: 'كيف نحدّد معاملات فورييه لدالة دورية؟',
     subtitle: 'متسلسلات فورييه',
-    back: 'العودة إلى الرياضيات',
+    back: 'العودة إلى الفصل',
     tag: 'طريقة',
     defHeading: 'التعريف',
     def1: R`لتكن $f$ دالة من $\mathbb{R}$ إلى $\mathbb{R}$، دورية دورها $T$ وقابلة للتكامل على $[0, T]$. نضع:`,
@@ -151,7 +151,7 @@ const FourierCoefficientsPage = ({ language = 'en' }) => {
       </div>
 
       <div className="container page-content" style={{ marginTop: '4rem', textAlign: 'start' }}>
-        <Link to="/mathematics" className="read-more back-nav">
+        <Link to="/mathematics/fourier-series" className="read-more back-nav">
           <ArrowLeft size={16} /> {t.back}
         </Link>
 

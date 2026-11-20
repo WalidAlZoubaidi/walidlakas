@@ -81,7 +81,7 @@ const translations = {
   en: {
     title: 'How to solve a linear differential equation using the Laplace transform?',
     subtitle: 'Laplace Transform',
-    back: 'Back to Mathematics',
+    back: 'Back to the chapter',
     tag: 'Method',
     why: 'Why?',
 
@@ -166,7 +166,7 @@ const translations = {
   fr: {
     title: 'Comment résoudre une équation différentielle linéaire en utilisant la transformée de Laplace ?',
     subtitle: 'Transformée de Laplace',
-    back: 'Retour aux mathématiques',
+    back: 'Retour au chapitre',
     tag: 'Méthode',
     why: 'Pourquoi ?',
 
@@ -251,7 +251,7 @@ const translations = {
   ar: {
     title: 'كيف نحلّ معادلة تفاضلية خطية باستعمال تحويل لابلاس؟',
     subtitle: 'تحويل لابلاس',
-    back: 'العودة إلى الرياضيات',
+    back: 'العودة إلى الفصل',
     tag: 'طريقة',
     why: 'لماذا؟',
 
@@ -369,7 +369,7 @@ const LaplaceODEPage = ({ language = 'en' }) => {
       </div>
 
       <div className="container page-content" style={{ marginTop: '4rem', textAlign: 'start' }}>
-        <Link to="/mathematics" className="read-more back-nav">
+        <Link to="/mathematics/laplace-transform" className="read-more back-nav">
           <ArrowLeft size={16} /> {t.back}
         </Link>
 

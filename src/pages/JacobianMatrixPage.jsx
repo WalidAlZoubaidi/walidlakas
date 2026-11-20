@@ -57,7 +57,7 @@ const translations = {
   en: {
     title: R`How to find the Jacobian matrix of a function from $\mathbb{R}^n$ to $\mathbb{R}^p$?`,
     subtitle: 'Functions of Several Real Variables',
-    back: 'Back to Mathematics',
+    back: 'Back to the chapter',
     tag: 'Method',
     labels: ['a', 'b', 'c'],
     defHeading: 'Definition',
@@ -118,7 +118,7 @@ const translations = {
   fr: {
     title: R`Comment déterminer la matrice jacobienne d’une fonction de $\mathbb{R}^n$ dans $\mathbb{R}^p$ ?`,
     subtitle: 'Fonctions de plusieurs variables réelles',
-    back: 'Retour aux mathématiques',
+    back: 'Retour au chapitre',
     tag: 'Méthode',
     labels: ['a', 'b', 'c'],
     defHeading: 'Définition',
@@ -179,7 +179,7 @@ const translations = {
   ar: {
     title: R`كيف نحدّد المصفوفة اليعقوبية لدالة من $\mathbb{R}^n$ إلى $\mathbb{R}^p$؟`,
     subtitle: 'دوال لعدة متغيرات حقيقية',
-    back: 'العودة إلى الرياضيات',
+    back: 'العودة إلى الفصل',
     tag: 'طريقة',
     labels: ['أ', 'ب', 'ج'],
     defHeading: 'التعريف',
@@ -258,7 +258,7 @@ const JacobianMatrixPage = ({ language = 'en' }) => {
       </div>
 
       <div className="container page-content" style={{ marginTop: '4rem', textAlign: 'start' }}>
-        <Link to="/mathematics" className="read-more back-nav">
+        <Link to="/mathematics/multivariable-functions" className="read-more back-nav">
           <ArrowLeft size={16} /> {t.back}
         </Link>
 

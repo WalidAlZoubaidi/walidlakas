@@ -1,75 +1,201 @@
-import { Link } from 'react-router-dom';
-import { ArrowRight, Sigma, Grid3x3, Shapes, Hash, Waves, AudioWaveform, ArrowDownUp, SquareFunction } from 'lucide-react';
+import { Link, Navigate, useParams } from 'react-router-dom';
+import { ArrowRight, ArrowLeft, Sigma, Grid3x3, Shapes, Hash, Waves, AudioWaveform, ArrowDownUp, SquareFunction, BookOpen } from 'lucide-react';
 import { MathText } from '@/components/MathText';
 
-const translations = {
+const R = String.raw;
+
+const ui = {
   en: {
     title: 'Mathematics',
     subtitle: 'Methods, reminders and exercises',
-    multivarTitle: 'Functions of Several Real Variables',
-    multivarIntro: 'Differential calculus in several variables: partial derivatives, differentials and Jacobian matrices.',
-    jacobianTitle: String.raw`How to find the Jacobian matrix of a function from $\mathbb{R}^n$ to $\mathbb{R}^p$?`,
-    jacobianBody: 'Definition, a 4-step method, the chain rule, a worked example and exercises.',
+    explore: 'Explore',
+    back: 'Back to Mathematics',
+    about: 'About this chapter',
+    methodsPrefix: 'Methods',
+    methodsSuffix: '& worked examples',
+    methodsIntro: 'Each sheet answers one question: a method, a worked example and, when available, exercises with solutions.',
     cta: 'Read the method',
-    laplaceTitle: 'Laplace Transform',
-    laplaceIntro: 'Turning differential equations into algebraic equations.',
-    odeTitle: 'How to solve a linear differential equation using the Laplace transform?',
-    odeBody: 'Every step explained: definition, where the derivative formulas come from, usual transforms, the method and a fully detailed example.',
-    fourierTitle: 'Fourier Series',
-    fourierIntro: 'Decomposing a periodic function into a sum of sines and cosines.',
-    coefTitle: 'How to find the Fourier coefficients of a periodic function?',
-    coefBody: 'Definitions of aₙ, bₙ and cₙ, using parity, and a worked example on a square wave.',
-    algebraTitle: 'Algebraic Structures',
-    algebraIntro: 'Groups, rings and fields: congruences and computing in quotient rings.',
-    znzTitle: String.raw`How to compute in $\mathbb{Z}/n\mathbb{Z}$?`,
-    znzBody: 'Compatibility of congruences with + and ×, and a worked example.',
+    count: (n) => `${n} method${n > 1 ? 's' : ''}`,
   },
   fr: {
     title: 'Mathématiques',
     subtitle: 'Méthodes, rappels et exercices',
-    multivarTitle: 'Fonctions de plusieurs variables réelles',
-    multivarIntro: 'Calcul différentiel à plusieurs variables : dérivées partielles, différentielles et matrices jacobiennes.',
-    jacobianTitle: String.raw`Comment déterminer la matrice jacobienne d’une fonction de $\mathbb{R}^n$ dans $\mathbb{R}^p$ ?`,
-    jacobianBody: 'Définition, méthode en 4 étapes, règle de la chaîne, exemple détaillé et exercices.',
+    explore: 'Explorer',
+    back: 'Retour aux mathématiques',
+    about: 'À propos de ce chapitre',
+    methodsPrefix: 'Méthodes',
+    methodsSuffix: '& exemples détaillés',
+    methodsIntro: 'Chaque fiche répond à une question : une méthode, un exemple détaillé et, quand il y en a, des exercices corrigés.',
     cta: 'Lire la méthode',
-    laplaceTitle: 'Transformée de Laplace',
-    laplaceIntro: 'Transformer des équations différentielles en équations algébriques.',
-    odeTitle: 'Comment résoudre une équation différentielle linéaire en utilisant la transformée de Laplace ?',
-    odeBody: 'Chaque étape expliquée : définition, origine des formules des dérivées, transformées usuelles, méthode et exemple entièrement détaillé.',
-    fourierTitle: 'Séries de Fourier',
-    fourierIntro: 'Décomposer une fonction périodique en une somme de sinus et de cosinus.',
-    coefTitle: 'Comment déterminer les coefficients de Fourier d’une fonction périodique ?',
-    coefBody: 'Définitions de aₙ, bₙ et cₙ, utilisation de la parité et un exemple détaillé sur un signal créneau.',
-    algebraTitle: 'Structures algébriques',
-    algebraIntro: 'Groupes, anneaux et corps : congruences et calculs dans les anneaux quotients.',
-    znzTitle: String.raw`Comment calculer dans $\mathbb{Z}/n\mathbb{Z}$ ?`,
-    znzBody: 'Compatibilité des congruences avec + et ×, et un exemple détaillé.',
+    count: (n) => `${n} méthode${n > 1 ? 's' : ''}`,
   },
   ar: {
     title: 'الرياضيات',
     subtitle: 'طرق ومراجعات وتمارين',
-    multivarTitle: 'دوال لعدة متغيرات حقيقية',
-    multivarIntro: 'الحساب التفاضلي للدوال ذات المتغيرات المتعددة: المشتقات الجزئية والتفاضلات والمصفوفات اليعقوبية.',
-    jacobianTitle: String.raw`كيف نحدّد المصفوفة اليعقوبية لدالة من $\mathbb{R}^n$ إلى $\mathbb{R}^p$؟`,
-    jacobianBody: 'التعريف، وطريقة من أربع خطوات، وقاعدة السلسلة، ومثال محلول، وتمارين.',
+    explore: 'استكشف',
+    back: 'العودة إلى الرياضيات',
+    about: 'حول هذا الفصل',
+    methodsPrefix: 'طرق',
+    methodsSuffix: 'وأمثلة محلولة',
+    methodsIntro: 'كل بطاقة تجيب عن سؤال واحد: طريقة، ومثال محلول، وتمارين مع حلولها حين تتوفر.',
     cta: 'اقرأ الطريقة',
-    laplaceTitle: 'تحويل لابلاس',
-    laplaceIntro: 'تحويل المعادلات التفاضلية إلى معادلات جبرية.',
-    odeTitle: 'كيف نحلّ معادلة تفاضلية خطية باستعمال تحويل لابلاس؟',
-    odeBody: 'كل خطوة مشروحة: التعريف، ومصدر صيغ المشتقات، والتحويلات المعتادة، والطريقة، ومثال مفصّل بالكامل.',
-    fourierTitle: 'متسلسلات فورييه',
-    fourierIntro: 'تفكيك دالة دورية إلى مجموع من الجيوب وجيوب التمام.',
-    coefTitle: 'كيف نحدّد معاملات فورييه لدالة دورية؟',
-    coefBody: 'تعريف المعاملات aₙ و bₙ و cₙ، واستعمال الزوجية، ومثال محلول على إشارة مربّعة.',
-    algebraTitle: 'البنيات الجبرية',
-    algebraIntro: 'الزمر والحلقات والحقول: الموافقات والحساب في حلقات الخارج.',
-    znzTitle: String.raw`كيف نحسب في $\mathbb{Z}/n\mathbb{Z}$؟`,
-    znzBody: 'توافق الموافقات مع الجمع والضرب، ومثال محلول.',
+    count: (n) => (n === 1 ? 'طريقة واحدة' : `${n} طرق`),
   },
 };
 
+// Chapters and their method sheets
+export const mathChapters = [
+  {
+    slug: 'multivariable-functions',
+    icon: Sigma,
+    accent: 'accent-violet',
+    title: {
+      en: 'Functions of Several Real Variables',
+      fr: 'Fonctions de plusieurs variables réelles',
+      ar: 'دوال لعدة متغيرات حقيقية',
+    },
+    intro: {
+      en: 'Differential calculus in several variables: partial derivatives, differentials and Jacobian matrices.',
+      fr: 'Calcul différentiel à plusieurs variables : dérivées partielles, différentielles et matrices jacobiennes.',
+      ar: 'الحساب التفاضلي للدوال ذات المتغيرات المتعددة: المشتقات الجزئية والتفاضلات والمصفوفات اليعقوبية.',
+    },
+    about: {
+      en: 'Most physical quantities depend on several variables at once: position, time, temperature… This chapter extends differential calculus to such functions. The Jacobian matrix gathers all partial derivatives and describes how a function locally transforms space: it is at the heart of continuum mechanics, numerical methods and machine learning.',
+      fr: 'La plupart des grandeurs physiques dépendent de plusieurs variables à la fois : position, temps, température… Ce chapitre étend le calcul différentiel à ces fonctions. La matrice jacobienne rassemble toutes les dérivées partielles et décrit comment une fonction transforme localement l’espace : elle est au cœur de la mécanique des milieux continus, des méthodes numériques et de l’apprentissage automatique.',
+      ar: 'تتعلّق معظم المقادير الفيزيائية بعدة متغيرات في آن واحد: الموضع والزمن ودرجة الحرارة… يوسّع هذا الفصل الحساب التفاضلي إلى مثل هذه الدوال. تجمع المصفوفة اليعقوبية كل المشتقات الجزئية وتصف كيف تحوّل الدالة الفضاء محليًّا، وهي في صميم ميكانيكا الأوساط المتصلة والطرق العددية وتعلّم الآلة.',
+    },
+    methods: [
+      {
+        slug: 'jacobian-matrix',
+        icon: Grid3x3,
+        title: {
+          en: R`How to find the Jacobian matrix of a function from $\mathbb{R}^n$ to $\mathbb{R}^p$?`,
+          fr: R`Comment déterminer la matrice jacobienne d’une fonction de $\mathbb{R}^n$ dans $\mathbb{R}^p$ ?`,
+          ar: R`كيف نحدّد المصفوفة اليعقوبية لدالة من $\mathbb{R}^n$ إلى $\mathbb{R}^p$؟`,
+        },
+        body: {
+          en: 'Definition, a 4-step method, the chain rule, a worked example and exercises.',
+          fr: 'Définition, méthode en 4 étapes, règle de la chaîne, exemple détaillé et exercices.',
+          ar: 'التعريف، وطريقة من أربع خطوات، وقاعدة السلسلة، ومثال محلول، وتمارين.',
+        },
+      },
+    ],
+  },
+  {
+    slug: 'algebraic-structures',
+    icon: Shapes,
+    accent: 'accent-sky',
+    title: {
+      en: 'Algebraic Structures',
+      fr: 'Structures algébriques',
+      ar: 'البنيات الجبرية',
+    },
+    intro: {
+      en: 'Groups, rings and fields: congruences and computing in quotient rings.',
+      fr: 'Groupes, anneaux et corps : congruences et calculs dans les anneaux quotients.',
+      ar: 'الزمر والحلقات والحقول: الموافقات والحساب في حلقات الخارج.',
+    },
+    about: {
+      en: 'Algebraic structures describe sets equipped with operations that follow precise rules. This chapter focuses on modular arithmetic: computing “up to a multiple of n” in ℤ/nℤ, a tool used in number theory, cryptography and error-correcting codes.',
+      fr: 'Les structures algébriques décrivent des ensembles munis d’opérations qui obéissent à des règles précises. Ce chapitre se concentre sur l’arithmétique modulaire : calculer « à un multiple de n près » dans ℤ/nℤ, un outil utilisé en théorie des nombres, en cryptographie et dans les codes correcteurs d’erreurs.',
+      ar: 'تصف البنيات الجبرية مجموعات مزوّدة بعمليات تخضع لقواعد دقيقة. يركّز هذا الفصل على الحساب المعياري، أي الحساب «بتقريب مضاعف لـ n» في ℤ/nℤ، وهو أداة تُستعمل في نظرية الأعداد والتشفير والرموز المصحِّحة للأخطاء.',
+    },
+    methods: [
+      {
+        slug: 'computing-in-z-nz',
+        icon: Hash,
+        title: {
+          en: R`How to compute in $\mathbb{Z}/n\mathbb{Z}$?`,
+          fr: R`Comment calculer dans $\mathbb{Z}/n\mathbb{Z}$ ?`,
+          ar: R`كيف نحسب في $\mathbb{Z}/n\mathbb{Z}$؟`,
+        },
+        body: {
+          en: 'Compatibility of congruences with + and ×, and a worked example.',
+          fr: 'Compatibilité des congruences avec + et ×, et un exemple détaillé.',
+          ar: 'توافق الموافقات مع الجمع والضرب، ومثال محلول.',
+        },
+      },
+    ],
+  },
+  {
+    slug: 'fourier-series',
+    icon: Waves,
+    accent: 'accent-amber',
+    title: {
+      en: 'Fourier Series',
+      fr: 'Séries de Fourier',
+      ar: 'متسلسلات فورييه',
+    },
+    intro: {
+      en: 'Decomposing a periodic function into a sum of sines and cosines.',
+      fr: 'Décomposer une fonction périodique en une somme de sinus et de cosinus.',
+      ar: 'تفكيك دالة دورية إلى مجموع من الجيوب وجيوب التمام.',
+    },
+    about: {
+      en: 'Any reasonable periodic signal can be written as a sum of sines and cosines of increasing frequencies. Fourier series give the recipe: the coefficients measure how much of each frequency the signal contains. They are used in vibration analysis, acoustics, signal processing and to solve the heat equation.',
+      fr: 'Tout signal périodique raisonnable peut s’écrire comme une somme de sinus et de cosinus de fréquences croissantes. Les séries de Fourier en donnent la recette : les coefficients mesurent la part de chaque fréquence dans le signal. On les utilise en analyse vibratoire, en acoustique, en traitement du signal et pour résoudre l’équation de la chaleur.',
+      ar: 'يمكن كتابة كل إشارة دورية معقولة كمجموع من الجيوب وجيوب التمام بترددات متزايدة. وتعطي متسلسلات فورييه الوصفة: فالمعاملات تقيس حصة كل تردد في الإشارة. وتُستعمل في تحليل الاهتزازات والصوتيات ومعالجة الإشارة ولحلّ معادلة الحرارة.',
+    },
+    methods: [
+      {
+        slug: 'fourier-coefficients',
+        icon: AudioWaveform,
+        title: {
+          en: 'How to find the Fourier coefficients of a periodic function?',
+          fr: 'Comment déterminer les coefficients de Fourier d’une fonction périodique ?',
+          ar: 'كيف نحدّد معاملات فورييه لدالة دورية؟',
+        },
+        body: {
+          en: 'Definitions of aₙ, bₙ and cₙ, using parity, and a worked example on a square wave.',
+          fr: 'Définitions de aₙ, bₙ et cₙ, utilisation de la parité et un exemple détaillé sur un signal créneau.',
+          ar: 'تعريف المعاملات aₙ و bₙ و cₙ، واستعمال الزوجية، ومثال محلول على إشارة مربّعة.',
+        },
+      },
+    ],
+  },
+  {
+    slug: 'laplace-transform',
+    icon: ArrowDownUp,
+    accent: 'accent-emerald',
+    title: {
+      en: 'Laplace Transform',
+      fr: 'Transformée de Laplace',
+      ar: 'تحويل لابلاس',
+    },
+    intro: {
+      en: 'Turning differential equations into algebraic equations.',
+      fr: 'Transformer des équations différentielles en équations algébriques.',
+      ar: 'تحويل المعادلات التفاضلية إلى معادلات جبرية.',
+    },
+    about: {
+      en: 'The Laplace transform moves a problem into a world where differentiating becomes multiplying. Linear differential equations then become algebraic equations, with the initial conditions built in. It is the everyday tool of control engineering, electrical circuits and vibration analysis, and it is used to design boundary conditions in blood flow simulations.',
+      fr: 'La transformée de Laplace fait passer un problème dans un monde où dériver devient multiplier. Les équations différentielles linéaires deviennent alors des équations algébriques, avec les conditions initiales intégrées d’emblée. C’est l’outil quotidien de l’automatique, des circuits électriques et de l’analyse vibratoire, et elle sert à concevoir des conditions aux limites en simulation sanguine.',
+      ar: 'ينقل تحويل لابلاس المسألة إلى عالم يصبح فيه الاشتقاق ضربًا، فتتحوّل المعادلات التفاضلية الخطية إلى معادلات جبرية مع إدماج الشروط الابتدائية منذ البداية. إنه الأداة اليومية في علم التحكّم والدارات الكهربائية وتحليل الاهتزازات، ويُستعمل لتصميم الشروط الحدّية في محاكاة جريان الدم.',
+    },
+    methods: [
+      {
+        slug: 'solving-linear-odes',
+        icon: SquareFunction,
+        title: {
+          en: 'How to solve a linear differential equation using the Laplace transform?',
+          fr: 'Comment résoudre une équation différentielle linéaire en utilisant la transformée de Laplace ?',
+          ar: 'كيف نحلّ معادلة تفاضلية خطية باستعمال تحويل لابلاس؟',
+        },
+        body: {
+          en: 'Every step explained: definition, where the derivative formulas come from, usual transforms, the method and a fully detailed example.',
+          fr: 'Chaque étape expliquée : définition, origine des formules des dérivées, transformées usuelles, méthode et exemple entièrement détaillé.',
+          ar: 'كل خطوة مشروحة: التعريف، ومصدر صيغ المشتقات، والتحويلات المعتادة، والطريقة، ومثال مفصّل بالكامل.',
+        },
+      },
+    ],
+  },
+];
+
+const pick = (field, language) => field[language] ?? field.en;
+
+// Chapter grid, laid out like the Mechanics page
 const MathematicsPage = ({ language = 'en' }) => {
-  const t = translations[language] || translations.en;
+  const t = ui[language] || ui.en;
 
   return (
     <div className="page-header">
@@ -77,82 +203,68 @@ const MathematicsPage = ({ language = 'en' }) => {
         <h1 className="gradient-text">{t.title}</h1>
         <p className="hero-subtitle" style={{ marginBottom: 0 }}>{t.subtitle}</p>
       </div>
+      <div className="container page-content" style={{ marginTop: '4rem' }}>
+        <div className="grid-cards">
+          {mathChapters.map(({ slug, icon: Icon, accent, title, intro, methods }) => (
+            <div key={slug} className={`glass-card research-card ${accent}`}>
+              <div className="card-icon"><Icon size={24} /></div>
+              <h3>{pick(title, language)}</h3>
+              <p>{pick(intro, language)}</p>
+              <p className="chapter-count"><BookOpen size={14} /> {t.count(methods.length)}</p>
+              <Link to={`/mathematics/${slug}`} className="read-more">
+                {t.explore} <ArrowRight size={16} />
+              </Link>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// One chapter: introduction and its method sheets
+export const MathChapterPage = ({ language = 'en' }) => {
+  const { chapter: chapterSlug } = useParams();
+  const chapter = mathChapters.find((c) => c.slug === chapterSlug);
+  if (!chapter) return <Navigate to="/mathematics" replace />;
+
+  const t = ui[language] || ui.en;
+  const { icon: Icon, accent } = chapter;
+
+  return (
+    <div className="page-header">
+      <div className="container">
+        <h1 className="gradient-text">{pick(chapter.title, language)}</h1>
+        <p className="hero-subtitle" style={{ marginBottom: 0 }}>{pick(chapter.intro, language)}</p>
+      </div>
       <div className="container page-content" style={{ marginTop: '4rem', textAlign: 'start' }}>
-        <section className="topic-section">
-          <div className="topic-heading">
-            <div className="card-icon accent-violet" style={{ marginBottom: 0 }}><Sigma size={24} /></div>
-            <h2>{t.multivarTitle}</h2>
-          </div>
-          <p className="topic-intro">{t.multivarIntro}</p>
+        <Link to="/mathematics" className="read-more back-nav">
+          <ArrowLeft size={16} /> {t.back}
+        </Link>
 
-          <div className="grid-cards grid-fill">
-            <div className="glass-card research-card accent-violet">
-              <div className="card-icon"><Grid3x3 size={24} /></div>
-              <h3><MathText text={t.jacobianTitle} /></h3>
-              <p>{t.jacobianBody}</p>
-              <Link to="/mathematics/multivariable-functions/jacobian-matrix" className="read-more">
+        <div className="glass-panel" style={{ padding: '3rem', marginBottom: '3rem' }}>
+          <h2 style={{ marginBottom: '1.5rem', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+            <span className={`card-icon ${accent}`} style={{ marginBottom: 0 }}><Icon size={24} /></span> {t.about}
+          </h2>
+          <p style={{ fontSize: '1.1rem', lineHeight: '1.7', color: 'var(--text-secondary)' }}>
+            {pick(chapter.about, language)}
+          </p>
+        </div>
+
+        <h2 style={{ marginBottom: '0.5rem' }}><span className="gradient-text">{t.methodsPrefix}</span> {t.methodsSuffix}</h2>
+        <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem' }}>{t.methodsIntro}</p>
+        <div className="grid-cards grid-fill">
+          {chapter.methods.map(({ slug, icon: MethodIcon, title, body }) => (
+            <div key={slug} className={`glass-card research-card ${accent}`}>
+              <div className="card-icon"><MethodIcon size={24} /></div>
+              <h3><MathText text={pick(title, language)} /></h3>
+              <p>{pick(body, language)}</p>
+              <Link to={`/mathematics/${chapter.slug}/${slug}`} className="read-more">
                 {t.cta} <ArrowRight size={16} />
               </Link>
             </div>
-          </div>
-        </section>
-
-        <section className="topic-section">
-          <div className="topic-heading">
-            <div className="card-icon accent-sky" style={{ marginBottom: 0 }}><Shapes size={24} /></div>
-            <h2>{t.algebraTitle}</h2>
-          </div>
-          <p className="topic-intro">{t.algebraIntro}</p>
-
-          <div className="grid-cards grid-fill">
-            <div className="glass-card research-card accent-sky">
-              <div className="card-icon"><Hash size={24} /></div>
-              <h3><MathText text={t.znzTitle} /></h3>
-              <p>{t.znzBody}</p>
-              <Link to="/mathematics/algebraic-structures/computing-in-z-nz" className="read-more">
-                {t.cta} <ArrowRight size={16} />
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        <section className="topic-section">
-          <div className="topic-heading">
-            <div className="card-icon accent-amber" style={{ marginBottom: 0 }}><Waves size={24} /></div>
-            <h2>{t.fourierTitle}</h2>
-          </div>
-          <p className="topic-intro">{t.fourierIntro}</p>
-
-          <div className="grid-cards grid-fill">
-            <div className="glass-card research-card accent-amber">
-              <div className="card-icon"><AudioWaveform size={24} /></div>
-              <h3>{t.coefTitle}</h3>
-              <p>{t.coefBody}</p>
-              <Link to="/mathematics/fourier-series/fourier-coefficients" className="read-more">
-                {t.cta} <ArrowRight size={16} />
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        <section className="topic-section">
-          <div className="topic-heading">
-            <div className="card-icon accent-emerald" style={{ marginBottom: 0 }}><ArrowDownUp size={24} /></div>
-            <h2>{t.laplaceTitle}</h2>
-          </div>
-          <p className="topic-intro">{t.laplaceIntro}</p>
-
-          <div className="grid-cards grid-fill">
-            <div className="glass-card research-card accent-emerald">
-              <div className="card-icon"><SquareFunction size={24} /></div>
-              <h3>{t.odeTitle}</h3>
-              <p>{t.odeBody}</p>
-              <Link to="/mathematics/laplace-transform/solving-linear-odes" className="read-more">
-                {t.cta} <ArrowRight size={16} />
-              </Link>
-            </div>
-          </div>
-        </section>
+          ))}
+        </div>
       </div>
     </div>
   );

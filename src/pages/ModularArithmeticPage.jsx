@@ -24,7 +24,7 @@ const translations = {
   en: {
     title: R`How to compute in $\mathbb{Z}/n\mathbb{Z}$?`,
     subtitle: 'Algebraic Structures',
-    back: 'Back to Mathematics',
+    back: 'Back to the chapter',
     tag: 'Method',
     methodHeading: 'The method',
     method: R`To compute in $\mathbb{Z}/n\mathbb{Z}$, with $n \in \mathbb{N}^*$, we use the fact that congruence modulo $n$ is compatible with the operations $+$ and $\times$.`,
@@ -41,7 +41,7 @@ const translations = {
   fr: {
     title: R`Comment calculer dans $\mathbb{Z}/n\mathbb{Z}$ ?`,
     subtitle: 'Structures algébriques',
-    back: 'Retour aux mathématiques',
+    back: 'Retour au chapitre',
     tag: 'Méthode',
     methodHeading: 'La méthode',
     method: R`Pour calculer dans $\mathbb{Z}/n\mathbb{Z}$ avec $n \in \mathbb{N}^*$, on utilise les relations de compatibilité de la congruence modulo $n$ avec les lois $+$ et $\times$.`,
@@ -58,7 +58,7 @@ const translations = {
   ar: {
     title: R`كيف نحسب في $\mathbb{Z}/n\mathbb{Z}$؟`,
     subtitle: 'البنيات الجبرية',
-    back: 'العودة إلى الرياضيات',
+    back: 'العودة إلى الفصل',
     tag: 'طريقة',
     methodHeading: 'الطريقة',
     method: R`للحساب في $\mathbb{Z}/n\mathbb{Z}$، حيث $n \in \mathbb{N}^*$، نستعمل توافق الموافقة بترديد $n$ مع القانونين $+$ و $\times$.`,
@@ -85,7 +85,7 @@ const ModularArithmeticPage = ({ language = 'en' }) => {
       </div>
 
       <div className="container page-content" style={{ marginTop: '4rem', textAlign: 'start' }}>
-        <Link to="/mathematics" className="read-more back-nav">
+        <Link to="/mathematics/algebraic-structures" className="read-more back-nav">
           <ArrowLeft size={16} /> {t.back}
         </Link>
 

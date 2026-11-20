@@ -1853,3 +1853,14 @@ footer::before {
 .wk-tip { fill: #fff; stroke: #e2e8f0; }
 .wk-tip-text { fill: var(--text-secondary); font-size: 12px; }
 .wk-tip-value { fill: var(--text-primary); font-size: 13px; font-weight: 700; }
+
+/* Number of method sheets on a mathematics chapter card */
+.chapter-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.85rem !important;
+  font-weight: 600;
+  color: var(--card-accent, var(--text-secondary)) !important;
+  margin-top: -0.5rem;
+}

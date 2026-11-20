@@ -7,7 +7,7 @@ import SphericalDeviatoricPartsPage from '@/pages/SphericalDeviatoricPartsPage';
 import AnalysisOfDeformationPage from '@/pages/AnalysisOfDeformationPage';
 import AnalyticalMechanicsPage from '@/pages/AnalyticalMechanicsPage';
 import VirtualWorkApplicationPage from '@/pages/VirtualWorkApplicationPage';
-import MathematicsPage from '@/pages/MathematicsPage';
+import MathematicsPage, { MathChapterPage } from '@/pages/MathematicsPage';
 import JacobianMatrixPage from '@/pages/JacobianMatrixPage';
 import ModularArithmeticPage from '@/pages/ModularArithmeticPage';
 import FourierCoefficientsPage from '@/pages/FourierCoefficientsPage';
@@ -676,6 +676,7 @@ function App() {
           <Route path="/biomechanics/cfd" element={<CfdPage t={t} />} />
           <Route path="/biomechanics/cfd/windkessel-boundary-conditions" element={<Navigate to="/blog/windkessel-boundary-conditions" replace />} />
           <Route path="/mathematics" element={<MathematicsPage language={language} />} />
+          <Route path="/mathematics/:chapter" element={<MathChapterPage language={language} />} />
           <Route path="/mathematics/multivariable-functions/jacobian-matrix" element={<JacobianMatrixPage language={language} />} />
           <Route path="/mathematics/algebraic-structures/computing-in-z-nz" element={<ModularArithmeticPage language={language} />} />
           <Route path="/mathematics/fourier-series/fourier-coefficients" element={<FourierCoefficientsPage language={language} />} />
