@@ -90,6 +90,7 @@ const translations = {
       verifiedDiploma: 'Blockchain Verified Diploma',
       journey: {
         founderTitle: 'Founder & Researcher',
+        founderPeriod: '2025 – present',
         founderBody: 'Research and scientific software publishing.',
         educationMinistry: 'French Ministry of National Education',
         teacherTitle: 'Mathematics Teacher',
@@ -187,6 +188,7 @@ const translations = {
       verifiedDiploma: 'Diplôme vérifié par blockchain',
       journey: {
         founderTitle: 'Fondateur & chercheur',
+        founderPeriod: '2025 – aujourd’hui',
         founderBody: 'Recherche et édition de logiciels scientifiques.',
         educationMinistry: "Ministère de l’Éducation Nationale",
         teacherTitle: 'Professeur de mathématiques',
@@ -284,6 +286,7 @@ const translations = {
       verifiedDiploma: 'شهادة موثّقة بتقنية سلسلة الكتل',
       journey: {
         founderTitle: 'مؤسس وباحث',
+        founderPeriod: 'منذ 2025 حتى اليوم',
         founderBody: 'البحث ونشر البرمجيات العلمية.',
         teacherTitle: 'مدرّس رياضيات',
         teacherBody: 'درّست في المرحلتين الإعدادية والثانوية، وشاركت في لجنة تحكيم الامتحان الشفهي للبكالوريا الفرنسية.',
@@ -463,7 +466,7 @@ const Home = ({ t }) => {
         <div className="timeline">
           <div className="timeline-item left">
             <div className="glass-card timeline-content">
-              <div className="timeline-date">2025</div>
+              <div className="timeline-date">{t.home.journey.founderPeriod}</div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '0.5rem' }}>
                 <div style={{ width: '64px', height: '64px', borderRadius: '12px', overflow: 'hidden', flexShrink: 0, boxShadow: '0 2px 8px rgba(0,0,0,0.2)' }}>
                   <img src="/pepro.jpg" alt="Pepro" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
