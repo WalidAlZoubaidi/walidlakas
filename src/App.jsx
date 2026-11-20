@@ -76,8 +76,8 @@ const translations = {
       ],
     },
     home: {
-      subtitle: 'Research Engineer in Fluid Mechanics & Energy',
-      description: 'My website aims to share my work and serve as an information resource for engineers and higher education students. My interests are varied, but they revolve around applied mathematics and fluid/solid mechanics. I am particularly interested in computational fluid dynamics (CFD).',
+      subtitle: 'Research Engineer in Computational Fluid Dynamics (CFD)',
+      description: 'I specialise in computational fluid dynamics applied to health: blood flow, medical devices and physiological models. On this site, I share documented and validated OpenFOAM simulations, articles, and the mathematical and mechanical foundations behind them. Have a simulation project, or want to collaborate? Get in touch.',
       location: 'Based in Paris, France',
       photoAlt: 'The Eiffel Tower in Paris under a blue sky',
       contact: 'Get in touch',
@@ -174,8 +174,8 @@ const translations = {
       ],
     },
     home: {
-      subtitle: 'Ingénieur de recherche en mécanique des fluides & énergie',
-      description: "Mon site a pour objectif de partager mes travaux et d'être une ressource d'informations pour un ingénieur ou un étudiant du supérieur. Mes centres d'intérêts sont variés mais tournent autour des mathématiques appliquées et de la mécanique des fluides/solides. Je m’intéresse particulièrement à la mécanique des fluides numérique (CFD).",
+      subtitle: 'Ingénieur de recherche en mécanique des fluides numérique (CFD)',
+      description: 'Je me spécialise dans la simulation numérique des écoulements (CFD) appliquée à la santé : écoulements sanguins, dispositifs médicaux et modèles physiologiques. Je partage ici des simulations OpenFOAM documentées et validées, des articles, ainsi que les bases mathématiques et mécaniques qui les sous-tendent. Un projet de simulation ou une envie de collaborer ? Contactez-moi.',
       location: 'Basé à Paris, France',
       photoAlt: 'La tour Eiffel à Paris sous un ciel bleu',
       contact: 'Me contacter',
@@ -272,8 +272,8 @@ const translations = {
       ],
     },
     home: {
-      subtitle: 'مهندس باحث في ميكانيكا الموائع والطاقة',
-      description: 'أهدف من خلال هذا الموقع إلى مشاركة أعمالي وتقديم مصادر معرفية للمهندسين وطلاب التعليم العالي. تتنوع اهتماماتي وتدور حول الرياضيات التطبيقية وميكانيكا الموائع والمواد الصلبة. وأهتم خصوصًا بديناميكا الموائع الحسابية (CFD).',
+      subtitle: 'مهندس باحث في ديناميكا الموائع الحسابية (CFD)',
+      description: 'أتخصّص في المحاكاة العددية للجريان (CFD) في المجال الصحي: جريان الدم، والأجهزة الطبية، والنماذج الفيزيولوجية. أشارك في هذا الموقع محاكاةً موثّقة ومُتحقَّقًا منها ببرنامج OpenFOAM، ومقالات، إلى جانب الأسس الرياضية والميكانيكية التي تقوم عليها. هل لديك مشروع محاكاة أو ترغب في التعاون؟ تواصل معي.',
       location: 'مقيم في باريس، فرنسا',
       photoAlt: 'برج إيفل في باريس تحت سماء زرقاء',
       contact: 'تواصل معي',

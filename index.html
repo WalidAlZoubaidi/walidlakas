@@ -2,6 +2,23 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <script>
+      (function () {
+        var supported = ['en', 'fr', 'ar'];
+        var lang = null;
+        try { lang = localStorage.getItem('language'); } catch (e) {}
+        if (supported.indexOf(lang) < 0) {
+          var prefs = navigator.languages || [navigator.language || ''];
+          for (var i = 0; i < prefs.length && !lang; i++) {
+            var code = (prefs[i] || '').slice(0, 2).toLowerCase();
+            if (supported.indexOf(code) >= 0) lang = code;
+          }
+        }
+        if (supported.indexOf(lang) < 0) lang = 'en';
+        document.documentElement.lang = lang;
+        document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+      })();
+    </script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Walid Lakas · CFD &amp; santé</title>
