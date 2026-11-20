@@ -73,7 +73,6 @@ const translations = {
     title: 'Windkessel boundary conditions in blood flow CFD',
     subtitle: 'CFD · Biomechanics',
     back: 'Back to CFD',
-    draft: 'First draft',
     tag: 'Article',
     why: 'Why?',
     intro: 'When simulating blood flow in an artery, we can only mesh a small part of the vascular network. What should be imposed at the outlets? Windkessel models answer this question by summarising the whole downstream network in a few parameters. They are also a perfect application of the Laplace transform.',
@@ -180,7 +179,6 @@ const translations = {
     title: 'Conditions aux limites de Windkessel en CFD sanguine',
     subtitle: 'CFD · Biomécanique',
     back: 'Retour à la CFD',
-    draft: 'Premier jet',
     tag: 'Article',
     why: 'Pourquoi ?',
     intro: 'Quand on simule l’écoulement du sang dans une artère, on ne peut mailler qu’une petite partie du réseau vasculaire. Que faut-il imposer aux sorties ? Les modèles de Windkessel répondent à cette question en résumant tout le réseau en aval en quelques paramètres. C’est aussi une application parfaite de la transformée de Laplace.',
@@ -287,7 +285,6 @@ const translations = {
     title: 'شروط ويندكسل الحدّية في المحاكاة العددية لجريان الدم',
     subtitle: 'ديناميكا الموائع الحسابية · الميكانيكا الحيوية',
     back: 'العودة إلى CFD',
-    draft: 'مسودّة أولى',
     tag: 'مقال',
     why: 'لماذا؟',
     intro: 'حين نحاكي جريان الدم في شريان، لا يمكننا أن نُشبّك إلا جزءًا صغيرًا من الشبكة الوعائية. فماذا نفرض عند المخارج؟ تجيب نماذج ويندكسل عن هذا السؤال بتلخيص الشبكة الواقعة بعد المخرج كلها في بضعة وسائط. وهي أيضًا تطبيق مثالي لتحويل لابلاس.',
@@ -563,7 +560,6 @@ const WindkesselArticle = ({ language = 'en' }) => {
   return (
       <div className="post-rich">
         <article className="glass-panel math-article">
-          <p className="article-tag"><span className="soon-badge">{t.draft}</span></p>
           <p>{t.intro}</p>
 
           <h2><Scissors size={22} /> {t.problemHeading}</h2>
