@@ -14,7 +14,7 @@ const M = {
     \qquad Q_{\max} = \frac{\pi\, V_s}{2\, T_s} = 366\ \text{mL/s}`,
   impedance: R`Z(p) = R_p + \frac{R_d}{1 + R_d C\, p}`,
   sizing: R`R_{\text{tot}} = \frac{\bar P}{\bar Q}, \qquad R_i = \frac{R_{\text{tot}}}{f_i}, \qquad R_p = 0.06\, R_i, \quad R_d = 0.94\, R_i, \qquad C_i = f_i\, C_{\text{tot}}`,
-  reynolds: R`Re = \frac{\rho\, U D}{\mu} \approx \frac{1060 \times 0.77 \times 0.025}{3.5 \times 10^{-3}} \approx 5\,700`,
+  reynolds: R`U = \frac{4\, Q_{\max}}{\pi D^2} \approx 0.75\ \text{m/s}, \qquad Re = \frac{\rho\, U D}{\mu} \approx \frac{1060 \times 0.75 \times 0.025}{3.5 \times 10^{-3}} \approx 5\,700`,
   tau: R`\tau = R_d\, C \approx 1.4\ \text{s}`,
 };
 
