@@ -142,8 +142,8 @@ const translations = {
       R`$P^{n+1}$ is imposed as a uniform pressure on the outlet.`,
     ],
     coupling2: 'Implicit Euler on the capacitor gives:',
-    openfoamHeading: 'A first version for OpenFOAM',
-    openfoam1: R`OpenFOAM does not provide a Windkessel condition in its standard distribution (to my knowledge). Here is a first sketch with a codedFixedValue condition on the pressure field p, for an incompressible solver (pimpleFoam). It is a draft to adapt and test, not a validated condition:`,
+    openfoamHeading: 'An implementation for OpenFOAM',
+    openfoam1: R`OpenFOAM does not provide a Windkessel condition in its standard distribution (to my knowledge). Here is a codedFixedValue condition on the pressure field p, for an incompressible solver (pimpleFoam). I tested it with OpenFOAM 14 on the idealised aortic arch shown at the top of this article (354,000 cells, two heartbeats): it compiles, runs in parallel and gives 126/77 mmHg with the expected flow split (70 % descending aorta, 15 % brachiocephalic trunk, 7.5 % to each of the other two branches). It has only been tested on this case:`,
     openfoamNotes: [
       R`incompressible solvers work with the kinematic pressure $p/\rho$, hence the division by $\rho$, and phi is a volumetric flux in m³/s;`,
       'the condition is evaluated several times per time step inside the PIMPLE loops: the state is recomputed each time from the value of the previous time step (PcOld), which makes the coupling semi-implicit;',
@@ -248,8 +248,8 @@ const translations = {
       R`on impose $P^{n+1}$ comme pression uniforme sur la sortie.`,
     ],
     coupling2: 'Le schéma d’Euler implicite sur le condensateur donne :',
-    openfoamHeading: 'Une première version pour OpenFOAM',
-    openfoam1: R`À ma connaissance, OpenFOAM ne fournit pas de condition de Windkessel dans sa distribution standard. Voici une première ébauche avec une condition codedFixedValue sur le champ de pression p, pour un solveur incompressible (pimpleFoam). C’est un premier jet à adapter et à tester, pas une condition validée :`,
+    openfoamHeading: 'Une implémentation pour OpenFOAM',
+    openfoam1: R`À ma connaissance, OpenFOAM ne fournit pas de condition de Windkessel dans sa distribution standard. Voici une condition codedFixedValue sur le champ de pression p, pour un solveur incompressible (pimpleFoam). Je l’ai testée avec OpenFOAM 14 sur la crosse aortique idéalisée de l’image en tête d’article (354 000 cellules, deux battements) : elle compile, tourne en parallèle et donne 126/77 mmHg avec la répartition de débit attendue (70 % vers l’aorte descendante, 15 % vers le tronc brachiocéphalique, 7,5 % vers chacune des deux autres branches). Elle n’a été testée que sur ce cas :`,
     openfoamNotes: [
       R`les solveurs incompressibles travaillent avec la pression cinématique $p/\rho$, d’où la division par $\rho$, et phi est un flux volumique en m³/s ;`,
       'la condition est évaluée plusieurs fois par pas de temps dans les boucles PIMPLE : l’état est recalculé à chaque fois à partir de la valeur du pas précédent (PcOld), ce qui rend le couplage semi-implicite ;',
@@ -354,8 +354,8 @@ const translations = {
       R`نفرض $P^{n+1}$ ضغطًا منتظمًا على المخرج.`,
     ],
     coupling2: 'يعطي مخطط أويلر الضمني على المكثّف:',
-    openfoamHeading: 'نسخة أولى لبرنامج OpenFOAM',
-    openfoam1: R`على حدّ علمي، لا يوفّر OpenFOAM شرط ويندكسل في توزيعته القياسية. هذه مسودّة أولى بشرط codedFixedValue على حقل الضغط p، لحالة جريان غير قابل للانضغاط (pimpleFoam). إنها مسودّة ينبغي تكييفها واختبارها، وليست شرطًا مُتحقَّقًا منه:`,
+    openfoamHeading: 'تطبيق في برنامج OpenFOAM',
+    openfoam1: R`على حدّ علمي، لا يوفّر OpenFOAM شرط ويندكسل في توزيعته القياسية. هذا شرط codedFixedValue على حقل الضغط p، لحالة جريان غير قابل للانضغاط (pimpleFoam). اختبرتها بـ OpenFOAM 14 على القوس الأبهري المثالي الظاهر في صورة أعلى المقال (354 ألف خلية، نبضتان): فهي تُترجَم وتعمل بالتوازي وتعطي 126/77 ملم زئبق مع توزيع الصبيب المنتظر (70 % نحو الأبهر النازل، و15 % نحو الجذع العضدي الرأسي، و7.5 % نحو كل من الفرعين الآخرين). ولم تُختبر إلا على هذه الحالة:`,
     openfoamNotes: [
       R`تعمل برامج الجريان غير القابل للانضغاط بالضغط الحركي $p/\rho$، ومن هنا القسمة على $\rho$، و phi تدفق حجمي بوحدة m³/s؛`,
       'يُقيَّم الشرط عدة مرات في كل خطوة زمنية داخل حلقات PIMPLE: تُعاد الحالة في كل مرة انطلاقًا من قيمة الخطوة السابقة (PcOld)، مما يجعل الربط شبه ضمني؛',

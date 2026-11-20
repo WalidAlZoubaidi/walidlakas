@@ -160,7 +160,7 @@ const windkessel = {
   slug: 'windkessel-boundary-conditions',
   date: '2026-11-20',
   readingTime: 15,
-  cover: '/blog/windkessel-cover.svg',
+  cover: '/blog/windkessel-aorta-cfd.webp',
   component: WindkesselArticle,
   category: {
     fr: 'CFD · Biomécanique',
@@ -173,19 +173,19 @@ const windkessel = {
     ar: 'شروط ويندكسل الحدّية في المحاكاة العددية لجريان الدم',
   },
   excerpt: {
-    fr: 'Que faut-il imposer aux sorties d’une simulation d’aorte ? Modèles RC et RCR, transformée de Laplace, simulateur interactif et première implémentation OpenFOAM.',
-    en: 'What should be imposed at the outlets of an aorta simulation? RC and RCR models, the Laplace transform, an interactive simulator and a first OpenFOAM implementation.',
-    ar: 'ماذا نفرض عند مخارج محاكاة الأبهر؟ نموذجا RC و RCR، وتحويل لابلاس، ومحاكٍ تفاعلي، ونسخة أولى لبرنامج OpenFOAM.',
+    fr: 'Que faut-il imposer aux sorties d’une simulation d’aorte ? Modèles RC et RCR, transformée de Laplace, simulateur interactif et implémentation OpenFOAM testée sur une crosse aortique.',
+    en: 'What should be imposed at the outlets of an aorta simulation? RC and RCR models, the Laplace transform, an interactive simulator and an OpenFOAM implementation tested on an aortic arch.',
+    ar: 'ماذا نفرض عند مخارج محاكاة الأبهر؟ نموذجا RC و RCR، وتحويل لابلاس، ومحاكٍ تفاعلي، وتطبيق في OpenFOAM مُختبَر على قوس أبهري.',
   },
   coverAlt: {
-    fr: 'Courbe de pression aortique sur deux battements, au-dessus du circuit électrique équivalent RCR.',
-    en: 'Aortic pressure curve over two heartbeats, above the equivalent RCR electrical circuit.',
-    ar: 'منحنى ضغط الأبهر خلال نبضتين، فوق الدارة الكهربائية المكافئة RCR.',
+    fr: 'Lignes de courant colorées par la vitesse dans une crosse aortique idéalisée avec ses trois branches, au pic de systole.',
+    en: 'Streamlines coloured by velocity in an idealised aortic arch with its three branches, at peak systole.',
+    ar: 'خطوط التيار ملوّنة حسب السرعة في قوس أبهري مثالي بفروعه الثلاثة، عند ذروة الانقباض.',
   },
   coverCaption: {
-    fr: 'Pression aortique calculée par le modèle RCR de l’article, et le circuit équivalent.',
-    en: 'Aortic pressure computed with the RCR model of the article, and the equivalent circuit.',
-    ar: 'ضغط الأبهر المحسوب بنموذج RCR الوارد في المقال، والدارة المكافئة.',
+    fr: 'Simulation OpenFOAM d’une crosse aortique idéalisée au pic de systole, avec les conditions de Windkessel RCR de cet article aux quatre sorties. Couleur : norme de la vitesse.',
+    en: 'OpenFOAM simulation of an idealised aortic arch at peak systole, with the RCR Windkessel conditions of this article at the four outlets. Colour: velocity magnitude.',
+    ar: 'محاكاة بـ OpenFOAM لقوس أبهري مثالي عند ذروة الانقباض، مع شروط ويندكسل RCR الواردة في هذا المقال عند المخارج الأربعة. اللون: مقدار السرعة.',
   },
 };
 
