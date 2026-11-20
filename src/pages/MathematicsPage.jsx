@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Sigma, Grid3x3, Shapes, Hash, Waves, AudioWaveform } from 'lucide-react';
+import { ArrowRight, Sigma, Grid3x3, Shapes, Hash, Waves, AudioWaveform, ArrowDownUp, SquareFunction } from 'lucide-react';
 import { MathText } from '@/components/MathText';
 
 const translations = {
@@ -11,6 +11,10 @@ const translations = {
     jacobianTitle: String.raw`How to find the Jacobian matrix of a function from $\mathbb{R}^n$ to $\mathbb{R}^p$?`,
     jacobianBody: 'Definition, a 4-step method, the chain rule, a worked example and exercises.',
     cta: 'Read the method',
+    laplaceTitle: 'Laplace Transform',
+    laplaceIntro: 'Turning differential equations into algebraic equations.',
+    odeTitle: 'How to solve a linear differential equation using the Laplace transform?',
+    odeBody: 'The principle, a 4-step method, a table of usual transforms and a worked example.',
     fourierTitle: 'Fourier Series',
     fourierIntro: 'Decomposing a periodic function into a sum of sines and cosines.',
     coefTitle: 'How to find the Fourier coefficients of a periodic function?',
@@ -28,6 +32,10 @@ const translations = {
     jacobianTitle: String.raw`Comment déterminer la matrice jacobienne d’une fonction de $\mathbb{R}^n$ dans $\mathbb{R}^p$ ?`,
     jacobianBody: 'Définition, méthode en 4 étapes, règle de la chaîne, exemple détaillé et exercices.',
     cta: 'Lire la méthode',
+    laplaceTitle: 'Transformée de Laplace',
+    laplaceIntro: 'Transformer des équations différentielles en équations algébriques.',
+    odeTitle: 'Comment résoudre une équation différentielle linéaire en utilisant la transformée de Laplace ?',
+    odeBody: 'Le principe, une méthode en 4 étapes, une table des transformées usuelles et un exemple détaillé.',
     fourierTitle: 'Séries de Fourier',
     fourierIntro: 'Décomposer une fonction périodique en une somme de sinus et de cosinus.',
     coefTitle: 'Comment déterminer les coefficients de Fourier d’une fonction périodique ?',
@@ -45,6 +53,10 @@ const translations = {
     jacobianTitle: String.raw`كيف نحدّد المصفوفة اليعقوبية لدالة من $\mathbb{R}^n$ إلى $\mathbb{R}^p$؟`,
     jacobianBody: 'التعريف، وطريقة من أربع خطوات، وقاعدة السلسلة، ومثال محلول، وتمارين.',
     cta: 'اقرأ الطريقة',
+    laplaceTitle: 'تحويل لابلاس',
+    laplaceIntro: 'تحويل المعادلات التفاضلية إلى معادلات جبرية.',
+    odeTitle: 'كيف نحلّ معادلة تفاضلية خطية باستعمال تحويل لابلاس؟',
+    odeBody: 'المبدأ، وطريقة من أربع خطوات، وجدول التحويلات المعتادة، ومثال محلول.',
     fourierTitle: 'متسلسلات فورييه',
     fourierIntro: 'تفكيك دالة دورية إلى مجموع من الجيوب وجيوب التمام.',
     coefTitle: 'كيف نحدّد معاملات فورييه لدالة دورية؟',
@@ -117,6 +129,25 @@ const MathematicsPage = ({ language = 'en' }) => {
               <h3>{t.coefTitle}</h3>
               <p>{t.coefBody}</p>
               <Link to="/mathematics/fourier-series/fourier-coefficients" className="read-more">
+                {t.cta} <ArrowRight size={16} />
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        <section className="topic-section">
+          <div className="topic-heading">
+            <div className="card-icon accent-emerald" style={{ marginBottom: 0 }}><ArrowDownUp size={24} /></div>
+            <h2>{t.laplaceTitle}</h2>
+          </div>
+          <p className="topic-intro">{t.laplaceIntro}</p>
+
+          <div className="grid-cards grid-fill">
+            <div className="glass-card research-card accent-emerald">
+              <div className="card-icon"><SquareFunction size={24} /></div>
+              <h3>{t.odeTitle}</h3>
+              <p>{t.odeBody}</p>
+              <Link to="/mathematics/laplace-transform/solving-linear-odes" className="read-more">
                 {t.cta} <ArrowRight size={16} />
               </Link>
             </div>
