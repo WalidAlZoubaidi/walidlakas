@@ -77,7 +77,7 @@ const translations = {
     },
     home: {
       subtitle: 'Research Engineer in Computational Fluid Dynamics (CFD)',
-      description: 'I specialise in computational fluid dynamics applied to health: blood flow, medical devices and physiological models. On this site, I share documented and validated simulations, from geometry design in SolidWorks to computation with OpenFOAM and Ansys Fluent, as well as articles and the mathematical and mechanical foundations behind them. Have a simulation project, or want to collaborate? Get in touch.',
+      description: 'I simulate fluid flows numerically (CFD), from geometry design in SolidWorks to computation with OpenFOAM and Ansys Fluent. On this site, I share documented simulations, articles, and the mathematical and mechanical foundations behind them. Have a simulation project, or want to collaborate? Get in touch.',
       location: 'Based in Paris, France',
       photoAlt: 'The Eiffel Tower in Paris under a blue sky',
       contact: 'Get in touch',
@@ -175,7 +175,7 @@ const translations = {
     },
     home: {
       subtitle: 'Ingénieur de recherche en mécanique des fluides numérique (CFD)',
-      description: 'Je me spécialise dans la simulation numérique des écoulements (CFD) appliquée à la santé : écoulements sanguins, dispositifs médicaux et modèles physiologiques. Je partage ici des simulations documentées et validées, de la conception de la géométrie sous SolidWorks au calcul avec OpenFOAM et Ansys Fluent, ainsi que des articles et les bases mathématiques et mécaniques qui les sous-tendent. Un projet de simulation ou une envie de collaborer ? Contactez-moi.',
+      description: 'Je réalise des simulations numériques d’écoulements (CFD), de la conception de la géométrie sous SolidWorks au calcul avec OpenFOAM et Ansys Fluent. Je partage ici des simulations documentées, des articles, ainsi que les bases mathématiques et mécaniques qui les sous-tendent. Un projet de simulation ou une envie de collaborer ? Contactez-moi.',
       location: 'Basé à Paris, France',
       photoAlt: 'La tour Eiffel à Paris sous un ciel bleu',
       contact: 'Me contacter',
@@ -273,7 +273,7 @@ const translations = {
     },
     home: {
       subtitle: 'مهندس باحث في ديناميكا الموائع الحسابية (CFD)',
-      description: 'أتخصّص في المحاكاة العددية للجريان (CFD) في المجال الصحي: جريان الدم، والأجهزة الطبية، والنماذج الفيزيولوجية. أشارك في هذا الموقع محاكاةً موثّقة ومُتحقَّقًا منها، من تصميم الشكل الهندسي ببرنامج SolidWorks إلى الحساب ببرنامجَي OpenFOAM و Ansys Fluent، إلى جانب مقالات والأسس الرياضية والميكانيكية التي تقوم عليها. هل لديك مشروع محاكاة أو ترغب في التعاون؟ تواصل معي.',
+      description: 'أُنجز محاكاة عددية للجريان (CFD)، من تصميم الشكل الهندسي ببرنامج SolidWorks إلى الحساب ببرنامجَي OpenFOAM و Ansys Fluent. أشارك في هذا الموقع محاكاةً موثّقة ومقالات، إلى جانب الأسس الرياضية والميكانيكية التي تقوم عليها. هل لديك مشروع محاكاة أو ترغب في التعاون؟ تواصل معي.',
       location: 'مقيم في باريس، فرنسا',
       photoAlt: 'برج إيفل في باريس تحت سماء زرقاء',
       contact: 'تواصل معي',
@@ -587,9 +587,9 @@ const Home = ({ t }) => {
 
 // Browser tab title in each language
 const PAGE_TITLES = {
-  en: 'Walid Lakas · CFD & health',
-  fr: 'Walid Lakas · CFD & santé',
-  ar: 'Walid Lakas · CFD والصحة',
+  en: 'Walid Lakas · CFD Engineer',
+  fr: 'Walid Lakas · Ingénieur CFD',
+  ar: 'Walid Lakas · مهندس CFD',
 };
 
 function App() {
