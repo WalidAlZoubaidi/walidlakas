@@ -586,12 +586,24 @@ const Home = ({ t }) => {
   );
 };
 
+// Browser tab title in each language
+const PAGE_TITLES = {
+  en: 'Walid Lakas · CFD & health',
+  fr: 'Walid Lakas · CFD & santé',
+  ar: 'Walid Lakas · CFD والصحة',
+};
+
 function App() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [language, setLanguage] = useState(() => {
     const savedLanguage = localStorage.getItem('language');
-    return Object.hasOwn(translations, savedLanguage) ? savedLanguage : 'en';
+    if (Object.hasOwn(translations, savedLanguage)) return savedLanguage;
+    // First visit: follow the browser's preferred language when we support it
+    const preferred = (navigator.languages || [navigator.language])
+      .map((tag) => tag?.slice(0, 2).toLowerCase())
+      .find((code) => Object.hasOwn(translations, code));
+    return preferred || 'en';
   });
   const location = useLocation();
   const t = translations[language];
@@ -599,6 +611,7 @@ function App() {
   useEffect(() => {
     document.documentElement.lang = language;
     document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
+    document.title = PAGE_TITLES[language] ?? PAGE_TITLES.en;
     localStorage.setItem('language', language);
   }, [language]);
 
