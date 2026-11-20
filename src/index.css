@@ -1744,3 +1744,52 @@ footer::before {
   font-size: 0.9rem;
   margin-top: 0.5rem;
 }
+
+/* "Why?" explanation boxes */
+.why-box {
+  background: #e0f2fe;
+  border-inline-start-color: var(--c-sky);
+  margin: 1.25rem 0;
+}
+.why-box svg { color: var(--c-sky); }
+
+/* Method flow diagram (e.g. Laplace transform) */
+.method-flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1.75rem 0;
+}
+.method-flow-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.method-flow-box {
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  border: 2px solid var(--c-emerald);
+  background: #ecfdf5;
+  font-weight: 600;
+  text-align: center;
+  max-width: 11rem;
+}
+.method-flow-box.is-result {
+  background: var(--c-emerald);
+  color: #fff;
+}
+.method-flow-arrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  line-height: 1;
+}
+:root[dir="rtl"] .method-flow-arrow svg { transform: scaleX(-1); }
+@media (max-width: 640px) {
+  .method-flow, .method-flow-item { flex-direction: column; }
+  .method-flow-arrow svg, :root[dir="rtl"] .method-flow-arrow svg { transform: rotate(90deg); }
+}
