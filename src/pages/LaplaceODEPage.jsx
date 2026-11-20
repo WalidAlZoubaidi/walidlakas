@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowLeft, ArrowRight, BookOpen, Lightbulb, ListChecks, Table2, CheckCircle2, CircleHelp, Compass, Sigma, Repeat, Puzzle } from 'lucide-react';
+import { ArrowLeft, ArrowRight, BookOpen, Lightbulb, ListChecks, Table2, CheckCircle2, CircleHelp, Compass, Sigma, Repeat, Puzzle, HeartPulse } from 'lucide-react';
 import { MathText, BlockMath } from '@/components/MathText';
 
 const R = String.raw;
@@ -159,6 +159,9 @@ const translations = {
     check1: 'We differentiate twice (product rule):',
     check2: R`Plugging into the equation, the $x^3$ and $x^2$ terms cancel:`,
     check3: 'And the initial conditions are satisfied:',
+    appHeading: 'An application: blood flow simulation',
+    appBody: 'In blood flow CFD, the vascular network downstream of the simulated arteries is replaced by an electrical-like circuit (Windkessel model). Its impedance is computed with the Laplace transform, exactly as on this page.',
+    appLink: 'Read the Windkessel article',
   },
   fr: {
     title: 'Comment résoudre une équation différentielle linéaire en utilisant la transformée de Laplace ?',
@@ -241,6 +244,9 @@ const translations = {
     check1: 'On dérive deux fois (dérivée d’un produit) :',
     check2: R`En remplaçant dans l’équation, les termes en $x^3$ et en $x^2$ se simplifient :`,
     check3: 'Et les conditions initiales sont bien vérifiées :',
+    appHeading: 'Une application : la simulation de l’écoulement sanguin',
+    appBody: 'En CFD sanguine, le réseau vasculaire situé en aval des artères simulées est remplacé par un circuit de type électrique (modèle de Windkessel). Son impédance se calcule avec la transformée de Laplace, exactement comme sur cette page.',
+    appLink: 'Lire l’article sur le Windkessel',
   },
   ar: {
     title: 'كيف نحلّ معادلة تفاضلية خطية باستعمال تحويل لابلاس؟',
@@ -323,6 +329,9 @@ const translations = {
     check1: 'نشتق مرتين (مشتقة جداء):',
     check2: R`بالتعويض في المعادلة، تتلاشى الحدود التي فيها $x^3$ و $x^2$:`,
     check3: 'والشرطان الابتدائيان محقَّقان:',
+    appHeading: 'تطبيق: محاكاة جريان الدم',
+    appBody: 'في المحاكاة العددية لجريان الدم، تُستبدل الشبكة الوعائية الواقعة بعد الشرايين المحاكاة بدارة شبيهة بالدارة الكهربائية (نموذج ويندكسل)، وتُحسب ممانعتها بتحويل لابلاس تمامًا كما في هذه الصفحة.',
+    appLink: 'اقرأ مقال ويندكسل',
   },
 };
 
@@ -498,6 +507,14 @@ const LaplaceODEPage = ({ language = 'en' }) => {
           <BlockMath math={M.exCheckSum} />
           <p>{t.check3}</p>
           <BlockMath math={M.exCheckInit} />
+        </article>
+
+        <article className="glass-panel math-article">
+          <h2><HeartPulse size={22} /> {t.appHeading}</h2>
+          <p>{t.appBody}</p>
+          <Link to="/biomechanics/cfd/windkessel-boundary-conditions" className="read-more">
+            {t.appLink} <ArrowRight size={16} />
+          </Link>
         </article>
       </div>
     </div>
