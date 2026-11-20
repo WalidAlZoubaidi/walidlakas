@@ -1,5 +1,5 @@
-import { Routes, Route, Link, useLocation } from 'react-router-dom';
-import { Mail, MapPin, ArrowRight, ArrowLeft, Wind, Clock, ExternalLink, Droplets, FunctionSquare, Building2, Atom, Layers, Box, Wrench, Menu, X, HeartPulse } from 'lucide-react';
+import { Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
+import { Mail, MapPin, ArrowRight, ArrowLeft, Wind, Clock, ExternalLink, Droplets, FunctionSquare, Building2, Atom, Layers, Box, Wrench, Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import LiquidEther from '@/components/LiquidEther';
 import BasicsMMCPage from '@/pages/BasicsMMCPage';
@@ -12,7 +12,6 @@ import JacobianMatrixPage from '@/pages/JacobianMatrixPage';
 import ModularArithmeticPage from '@/pages/ModularArithmeticPage';
 import FourierCoefficientsPage from '@/pages/FourierCoefficientsPage';
 import LaplaceODEPage from '@/pages/LaplaceODEPage';
-import WindkesselPage from '@/pages/WindkesselPage';
 import { BlogPage, BlogPostPage } from '@/pages/BlogPage';
 
 const LinkedinIcon = ({ size = 24, color = "currentColor" }) => (
@@ -53,12 +52,6 @@ const translations = {
       heading: 'Content on its way',
       body: 'Articles and tutorials on computational fluid dynamics are being prepared: governing equations, meshing, turbulence models, and step-by-step OpenFOAM cases. Check back soon!',
       back: 'Back to Biomechanics',
-      articlesHeading: 'Articles',
-      windkesselTitle: 'Windkessel boundary conditions in blood flow CFD',
-      windkesselBody: 'How to model the downstream vascular network at the outlets: RC and RCR models, the Laplace transform, an interactive simulator and a first OpenFOAM implementation.',
-      read: 'Read the article',
-      draft: 'First draft',
-      moreSoon: 'More articles and OpenFOAM tutorials are on their way.',
     },
     mechanics: {
       title: 'Mechanics',
@@ -156,12 +149,6 @@ const translations = {
       heading: 'Du contenu arrive bientôt',
       body: 'Des articles et tutoriels sur la mécanique des fluides numérique sont en préparation : équations de conservation, maillage, modèles de turbulence et cas OpenFOAM pas à pas. Revenez bientôt !',
       back: 'Retour à la biomécanique',
-      articlesHeading: 'Articles',
-      windkesselTitle: 'Conditions aux limites de Windkessel en CFD sanguine',
-      windkesselBody: 'Comment modéliser le réseau vasculaire en aval aux sorties : modèles RC et RCR, transformée de Laplace, simulateur interactif et première implémentation OpenFOAM.',
-      read: 'Lire l’article',
-      draft: 'Premier jet',
-      moreSoon: 'D’autres articles et tutoriels OpenFOAM arrivent bientôt.',
     },
     mechanics: {
       title: 'Mécanique',
@@ -259,12 +246,6 @@ const translations = {
       heading: 'المحتوى في الطريق',
       body: 'يجري إعداد مقالات ودروس حول ديناميكا الموائع الحسابية: معادلات الحفظ، وإنشاء الشبكات، ونماذج الاضطراب، وحالات OpenFOAM خطوة بخطوة. عُد قريبًا!',
       back: 'العودة إلى الميكانيكا الحيوية',
-      articlesHeading: 'مقالات',
-      windkesselTitle: 'شروط ويندكسل الحدّية في المحاكاة العددية لجريان الدم',
-      windkesselBody: 'كيف نمذج الشبكة الوعائية اللاحقة عند المخارج: نموذجا RC و RCR، وتحويل لابلاس، ومحاكٍ تفاعلي، ونسخة أولى لبرنامج OpenFOAM.',
-      read: 'اقرأ المقال',
-      draft: 'مسودّة أولى',
-      moreSoon: 'مقالات ودروس OpenFOAM أخرى في الطريق.',
     },
     mechanics: {
       title: 'الميكانيكا',
@@ -374,7 +355,7 @@ const BiomechanicsPage = ({ t }) => (
       <div className="grid-cards grid-fill">
         <div className="glass-card research-card accent-sky">
           <div className="card-icon"><Wind size={24} /></div>
-          <h3>{t.biomechanicsPage.cfdTitle}</h3>
+          <h3>{t.biomechanicsPage.cfdTitle} <span className="soon-badge">{t.cfd.badge}</span></h3>
           <p>{t.biomechanicsPage.cfdBody}</p>
           <Link to="/biomechanics/cfd" className="read-more">{t.biomechanicsPage.explore} <ArrowRight size={16}/></Link>
         </div>
@@ -389,23 +370,14 @@ const CfdPage = ({ t }) => (
       <h1 className="gradient-text">{t.cfd.title}</h1>
       <p className="hero-subtitle" style={{marginBottom: 0}}>{t.cfd.subtitle}</p>
     </div>
-    <div className="container page-content" style={{marginTop: '4rem', textAlign: 'start'}}>
-      <Link to="/biomechanics" className="read-more back-nav"><ArrowLeft size={16}/> {t.cfd.back}</Link>
-      <section className="topic-section">
-        <div className="topic-heading">
-          <div className="card-icon accent-rose" style={{ marginBottom: 0 }}><HeartPulse size={24} /></div>
-          <h2>{t.cfd.articlesHeading}</h2>
-        </div>
-        <div className="grid-cards grid-fill">
-          <div className="glass-card research-card accent-rose">
-            <div className="card-icon"><HeartPulse size={24} /></div>
-            <h3>{t.cfd.windkesselTitle} <span className="soon-badge">{t.cfd.draft}</span></h3>
-            <p>{t.cfd.windkesselBody}</p>
-            <Link to="/biomechanics/cfd/windkessel-boundary-conditions" className="read-more">{t.cfd.read} <ArrowRight size={16}/></Link>
-          </div>
-        </div>
-        <p className="topic-intro" style={{ marginTop: '2rem' }}><Clock size={16} style={{ verticalAlign: 'middle' }} /> {t.cfd.moreSoon}</p>
-      </section>
+    <div className="container page-content" style={{marginTop: '4rem'}}>
+      <div className="glass-panel empty-state">
+        <Clock size={64} />
+        <span className="soon-badge">{t.cfd.badge}</span>
+        <h2>{t.cfd.heading}</h2>
+        <p>{t.cfd.body}</p>
+        <Link to="/biomechanics" className="read-more back-link"><ArrowLeft size={16}/> {t.cfd.back}</Link>
+      </div>
     </div>
   </div>
 );
@@ -702,7 +674,7 @@ function App() {
           <Route path="/" element={<Home t={t} />} />
           <Route path="/biomechanics" element={<BiomechanicsPage t={t} />} />
           <Route path="/biomechanics/cfd" element={<CfdPage t={t} />} />
-          <Route path="/biomechanics/cfd/windkessel-boundary-conditions" element={<WindkesselPage language={language} />} />
+          <Route path="/biomechanics/cfd/windkessel-boundary-conditions" element={<Navigate to="/blog/windkessel-boundary-conditions" replace />} />
           <Route path="/mathematics" element={<MathematicsPage language={language} />} />
           <Route path="/mathematics/multivariable-functions/jacobian-matrix" element={<JacobianMatrixPage language={language} />} />
           <Route path="/mathematics/algebraic-structures/computing-in-z-nz" element={<ModularArithmeticPage language={language} />} />

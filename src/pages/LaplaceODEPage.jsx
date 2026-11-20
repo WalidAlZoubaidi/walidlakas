@@ -512,7 +512,7 @@ const LaplaceODEPage = ({ language = 'en' }) => {
         <article className="glass-panel math-article">
           <h2><HeartPulse size={22} /> {t.appHeading}</h2>
           <p>{t.appBody}</p>
-          <Link to="/biomechanics/cfd/windkessel-boundary-conditions" className="read-more">
+          <Link to="/blog/windkessel-boundary-conditions" className="read-more">
             {t.appLink} <ArrowRight size={16} />
           </Link>
         </article>

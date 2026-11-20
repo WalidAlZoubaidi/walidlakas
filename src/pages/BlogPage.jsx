@@ -119,16 +119,22 @@ export const BlogPostPage = ({ language = 'en' }) => {
           <figcaption>{pick(post.coverCaption)}</figcaption>
         </figure>
 
-        <article className="post-body">
-          {pick(post.body).map((block, i) => <Block key={i} text={block} />)}
-        </article>
+        {post.component ? (
+          <post.component language={language} />
+        ) : (
+          <article className="post-body">
+            {pick(post.body).map((block, i) => <Block key={i} text={block} />)}
+          </article>
+        )}
 
-        <p className="post-original">
-          {t.original}{' '}
-          <a href={post.originalUrl} target="_blank" rel="noopener noreferrer">
-            <bdi>Pepro</bdi> <ExternalLink size={14} />
-          </a>
-        </p>
+        {post.originalUrl && (
+          <p className="post-original">
+            {t.original}{' '}
+            <a href={post.originalUrl} target="_blank" rel="noopener noreferrer">
+              <bdi>Pepro</bdi> <ExternalLink size={14} />
+            </a>
+          </p>
+        )}
 
         <Link to="/blog" className="read-more back-nav"><ArrowLeft size={16} /> {t.back}</Link>
       </div>

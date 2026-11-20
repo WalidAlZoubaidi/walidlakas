@@ -2,6 +2,10 @@
 //   "## Title"  -> section heading
 //   "### Title" -> sub-heading
 //   anything else -> paragraph; inline links use [text](url)
+// A post can instead provide `component`: a React component that renders the
+// whole body (for articles with formulas, tables, code or interactive parts).
+
+import WindkesselArticle from '@/content/WindkesselArticle';
 
 const navierStokes = {
   slug: 'ai-navier-stokes',
@@ -152,6 +156,39 @@ const navierStokes = {
   },
 };
 
-export const blogPosts = [navierStokes];
+const windkessel = {
+  slug: 'windkessel-boundary-conditions',
+  date: '2026-11-20',
+  readingTime: 15,
+  cover: '/blog/windkessel-cover.svg',
+  component: WindkesselArticle,
+  category: {
+    fr: 'CFD · Biomécanique',
+    en: 'CFD · Biomechanics',
+    ar: 'ديناميكا الموائع الحسابية · الميكانيكا الحيوية',
+  },
+  title: {
+    fr: 'Conditions aux limites de Windkessel en CFD sanguine',
+    en: 'Windkessel boundary conditions in blood flow CFD',
+    ar: 'شروط ويندكسل الحدّية في المحاكاة العددية لجريان الدم',
+  },
+  excerpt: {
+    fr: 'Que faut-il imposer aux sorties d’une simulation d’aorte ? Modèles RC et RCR, transformée de Laplace, simulateur interactif et première implémentation OpenFOAM.',
+    en: 'What should be imposed at the outlets of an aorta simulation? RC and RCR models, the Laplace transform, an interactive simulator and a first OpenFOAM implementation.',
+    ar: 'ماذا نفرض عند مخارج محاكاة الأبهر؟ نموذجا RC و RCR، وتحويل لابلاس، ومحاكٍ تفاعلي، ونسخة أولى لبرنامج OpenFOAM.',
+  },
+  coverAlt: {
+    fr: 'Courbe de pression aortique sur deux battements, au-dessus du circuit électrique équivalent RCR.',
+    en: 'Aortic pressure curve over two heartbeats, above the equivalent RCR electrical circuit.',
+    ar: 'منحنى ضغط الأبهر خلال نبضتين، فوق الدارة الكهربائية المكافئة RCR.',
+  },
+  coverCaption: {
+    fr: 'Pression aortique calculée par le modèle RCR de l’article, et le circuit équivalent.',
+    en: 'Aortic pressure computed with the RCR model of the article, and the equivalent circuit.',
+    ar: 'ضغط الأبهر المحسوب بنموذج RCR الوارد في المقال، والدارة المكافئة.',
+  },
+};
+
+export const blogPosts = [windkessel, navierStokes];
 
 export const findPost = (slug) => blogPosts.find((p) => p.slug === slug);

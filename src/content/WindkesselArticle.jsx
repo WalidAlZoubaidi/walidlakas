@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, ArrowRight, BookOpen, Lightbulb, CircleHelp, Scissors, Zap, Activity, SlidersHorizontal, Code2, Ruler, TriangleAlert, Cpu } from 'lucide-react';
+import { ArrowRight, Lightbulb, CircleHelp, Scissors, Zap, Activity, SlidersHorizontal, Code2, Ruler, TriangleAlert, Cpu } from 'lucide-react';
 import { MathText, BlockMath } from '@/components/MathText';
 
 const R = String.raw;
@@ -556,23 +556,14 @@ const Why = ({ label, text }) => (
   </div>
 );
 
-const WindkesselPage = ({ language = 'en' }) => {
+// Body of the blog post: the blog page renders the title, byline and cover
+const WindkesselArticle = ({ language = 'en' }) => {
   const t = translations[language] || translations.en;
 
   return (
-    <div className="page-header">
-      <div className="container">
-        <h1 className="gradient-text page-title-math">{t.title}</h1>
-        <p className="hero-subtitle" style={{ marginBottom: 0 }}>{t.subtitle}</p>
-      </div>
-
-      <div className="container page-content" style={{ marginTop: '4rem', textAlign: 'start' }}>
-        <Link to="/biomechanics/cfd" className="read-more back-nav">
-          <ArrowLeft size={16} /> {t.back}
-        </Link>
-
+      <div className="post-rich">
         <article className="glass-panel math-article">
-          <p className="article-tag"><BookOpen size={18} /> {t.tag} <span className="soon-badge">{t.draft}</span></p>
+          <p className="article-tag"><span className="soon-badge">{t.draft}</span></p>
           <p>{t.intro}</p>
 
           <h2><Scissors size={22} /> {t.problemHeading}</h2>
@@ -680,8 +671,7 @@ const WindkesselPage = ({ language = 'en' }) => {
           </ul>
         </article>
       </div>
-    </div>
   );
 };
 
-export default WindkesselPage;
+export default WindkesselArticle;
