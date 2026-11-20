@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Sigma, Grid3x3 } from 'lucide-react';
+import { ArrowRight, Sigma, Grid3x3, Shapes, Hash } from 'lucide-react';
 import { MathText } from '@/components/MathText';
 
 const translations = {
@@ -11,6 +11,10 @@ const translations = {
     jacobianTitle: String.raw`How to find the Jacobian matrix of a function from $\mathbb{R}^n$ to $\mathbb{R}^p$?`,
     jacobianBody: 'Definition, a 4-step method, the chain rule, a worked example and exercises.',
     cta: 'Read the method',
+    algebraTitle: 'Algebraic Structures',
+    algebraIntro: 'Groups, rings and fields: congruences and computing in quotient rings.',
+    znzTitle: String.raw`How to compute in $\mathbb{Z}/n\mathbb{Z}$?`,
+    znzBody: 'Compatibility of congruences with + and ×, and a worked example.',
   },
   fr: {
     title: 'Mathématiques',
@@ -20,6 +24,10 @@ const translations = {
     jacobianTitle: String.raw`Comment déterminer la matrice jacobienne d’une fonction de $\mathbb{R}^n$ dans $\mathbb{R}^p$ ?`,
     jacobianBody: 'Définition, méthode en 4 étapes, règle de la chaîne, exemple détaillé et exercices.',
     cta: 'Lire la méthode',
+    algebraTitle: 'Structures algébriques',
+    algebraIntro: 'Groupes, anneaux et corps : congruences et calculs dans les anneaux quotients.',
+    znzTitle: String.raw`Comment calculer dans $\mathbb{Z}/n\mathbb{Z}$ ?`,
+    znzBody: 'Compatibilité des congruences avec + et ×, et un exemple détaillé.',
   },
   ar: {
     title: 'الرياضيات',
@@ -29,6 +37,10 @@ const translations = {
     jacobianTitle: String.raw`كيف نحدّد المصفوفة اليعقوبية لدالة من $\mathbb{R}^n$ إلى $\mathbb{R}^p$؟`,
     jacobianBody: 'التعريف، وطريقة من أربع خطوات، وقاعدة السلسلة، ومثال محلول، وتمارين.',
     cta: 'اقرأ الطريقة',
+    algebraTitle: 'البنيات الجبرية',
+    algebraIntro: 'الزمر والحلقات والحقول: الموافقات والحساب في حلقات الخارج.',
+    znzTitle: String.raw`كيف نحسب في $\mathbb{Z}/n\mathbb{Z}$؟`,
+    znzBody: 'توافق الموافقات مع الجمع والضرب، ومثال محلول.',
   },
 };
 
@@ -55,6 +67,25 @@ const MathematicsPage = ({ language = 'en' }) => {
               <h3><MathText text={t.jacobianTitle} /></h3>
               <p>{t.jacobianBody}</p>
               <Link to="/mathematics/multivariable-functions/jacobian-matrix" className="read-more">
+                {t.cta} <ArrowRight size={16} />
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        <section className="topic-section">
+          <div className="topic-heading">
+            <div className="card-icon accent-sky" style={{ marginBottom: 0 }}><Shapes size={24} /></div>
+            <h2>{t.algebraTitle}</h2>
+          </div>
+          <p className="topic-intro">{t.algebraIntro}</p>
+
+          <div className="grid-cards grid-fill">
+            <div className="glass-card research-card accent-sky">
+              <div className="card-icon"><Hash size={24} /></div>
+              <h3><MathText text={t.znzTitle} /></h3>
+              <p>{t.znzBody}</p>
+              <Link to="/mathematics/algebraic-structures/computing-in-z-nz" className="read-more">
                 {t.cta} <ArrowRight size={16} />
               </Link>
             </div>
