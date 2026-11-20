@@ -10,6 +10,7 @@ import VirtualWorkApplicationPage from '@/pages/VirtualWorkApplicationPage';
 import MathematicsPage from '@/pages/MathematicsPage';
 import JacobianMatrixPage from '@/pages/JacobianMatrixPage';
 import ModularArithmeticPage from '@/pages/ModularArithmeticPage';
+import FourierCoefficientsPage from '@/pages/FourierCoefficientsPage';
 import { BlogPage, BlogPostPage } from '@/pages/BlogPage';
 
 const LinkedinIcon = ({ size = 24, color = "currentColor" }) => (
@@ -675,6 +676,7 @@ function App() {
           <Route path="/mathematics" element={<MathematicsPage language={language} />} />
           <Route path="/mathematics/multivariable-functions/jacobian-matrix" element={<JacobianMatrixPage language={language} />} />
           <Route path="/mathematics/algebraic-structures/computing-in-z-nz" element={<ModularArithmeticPage language={language} />} />
+          <Route path="/mathematics/fourier-series/fourier-coefficients" element={<FourierCoefficientsPage language={language} />} />
           <Route path="/mechanics" element={<MechanicsPage t={t} />} />
           <Route path="/mechanics/structural-theory" element={<PageTemplate title={t.titles.structuralTheory} icon={Building2} t={t} />} />
           <Route path="/mechanics/basics-of-continuum-mechanics" element={<BasicsMMCPage language={language} />} />

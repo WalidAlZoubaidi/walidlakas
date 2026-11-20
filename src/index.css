@@ -1719,3 +1719,28 @@ footer::before {
     font-size: 1.15rem;
   }
 }
+
+/* Function graphs on math pages */
+.graph-figure {
+  margin: 1.5rem 0;
+  text-align: center;
+}
+.fourier-graph {
+  width: 100%;
+  max-width: 620px;
+  height: auto;
+}
+.fourier-graph .axis { stroke: var(--text-secondary); stroke-width: 1.5; }
+.fourier-graph .axis-head { fill: var(--text-secondary); }
+.fourier-graph .tick { fill: var(--text-secondary); font-size: 14px; font-family: inherit; }
+.fourier-graph .curve { stroke: var(--c-sky); stroke-width: 3; stroke-linecap: round; }
+.fourier-graph .dot-closed { fill: var(--c-sky); }
+.fourier-graph .dot-open { fill: var(--bg-color); stroke: var(--c-sky); stroke-width: 2; }
+.graph-figure figcaption {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
