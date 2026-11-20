@@ -25,7 +25,7 @@ const translations = {
   en: {
     nav: {
       home: 'Home',
-      biomechanics: 'Biomechanics',
+      biomechanics: 'Numerical Simulation',
       mathematics: 'Mathematics',
       mechanics: 'Mechanics',
       blog: 'Blog',
@@ -39,10 +39,10 @@ const translations = {
       body: 'This section is currently being updated with recent research and publications.',
     },
     biomechanicsPage: {
-      subtitle: 'Mechanics applied to living systems',
+      subtitle: 'Modelling and simulating physical phenomena',
       explore: 'Explore',
       cfdTitle: 'CFD',
-      cfdBody: 'Computational fluid dynamics: numerical methods, tools such as OpenFOAM, and applications to biological flows.',
+      cfdBody: 'Computational fluid dynamics: numerical methods, tools such as OpenFOAM and Ansys Fluent, and worked simulation cases.',
     },
     cfd: {
       title: 'CFD',
@@ -50,7 +50,7 @@ const translations = {
       badge: 'Coming soon',
       heading: 'Content on its way',
       body: 'Articles and tutorials on computational fluid dynamics are being prepared: governing equations, meshing, turbulence models, and step-by-step OpenFOAM cases. Check back soon!',
-      back: 'Back to Biomechanics',
+      back: 'Back to Numerical Simulation',
     },
     mechanics: {
       title: 'Mechanics',
@@ -103,7 +103,7 @@ const translations = {
       },
       domains: {
         explore: 'Explore research',
-        biomechanics: 'Applying mechanical principles to medical applications. Focusing on advanced simulation and modeling of biological systems and human physiology to drive healthcare innovations.',
+        biomechanics: 'From CAD geometry to results: numerical simulation of fluid flows (CFD) with OpenFOAM and Ansys Fluent, documented step by step.',
         mathematics: 'Developing robust mathematical models and computational methods to solve complex non-linear problems in engineering.',
         mechanics: 'Exploring Theory of Structures, Continuum Mechanics (MMC), and Analytical Mechanics.',
       },
@@ -113,7 +113,7 @@ const translations = {
       rights: 'All rights reserved.',
     },
     titles: {
-      biomechanics: 'Biomechanics',
+      biomechanics: 'Numerical Simulation',
       mathematics: 'Mathematics',
       structuralTheory: 'Theory of Structures',
       continuumMechanics: 'Continuum Mechanics (MMC)',
@@ -123,7 +123,7 @@ const translations = {
   fr: {
     nav: {
       home: 'Accueil',
-      biomechanics: 'Biomécanique',
+      biomechanics: 'Simulation numérique',
       mathematics: 'Mathématiques',
       mechanics: 'Mécanique',
       blog: 'Blog',
@@ -137,10 +137,10 @@ const translations = {
       body: 'Cette section est actuellement mise à jour avec des recherches et publications récentes.',
     },
     biomechanicsPage: {
-      subtitle: 'La mécanique appliquée au vivant',
+      subtitle: 'Modéliser et simuler les phénomènes physiques',
       explore: 'Explorer',
       cfdTitle: 'CFD',
-      cfdBody: 'Mécanique des fluides numérique : méthodes, outils comme OpenFOAM et applications aux écoulements biologiques.',
+      cfdBody: 'Mécanique des fluides numérique : méthodes, outils comme OpenFOAM et Ansys Fluent, et cas de simulation détaillés.',
     },
     cfd: {
       title: 'CFD',
@@ -148,7 +148,7 @@ const translations = {
       badge: 'Bientôt disponible',
       heading: 'Du contenu arrive bientôt',
       body: 'Des articles et tutoriels sur la mécanique des fluides numérique sont en préparation : équations de conservation, maillage, modèles de turbulence et cas OpenFOAM pas à pas. Revenez bientôt !',
-      back: 'Retour à la biomécanique',
+      back: 'Retour à la simulation numérique',
     },
     mechanics: {
       title: 'Mécanique',
@@ -201,7 +201,7 @@ const translations = {
       },
       domains: {
         explore: 'Explorer la recherche',
-        biomechanics: 'Application des principes mécaniques aux applications médicales, avec un focus sur la simulation avancée et la modélisation des systèmes biologiques et de la physiologie humaine.',
+        biomechanics: 'De la géométrie CAO aux résultats : simulation numérique des écoulements (CFD) avec OpenFOAM et Ansys Fluent, documentée pas à pas.',
         mathematics: 'Développement de modèles mathématiques robustes et de méthodes numériques pour résoudre des problèmes non linéaires complexes en ingénierie.',
         mechanics: 'Exploration de la théorie des structures, de la mécanique des milieux continus (MMC) et de la mécanique analytique.',
       },
@@ -211,7 +211,7 @@ const translations = {
       rights: 'Tous droits réservés.',
     },
     titles: {
-      biomechanics: 'Biomécanique',
+      biomechanics: 'Simulation numérique',
       mathematics: 'Mathématiques',
       structuralTheory: 'Théorie des structures',
       continuumMechanics: 'Mécanique des milieux continus (MMC)',
@@ -221,7 +221,7 @@ const translations = {
   ar: {
     nav: {
       home: 'الرئيسية',
-      biomechanics: 'الميكانيكا الحيوية',
+      biomechanics: 'المحاكاة العددية',
       mathematics: 'الرياضيات',
       mechanics: 'الميكانيكا',
       blog: 'المدونة',
@@ -235,10 +235,10 @@ const translations = {
       body: 'يجري تحديث هذا القسم لإضافة أحدث الأبحاث والمنشورات.',
     },
     biomechanicsPage: {
-      subtitle: 'الميكانيكا في خدمة الأنظمة الحية',
+      subtitle: 'نمذجة الظواهر الفيزيائية ومحاكاتها',
       explore: 'استكشف',
       cfdTitle: 'CFD',
-      cfdBody: 'ديناميكا الموائع الحسابية: الطرق العددية، وأدوات مثل OpenFOAM، وتطبيقاتها على التدفقات الحيوية.',
+      cfdBody: 'ديناميكا الموائع الحسابية: الطرق العددية، وأدوات مثل OpenFOAM و Ansys Fluent، وحالات محاكاة مفصّلة.',
     },
     cfd: {
       title: 'CFD',
@@ -246,7 +246,7 @@ const translations = {
       badge: 'قريبًا',
       heading: 'المحتوى في الطريق',
       body: 'يجري إعداد مقالات ودروس حول ديناميكا الموائع الحسابية: معادلات الحفظ، وإنشاء الشبكات، ونماذج الاضطراب، وحالات OpenFOAM خطوة بخطوة. عُد قريبًا!',
-      back: 'العودة إلى الميكانيكا الحيوية',
+      back: 'العودة إلى المحاكاة العددية',
     },
     mechanics: {
       title: 'الميكانيكا',
@@ -299,7 +299,7 @@ const translations = {
       },
       domains: {
         explore: 'استكشف الأبحاث',
-        biomechanics: 'تطبيق مبادئ الميكانيكا في الطب، مع التركيز على المحاكاة المتقدمة ونمذجة الأنظمة الحيوية ووظائف أعضاء الإنسان لتطوير الرعاية الصحية.',
+        biomechanics: 'من الشكل الهندسي إلى النتائج: المحاكاة العددية للجريان (CFD) ببرنامجَي OpenFOAM و Ansys Fluent، موثّقة خطوة بخطوة.',
         mathematics: 'تطوير نماذج رياضية متينة وطرق عددية لحل المسائل الهندسية المعقدة غير الخطية.',
         mechanics: 'دراسة نظرية المنشآت وميكانيكا الأوساط المتصلة والميكانيكا التحليلية.',
       },
@@ -309,7 +309,7 @@ const translations = {
       rights: 'جميع الحقوق محفوظة.',
     },
     titles: {
-      biomechanics: 'الميكانيكا الحيوية',
+      biomechanics: 'المحاكاة العددية',
       mathematics: 'الرياضيات',
       structuralTheory: 'نظرية المنشآت',
       continuumMechanics: 'ميكانيكا الأوساط المتصلة',
@@ -359,7 +359,7 @@ const BiomechanicsPage = ({ t }) => (
           <div className="card-icon"><Wind size={24} /></div>
           <h3>{t.biomechanicsPage.cfdTitle} <span className="soon-badge">{t.cfd.badge}</span></h3>
           <p>{t.biomechanicsPage.cfdBody}</p>
-          <Link to="/biomechanics/cfd" className="read-more">{t.biomechanicsPage.explore} <ArrowRight size={16}/></Link>
+          <Link to="/simulation/cfd" className="read-more">{t.biomechanicsPage.explore} <ArrowRight size={16}/></Link>
         </div>
       </div>
     </div>
@@ -378,7 +378,7 @@ const CfdPage = ({ t }) => (
         <span className="soon-badge">{t.cfd.badge}</span>
         <h2>{t.cfd.heading}</h2>
         <p>{t.cfd.body}</p>
-        <Link to="/biomechanics" className="read-more back-link"><ArrowLeft size={16}/> {t.cfd.back}</Link>
+        <Link to="/simulation" className="read-more back-link"><ArrowLeft size={16}/> {t.cfd.back}</Link>
       </div>
     </div>
   </div>
@@ -564,7 +564,7 @@ const Home = ({ t }) => {
             <div className="card-icon"><Droplets size={24} /></div>
             <h3>{t.nav.biomechanics}</h3>
             <p>{t.home.domains.biomechanics}</p>
-            <Link to="/biomechanics" className="read-more">{t.home.domains.explore} <ArrowRight size={16}/></Link>
+            <Link to="/simulation" className="read-more">{t.home.domains.explore} <ArrowRight size={16}/></Link>
           </div>
           <div className="glass-card research-card accent-violet">
             <div className="card-icon"><FunctionSquare size={24} /></div>
@@ -651,7 +651,7 @@ function App() {
           </Link>
           <ul className="nav-links">
             <li><Link to="/" className={`nav-link ${location.pathname === '/' ? 'active' : ''}`}>{t.nav.home}</Link></li>
-            <li><Link to="/biomechanics" className={`nav-link ${location.pathname.startsWith('/biomechanics') ? 'active' : ''}`}>{t.nav.biomechanics}</Link></li>
+            <li><Link to="/simulation" className={`nav-link ${location.pathname.startsWith('/simulation') ? 'active' : ''}`}>{t.nav.biomechanics}</Link></li>
             <li><Link to="/mathematics" className={`nav-link ${location.pathname.startsWith('/mathematics') ? 'active' : ''}`}>{t.nav.mathematics}</Link></li>
             <li><Link to="/mechanics" className={`nav-link ${location.pathname.startsWith('/mechanics') ? 'active' : ''}`}>{t.nav.mechanics}</Link></li>
             <li><Link to="/blog" className={`nav-link ${location.pathname.startsWith('/blog') ? 'active' : ''}`}>{t.nav.blog}</Link></li>
@@ -676,7 +676,7 @@ function App() {
             <div className="drawer-pill" />
             {languageSelect('mobile-language-toggle')}
             <Link to="/" className={`mobile-link ${location.pathname === '/' ? 'active' : ''}`} onClick={() => setMobileMenuOpen(false)}>{t.nav.home}</Link>
-            <Link to="/biomechanics" className={`mobile-link ${location.pathname.startsWith('/biomechanics') ? 'active' : ''}`} onClick={() => setMobileMenuOpen(false)}>{t.nav.biomechanics}</Link>
+            <Link to="/simulation" className={`mobile-link ${location.pathname.startsWith('/simulation') ? 'active' : ''}`} onClick={() => setMobileMenuOpen(false)}>{t.nav.biomechanics}</Link>
             <Link to="/mathematics" className={`mobile-link ${location.pathname.startsWith('/mathematics') ? 'active' : ''}`} onClick={() => setMobileMenuOpen(false)}>{t.nav.mathematics}</Link>
             <Link to="/mechanics" className={`mobile-link ${location.pathname.startsWith('/mechanics') ? 'active' : ''}`} onClick={() => setMobileMenuOpen(false)}>{t.nav.mechanics}</Link>
             <Link to="/blog" className={`mobile-link ${location.pathname.startsWith('/blog') ? 'active' : ''}`} onClick={() => setMobileMenuOpen(false)}>{t.nav.blog}</Link>
@@ -687,8 +687,10 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home t={t} />} />
-          <Route path="/biomechanics" element={<BiomechanicsPage t={t} />} />
-          <Route path="/biomechanics/cfd" element={<CfdPage t={t} />} />
+          <Route path="/simulation" element={<BiomechanicsPage t={t} />} />
+          <Route path="/biomechanics" element={<Navigate to="/simulation" replace />} />
+          <Route path="/simulation/cfd" element={<CfdPage t={t} />} />
+          <Route path="/biomechanics/cfd" element={<Navigate to="/simulation/cfd" replace />} />
           <Route path="/biomechanics/cfd/windkessel-boundary-conditions" element={<Navigate to="/blog/windkessel-boundary-conditions" replace />} />
           <Route path="/mathematics" element={<MathematicsPage language={language} />} />
           <Route path="/mathematics/:chapter" element={<MathChapterPage language={language} />} />

@@ -163,9 +163,9 @@ const windkessel = {
   cover: '/blog/windkessel-aorta-cfd.webp',
   component: WindkesselArticle,
   category: {
-    fr: 'CFD · Biomécanique',
-    en: 'CFD · Biomechanics',
-    ar: 'ديناميكا الموائع الحسابية · الميكانيكا الحيوية',
+    fr: 'CFD · Simulation numérique',
+    en: 'CFD · Numerical simulation',
+    ar: 'ديناميكا الموائع الحسابية · المحاكاة العددية',
   },
   title: {
     fr: 'Conditions aux limites de Windkessel en CFD sanguine',

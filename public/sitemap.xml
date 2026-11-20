@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://walidlakas.com/</loc></url>
-  <url><loc>https://walidlakas.com/biomechanics</loc></url>
-  <url><loc>https://walidlakas.com/biomechanics/cfd</loc></url>
+  <url><loc>https://walidlakas.com/simulation</loc></url>
+  <url><loc>https://walidlakas.com/simulation/cfd</loc></url>
   <url><loc>https://walidlakas.com/mathematics</loc></url>
   <url><loc>https://walidlakas.com/mathematics/multivariable-functions</loc></url>
   <url><loc>https://walidlakas.com/mathematics/multivariable-functions/jacobian-matrix</loc></url>

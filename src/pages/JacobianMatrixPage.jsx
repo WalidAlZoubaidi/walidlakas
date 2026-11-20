@@ -49,7 +49,7 @@ const APPS = [
   { icon: Navigation, accent: 'accent-sky', math: R`h(x) \approx h(\hat{x}) + J_h(\hat{x})\,(x - \hat{x})` },
   { icon: Brain, accent: 'accent-rose', math: R`\det J_\varphi(x) > 1 \;\Rightarrow\; dV > dV_0` },
   { icon: Bot, accent: 'accent-amber', math: R`\dot{X} = J(q)\,\dot{q}` },
-  { icon: Wind, accent: 'accent-sky', math: R`x_{k+1} = x_k - J_F(x_k)^{-1}\,F(x_k)`, to: '/biomechanics/cfd' },
+  { icon: Wind, accent: 'accent-sky', math: R`x_{k+1} = x_k - J_F(x_k)^{-1}\,F(x_k)`, to: '/simulation/cfd' },
   { icon: Layers, accent: 'accent-emerald', math: R`F = J_\varphi, \qquad \det F = \frac{dV}{dV_0}`, to: '/mechanics/basics-of-continuum-mechanics/analysis-of-deformation' },
 ];
 
