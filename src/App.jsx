@@ -115,7 +115,7 @@ const translations = {
       },
     },
     footer: {
-      role: 'Research Engineer in Fluid Mechanics & Energy',
+      role: 'Research Engineer in Computational Fluid Dynamics (CFD)',
       rights: 'All rights reserved.',
     },
     titles: {
@@ -218,7 +218,7 @@ const translations = {
       },
     },
     footer: {
-      role: 'Ingénieur de recherche en mécanique des fluides & énergie',
+      role: 'Ingénieur de recherche en mécanique des fluides numérique (CFD)',
       rights: 'Tous droits réservés.',
     },
     titles: {
@@ -321,7 +321,7 @@ const translations = {
       },
     },
     footer: {
-      role: 'مهندس باحث في ميكانيكا الموائع والطاقة',
+      role: 'مهندس باحث في ديناميكا الموائع الحسابية (CFD)',
       rights: 'جميع الحقوق محفوظة.',
     },
     titles: {
