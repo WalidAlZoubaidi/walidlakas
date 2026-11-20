@@ -1864,3 +1864,26 @@ footer::before {
   color: var(--card-accent, var(--text-secondary)) !important;
   margin-top: -0.5rem;
 }
+
+/* Simulation case studies */
+.case-cover { margin-bottom: 1.25rem; }
+.case-facts { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.25rem; }
+.case-fact {
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  background: #f1f5f9;
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.case-links { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 2.5rem; }
+.case-links .btn { display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; }
+.case-figure { width: 100%; height: auto; border-radius: 12px; border: 1px solid #e2e8f0; background: #fff; }
+.graph-figure figcaption { display: block; }
+.case-card-img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}

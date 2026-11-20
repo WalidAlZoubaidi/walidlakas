@@ -444,7 +444,7 @@ const niceTicks = (min, max, count = 4) => {
   return ticks;
 };
 
-const LineChart = ({ points, yKey, color, title, xLabel, unit, hover, setHover, yFloor }) => {
+export const LineChart = ({ points, yKey, color, title, xLabel, unit, hover, setHover, yFloor }) => {
   const tMax = points[points.length - 1].t;
   const ys = points.map((pt) => pt[yKey]);
   let yMin = yFloor ?? Math.min(...ys);

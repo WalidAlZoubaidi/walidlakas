@@ -11,6 +11,7 @@ import MathematicsPage, { MathChapterPage } from '@/pages/MathematicsPage';
 import JacobianMatrixPage from '@/pages/JacobianMatrixPage';
 import FourierCoefficientsPage from '@/pages/FourierCoefficientsPage';
 import LaplaceODEPage from '@/pages/LaplaceODEPage';
+import AorticArchCasePage from '@/pages/AorticArchCasePage';
 import { BlogPage, BlogPostPage } from '@/pages/BlogPage';
 
 const LinkedinIcon = ({ size = 24, color = "currentColor" }) => (
@@ -51,6 +52,11 @@ const translations = {
       heading: 'Content on its way',
       body: 'Articles and tutorials on computational fluid dynamics are being prepared: governing equations, meshing, turbulence models, and step-by-step OpenFOAM cases. Check back soon!',
       back: 'Back to Numerical Simulation',
+      casesHeading: 'Case studies',
+      aortaTitle: 'Pulsatile flow in an aortic arch with Windkessel outlets',
+      aortaBody: 'OpenFOAM 14, 354,000 cells, physiological inflow and RCR outlets: geometry, mesh, results and verification. Code on GitHub.',
+      read: 'Read the case study',
+      more: 'More OpenFOAM and Ansys Fluent case studies are on their way.',
     },
     mechanics: {
       title: 'Mechanics',
@@ -149,6 +155,11 @@ const translations = {
       heading: 'Du contenu arrive bientôt',
       body: 'Des articles et tutoriels sur la mécanique des fluides numérique sont en préparation : équations de conservation, maillage, modèles de turbulence et cas OpenFOAM pas à pas. Revenez bientôt !',
       back: 'Retour à la simulation numérique',
+      casesHeading: 'Études de cas',
+      aortaTitle: 'Écoulement pulsé dans une crosse aortique avec conditions de Windkessel',
+      aortaBody: 'OpenFOAM 14, 354 000 cellules, débit physiologique et sorties RCR : géométrie, maillage, résultats et vérification. Code sur GitHub.',
+      read: 'Lire l’étude de cas',
+      more: 'D’autres études de cas OpenFOAM et Ansys Fluent arrivent bientôt.',
     },
     mechanics: {
       title: 'Mécanique',
@@ -247,6 +258,11 @@ const translations = {
       heading: 'المحتوى في الطريق',
       body: 'يجري إعداد مقالات ودروس حول ديناميكا الموائع الحسابية: معادلات الحفظ، وإنشاء الشبكات، ونماذج الاضطراب، وحالات OpenFOAM خطوة بخطوة. عُد قريبًا!',
       back: 'العودة إلى المحاكاة العددية',
+      casesHeading: 'دراسات حالة',
+      aortaTitle: 'جريان نابض في قوس أبهري مع شروط ويندكسل عند المخارج',
+      aortaBody: 'OpenFOAM 14، 354 ألف خلية، صبيب فيزيولوجي ومخارج RCR: الشكل الهندسي والشبكة والنتائج والتحقق. الشيفرة على GitHub.',
+      read: 'اقرأ دراسة الحالة',
+      more: 'دراسات حالة أخرى بـ OpenFOAM و Ansys Fluent قريبًا.',
     },
     mechanics: {
       title: 'الميكانيكا',
@@ -357,7 +373,7 @@ const BiomechanicsPage = ({ t }) => (
       <div className="grid-cards grid-fill">
         <div className="glass-card research-card accent-sky">
           <div className="card-icon"><Wind size={24} /></div>
-          <h3>{t.biomechanicsPage.cfdTitle} <span className="soon-badge">{t.cfd.badge}</span></h3>
+          <h3>{t.biomechanicsPage.cfdTitle}</h3>
           <p>{t.biomechanicsPage.cfdBody}</p>
           <Link to="/simulation/cfd" className="read-more">{t.biomechanicsPage.explore} <ArrowRight size={16}/></Link>
         </div>
@@ -372,14 +388,18 @@ const CfdPage = ({ t }) => (
       <h1 className="gradient-text">{t.cfd.title}</h1>
       <p className="hero-subtitle" style={{marginBottom: 0}}>{t.cfd.subtitle}</p>
     </div>
-    <div className="container page-content" style={{marginTop: '4rem'}}>
-      <div className="glass-panel empty-state">
-        <Clock size={64} />
-        <span className="soon-badge">{t.cfd.badge}</span>
-        <h2>{t.cfd.heading}</h2>
-        <p>{t.cfd.body}</p>
-        <Link to="/simulation" className="read-more back-link"><ArrowLeft size={16}/> {t.cfd.back}</Link>
+    <div className="container page-content" style={{marginTop: '4rem', textAlign: 'start'}}>
+      <Link to="/simulation" className="read-more back-nav"><ArrowLeft size={16}/> {t.cfd.back}</Link>
+      <h2 style={{ marginBottom: '2rem' }}>{t.cfd.casesHeading}</h2>
+      <div className="grid-cards grid-fill">
+        <div className="glass-card research-card accent-rose case-card">
+          <img src="/blog/windkessel-aorta-cfd.webp" alt="" className="case-card-img" loading="lazy" />
+          <h3>{t.cfd.aortaTitle}</h3>
+          <p>{t.cfd.aortaBody}</p>
+          <Link to="/simulation/cfd/aortic-arch-windkessel" className="read-more">{t.cfd.read} <ArrowRight size={16}/></Link>
+        </div>
       </div>
+      <p className="topic-intro" style={{ marginTop: '2rem' }}><Clock size={16} style={{ verticalAlign: 'middle' }} /> {t.cfd.more}</p>
     </div>
   </div>
 );
@@ -690,6 +710,7 @@ function App() {
           <Route path="/simulation" element={<BiomechanicsPage t={t} />} />
           <Route path="/biomechanics" element={<Navigate to="/simulation" replace />} />
           <Route path="/simulation/cfd" element={<CfdPage t={t} />} />
+          <Route path="/simulation/cfd/aortic-arch-windkessel" element={<AorticArchCasePage language={language} />} />
           <Route path="/biomechanics/cfd" element={<Navigate to="/simulation/cfd" replace />} />
           <Route path="/biomechanics/cfd/windkessel-boundary-conditions" element={<Navigate to="/blog/windkessel-boundary-conditions" replace />} />
           <Route path="/mathematics" element={<MathematicsPage language={language} />} />
