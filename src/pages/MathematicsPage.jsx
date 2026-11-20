@@ -1,5 +1,5 @@
 import { Link, Navigate, useParams } from 'react-router-dom';
-import { ArrowRight, ArrowLeft, Sigma, Grid3x3, Shapes, Hash, Waves, AudioWaveform, ArrowDownUp, SquareFunction, BookOpen } from 'lucide-react';
+import { ArrowRight, ArrowLeft, Sigma, Grid3x3, Waves, AudioWaveform, ArrowDownUp, SquareFunction, BookOpen } from 'lucide-react';
 import { MathText } from '@/components/MathText';
 
 const R = String.raw;
@@ -77,42 +77,6 @@ export const mathChapters = [
           en: 'Definition, a 4-step method, the chain rule, a worked example and exercises.',
           fr: 'Définition, méthode en 4 étapes, règle de la chaîne, exemple détaillé et exercices.',
           ar: 'التعريف، وطريقة من أربع خطوات، وقاعدة السلسلة، ومثال محلول، وتمارين.',
-        },
-      },
-    ],
-  },
-  {
-    slug: 'algebraic-structures',
-    icon: Shapes,
-    accent: 'accent-sky',
-    title: {
-      en: 'Algebraic Structures',
-      fr: 'Structures algébriques',
-      ar: 'البنيات الجبرية',
-    },
-    intro: {
-      en: 'Groups, rings and fields: congruences and computing in quotient rings.',
-      fr: 'Groupes, anneaux et corps : congruences et calculs dans les anneaux quotients.',
-      ar: 'الزمر والحلقات والحقول: الموافقات والحساب في حلقات الخارج.',
-    },
-    about: {
-      en: 'Algebraic structures describe sets equipped with operations that follow precise rules. This chapter focuses on modular arithmetic: computing “up to a multiple of n” in ℤ/nℤ, a tool used in number theory, cryptography and error-correcting codes.',
-      fr: 'Les structures algébriques décrivent des ensembles munis d’opérations qui obéissent à des règles précises. Ce chapitre se concentre sur l’arithmétique modulaire : calculer « à un multiple de n près » dans ℤ/nℤ, un outil utilisé en théorie des nombres, en cryptographie et dans les codes correcteurs d’erreurs.',
-      ar: 'تصف البنيات الجبرية مجموعات مزوّدة بعمليات تخضع لقواعد دقيقة. يركّز هذا الفصل على الحساب المعياري، أي الحساب «بتقريب مضاعف لـ n» في ℤ/nℤ، وهو أداة تُستعمل في نظرية الأعداد والتشفير والرموز المصحِّحة للأخطاء.',
-    },
-    methods: [
-      {
-        slug: 'computing-in-z-nz',
-        icon: Hash,
-        title: {
-          en: R`How to compute in $\mathbb{Z}/n\mathbb{Z}$?`,
-          fr: R`Comment calculer dans $\mathbb{Z}/n\mathbb{Z}$ ?`,
-          ar: R`كيف نحسب في $\mathbb{Z}/n\mathbb{Z}$؟`,
-        },
-        body: {
-          en: 'Compatibility of congruences with + and ×, and a worked example.',
-          fr: 'Compatibilité des congruences avec + et ×, et un exemple détaillé.',
-          ar: 'توافق الموافقات مع الجمع والضرب، ومثال محلول.',
         },
       },
     ],

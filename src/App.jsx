@@ -9,7 +9,6 @@ import AnalyticalMechanicsPage from '@/pages/AnalyticalMechanicsPage';
 import VirtualWorkApplicationPage from '@/pages/VirtualWorkApplicationPage';
 import MathematicsPage, { MathChapterPage } from '@/pages/MathematicsPage';
 import JacobianMatrixPage from '@/pages/JacobianMatrixPage';
-import ModularArithmeticPage from '@/pages/ModularArithmeticPage';
 import FourierCoefficientsPage from '@/pages/FourierCoefficientsPage';
 import LaplaceODEPage from '@/pages/LaplaceODEPage';
 import { BlogPage, BlogPostPage } from '@/pages/BlogPage';
@@ -694,7 +693,7 @@ function App() {
           <Route path="/mathematics" element={<MathematicsPage language={language} />} />
           <Route path="/mathematics/:chapter" element={<MathChapterPage language={language} />} />
           <Route path="/mathematics/multivariable-functions/jacobian-matrix" element={<JacobianMatrixPage language={language} />} />
-          <Route path="/mathematics/algebraic-structures/computing-in-z-nz" element={<ModularArithmeticPage language={language} />} />
+          <Route path="/mathematics/algebraic-structures/computing-in-z-nz" element={<Navigate to="/mathematics" replace />} />
           <Route path="/mathematics/fourier-series/fourier-coefficients" element={<FourierCoefficientsPage language={language} />} />
           <Route path="/mathematics/laplace-transform/solving-linear-odes" element={<LaplaceODEPage language={language} />} />
           <Route path="/mechanics" element={<MechanicsPage t={t} />} />
